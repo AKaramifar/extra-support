@@ -1,6 +1,8 @@
 import React from 'react';
-import './App.css';
+import styled from 'styled-components';
+const Container = styled.div``;
 
-export function App() {
-  return <div className="App">Extra Support</div>;
+function App() {
+  return <Container className="App">Extra Support</Container>;
 }
+export default App;
