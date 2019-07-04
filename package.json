@@ -1,0 +1,11 @@
+{
+  "name": "extra-support",
+  "version": "1.0.0",
+  "description": "This an app that connect students with professionals where a professional can offer their service for students",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "CYF",
+  "license": "MIT"
+}
