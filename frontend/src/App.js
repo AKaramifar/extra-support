@@ -1,8 +1,15 @@
 import React from 'react';
-import styled from 'styled-components';
-const Container = styled.div``;
+import { BrowserRouter as Router } from 'react-router-dom';
+import Routes from './Routes';
+import './App.css';
 
-function App() {
-  return <Container className="App">Extra Support</Container>;
-}
+const App = () => (
+  <Router>
+    <div>
+      {/* <Navbar /> */}
+      <Routes />
+    </div>
+  </Router>
+);
+
 export default App;

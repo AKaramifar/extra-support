@@ -1,0 +1,125 @@
+body {
+}
+
+/* login Page */
+
+.container-flex {
+  margin-top: 15%;
+  margin-left: 10%;
+}
+
+.cards-container {
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+  margin-top: 10%;
+  margin-left: 5%;
+}
+.login-form {
+  display: felx;
+  align-items: center;
+}
+.login-form div {
+  width: 400px !important;
+}
+.login-input {
+  width: 100% !important;
+  height: 40px;
+}
+button {
+  width: 100px !important;
+  height: 40px;
+  font-size: 22px;
+  margin-bottom: 30px !important;
+}
+.ml-1 {
+  margin-left: 10px !important;
+}
+.volunteer-register-container,
+.student-register-container {
+  margin-top: 10px;
+  font-size: 23px;
+}
+
+.student-volunteer-register-link {
+  color: #5cb85c;
+}
+
+.card-border {
+  margin-left: 10px;
+  border: 2px black solid;
+  width: 100% !important;
+  background-color: lightgray;
+  margin-top: 10px;
+}
+
+.card-border-container {
+  margin-left: 10px;
+  width: 40% !important;
+  margin-top: 10px;
+}
+
+/* Category */
+.category {
+  display: flex;
+  flex-direction: column;
+  width: 25%;
+  margin-top: 50px;
+  margin-left: 10px;
+  height: 300px;
+}
+.category-image-container {
+  width: 100%;
+}
+.category h3 {
+  width: 100%;
+}
+
+/* Categories */
+.categories-container {
+  display: flex;
+  flex-direction: column;
+}
+.categories {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 100%;
+}
+
+/* Tutorials */
+.tutorials-main-container {
+  margin-top: 5%;
+  width: 100%;
+  font-size: 17px;
+}
+.tutorials-container {
+  display: flex;
+  width: 100%;
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
+/* Tutorial */
+.tutorial {
+  display: flex;
+  flex-direction: column;
+  width: 23%;
+  border: 2px solid black;
+  padding: 10px;
+  margin-left: 10px;
+  margin-bottom: 10px;
+}
+.tutorial i {
+  margin-bottom: 10px;
+}
+.icons {
+  padding: 10px;
+}
+
+/* CategoryContent */
+.category-content-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 100%;
+}
