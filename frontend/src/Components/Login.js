@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { Link } from 'react-router-dom';
 const Login = props => {
   return (
     <form class="form-inline ">
@@ -26,9 +26,11 @@ const Login = props => {
             <a className="student-volunteer-register-link">Register Here</a>
           </div>
         </div>
-        <button onClick={props.handleLogin} type="submit" class="btn btn-success ml-1">
-          Login{' '}
-        </button>
+        <Link to="/categories">
+          <button onClick={props.handleLogin} type="submit" class="btn btn-success ml-1">
+            Login{' '}
+          </button>
+        </Link>
       </div>
     </form>
   );

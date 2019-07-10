@@ -12,11 +12,7 @@ class Home extends Component {
   };
 
   render() {
-    return (
-      <div className="container">
-        {this.state.loginClicked ? <Link to="/categories">Categories</Link> : <Login handleLogin={this.handleLogin} />}
-      </div>
-    );
+    return <div className="container">{<Login handleLogin={this.handleLogin} />}</div>;
   }
 }
 

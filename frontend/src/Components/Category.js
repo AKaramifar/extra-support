@@ -5,8 +5,10 @@ class Category extends Component {
   render() {
     return (
       <div className="category">
-        <Link to={`/tutorials/${this.props.category.name}`}>
-          <img src={this.props.category.image} width="100%" height="100%" />
+        <Link to={`/${this.props.category.name.toLowerCase()}/${this.props.category.name}`}>
+          <div className="category-image-container">
+            <img src={this.props.category.image} width="100%" height="100%" style={{ objectFit: 'contain' }} />
+          </div>
           <h3>{this.props.category.name}</h3>
         </Link>
       </div>
