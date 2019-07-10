@@ -1,34 +1,15 @@
 import React from 'react';
-import styled from 'styled-components';
-import Login from './Login';
-import Card from './Card';
+import { BrowserRouter as Router } from 'react-router-dom';
+import Routes from './Routes';
 import './App.css';
 
-const Container = styled.div``;
+const App = () => (
+  <Router>
+    <div>
+      {/* <Navbar /> */}
+      <Routes />
+    </div>
+  </Router>
+);
 
-class App extends React.Component {
-  state = { loginClicked: false };
-
-  handleLogin = () => {
-    this.setState(prevStat => {
-      return {
-        loginClicked: !prevStat.loginClicked,
-      };
-    });
-  };
-  render() {
-    if (!this.state.loginClicked) {
-      return <div className="container-flex">{<Login handleLogin={this.handleLogin} />}</div>;
-    } else if (this.state.loginClicked) {
-      return (
-        <div class="cards-container">
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-        </div>
-      );
-    }
-  }
-}
 export default App;

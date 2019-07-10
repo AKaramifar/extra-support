@@ -48,7 +48,49 @@ button {
 .card-border {
   margin-left: 10px;
   border: 2px black solid;
-  width: 25% !important;
+  width: 100% !important;
   background-color: lightgray;
   margin-top: 10px;
+}
+
+.card-border-container {
+  margin-left: 10px;
+  width: 40% !important;
+  margin-top: 10px;
+}
+
+/* Category */
+.category {
+  display: flex;
+  flex-direction: column;
+  width: 20%;
+  margin-top: 50px;
+}
+
+.category h3 {
+  width: 100%;
+}
+
+/* Categories */
+.categories {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 100%;
+}
+
+/* tutorial */
+.tutorial-container {
+  display: flex;
+  flex-direction: column;
+  width: 20%;
+  margin-top: 50px;
+}
+
+/* CategoryContent */
+.category-content-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 100%;
 }
