@@ -7,7 +7,9 @@ const App = () => (
   <Router>
     <div>
       {/* <Navbar /> */}
-      <Routes />
+      <div className="container">
+        <Routes />
+      </div>
     </div>
   </Router>
 );

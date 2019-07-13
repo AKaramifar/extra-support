@@ -16,14 +16,14 @@ const Login = props => {
           />
           <div className="student-register-container">
             {'CYF Student - '}
-            <a className="student-volunteer-register-link">Register Here</a>
+            <a className="student-volunteer-register-link" href='/'>Register Here</a>
           </div>
         </div>
         <div class="form-group  ml-1">
           <input type="password" class="form-control login-input" id="exampleInputPassword1" placeholder="Password" />
           <div className="volunteer-register-container">
             {'Become a Volunteer - '}
-            <a className="student-volunteer-register-link">Register Here</a>
+            <a className="student-volunteer-register-link" href='/'>Register Here</a>
           </div>
         </div>
         <Link to="/categories">
