@@ -7,8 +7,13 @@ class Category extends Component {
       <div className="category">
         <Link to={`/${this.props.category.name}`}>
           <div className="category-image-container">
-            {/* eslint-disable-next-line jsx-a11y/alt-text */}
-            <img src={this.props.category.image} width="100%" height="100%" style={{ objectFit: 'contain' }} />
+            <img
+              src={this.props.category.image}
+              width="100%"
+              height="100%"
+              style={{ objectFit: 'contain' }}
+              alt={this.props.category.image}
+            />
           </div>
           <h3>{this.props.category.name}</h3>
         </Link>
