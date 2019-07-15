@@ -1,41 +1,55 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Tutorial from '../Components/Tutorial';
-
-import fakeTutorials from '../data/tutorials.json';
 import Filters from '../Components/Filters/index';
 import { generateFilters, getLocalStorageArray } from '../Helpers';
+import { getTutorials } from '../actions/tutorials';
+import swal from 'sweetalert';
 
-
-function checkAvailabilities(availabilities, filters) {
-  return availabilities.map(availability => {
-    return filters.includes(availability.date && new Date(availability.date).getDay().toString());
-  });
-}
+// function checkAvailabilities(availabilities, filters) {
+//   return availabilities.map(availability => {
+//     return filters.includes(availability.date && new Date(availability.date).getDay().toString());
+//   });
+// }
 class Tutorials extends Component {
   state = { toggleVisibility: false, availability: [], tutorials: [] };
 
   componentWillMount() {
-    this.filterByCategory();
-    this.setState({
-      availability: getLocalStorageArray('availability'),
-      tutorials: this.filterByCategory(),
-    });
+    this.setState(
+      {
+        availability: getLocalStorageArray('availability'),
+      },
+      () => {
+        this.getTutorialsByOptions();
+      }
+    );
   }
-  filterByCategory = () => {
+  getTutorialsByOptions = async () => {
     const { category } = this.props.match.params;
-    return fakeTutorials.filter(tutorial => tutorial.category === category);
-  };
-  filtersSearchHandler = async () => {
-    //backend logics
     const { availability } = this.state;
-    const tutorials = this.filterByCategory().filter(tutorial => {
-      return checkAvailabilities(tutorial.availabilities, availability).includes(true);
-    });
-    this.setState({
-      tutorials,
-    });
+    const options = {
+      category,
+      availability,
+    };
+    try {
+      const res = await getTutorials(options);
+      this.setState({ tutorials: res.data });
+    } catch (error) {
+      swal('Oops!', 'Could not get tutorials!', 'error');
+    }
   };
+
+  // filtersSearchHandler = async () => {
+  //   //backend logics
+  //   const { availability } = this.state;
+  //   const tutorials = this.filterByCategory().filter(tutorial => {
+  //     return checkAvailabilities(tutorial.availabilities, availability).includes(true);
+  //   });
+  //   this.setState({
+  //     tutorials,
+  //   });
+  // };
+
   toggleVisibilityHandler = () => {
     const { toggleVisibility } = this.state;
     this.setState({
