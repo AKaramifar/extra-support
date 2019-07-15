@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Tutorial from '../Components/Tutorial';
 import tutorials from '../data/tutorials.json';
+import { Link } from 'react-router-dom';
 
 class Tutorials extends Component {
   render() {
