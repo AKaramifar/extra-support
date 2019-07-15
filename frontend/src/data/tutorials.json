@@ -5,7 +5,44 @@
     "mentor": "Merrilyn Elias",
     "description": "Our goal is to help you Learn English speaking so you can speak English fluently. Improve your spoken English Free! Two hours long weekly tutorials.",
     "location": "North London, Hackney",
-    "availability": [
+    "availabilities": [
+      {
+        "date": "Wed Jul 10 2019 12:14:48 GMT+0100",
+        "time": ["10:00 - 12:00", "14:00 - 16:00", "18:00 - 20:00"]
+      },      {
+        "date": "Wed Jul 10 2019 12:14:48 GMT+0100",
+        "time": ["10:00 - 12:00", "14:00 - 16:00", "18:00 - 20:00"]
+      },      {
+        "date": "Wed Jul 10 2019 12:14:48 GMT+0100",
+        "time": ["10:00 - 12:00", "14:00 - 16:00", "18:00 - 20:00"]
+      }
+    ],
+    "information": [
+      {
+        "name": "Information One",
+        "text": "dfsdfdsf"
+      },
+      {
+        "name": "Information Two",
+        "text": "dfsdfdsf"
+      }
+    ]
+  },
+  {
+    "name": "English speaking tutorial",
+    "category": "Education",
+    "mentor": "Merrilyn Elias",
+    "description": "Our goal is to help you Learn English speaking so you can speak English fluently. Improve your spoken English Free! Two hours long weekly tutorials.",
+    "location": "North London, Hackney",
+    "availabilities": [
+      {
+        "date": "Wed Jul 10 2019 12:14:48 GMT+0100",
+        "time": ["10:00 - 12:00", "14:00 - 16:00", "18:00 - 20:00"]
+      },
+      {
+        "date": "Wed Jul 10 2019 12:14:48 GMT+0100",
+        "time": ["10:00 - 12:00", "14:00 - 16:00", "18:00 - 20:00"]
+      },
       {
         "date": "Wed Jul 10 2019 12:14:48 GMT+0100",
         "time": ["10:00 - 12:00", "14:00 - 16:00", "18:00 - 20:00"]
@@ -29,7 +66,7 @@
     "mentor": "Merrilyn Elias",
     "description": "Our goal is to help you Learn English speaking so you can speak English fluently. Improve your spoken English Free! Two hours long weekly tutorials.",
     "location": "North London, Hackney",
-    "availability": [
+    "availabilities": [
       {
         "date": "Wed Jul 10 2019 12:14:48 GMT+0100",
         "time": ["10:00 - 12:00", "14:00 - 16:00", "18:00 - 20:00"]
@@ -53,7 +90,7 @@
     "mentor": "Merrilyn Elias",
     "description": "Our goal is to help you Learn English speaking so you can speak English fluently. Improve your spoken English Free! Two hours long weekly tutorials.",
     "location": "North London, Hackney",
-    "availability": [
+    "availabilities": [
       {
         "date": "Wed Jul 10 2019 12:14:48 GMT+0100",
         "time": ["10:00 - 12:00", "14:00 - 16:00", "18:00 - 20:00"]
@@ -77,31 +114,7 @@
     "mentor": "Merrilyn Elias",
     "description": "Our goal is to help you Learn English speaking so you can speak English fluently. Improve your spoken English Free! Two hours long weekly tutorials.",
     "location": "North London, Hackney",
-    "availability": [
-      {
-        "date": "Wed Jul 10 2019 12:14:48 GMT+0100",
-        "time": ["10:00 - 12:00", "14:00 - 16:00", "18:00 - 20:00"]
-      }
-    ],
-    "information": [
-      {
-        "name": "Information One",
-        "text": "dfsdfdsf"
-      },
-      {
-        "name": "Information Two",
-        "text": "dfsdfdsf"
-      }
-    ]
-  },
-  {
-    "name": "English speaking tutorial",
-    "category": "Education",
-
-    "mentor": "Merrilyn Elias",
-    "description": "Our goal is to help you Learn English speaking so you can speak English fluently. Improve your spoken English Free! Two hours long weekly tutorials.",
-    "location": "North London, Hackney",
-    "availability": [
+    "availabilities": [
       {
         "date": "Wed Jul 10 2019 12:14:48 GMT+0100",
         "time": ["10:00 - 12:00", "14:00 - 16:00", "18:00 - 20:00"]
@@ -124,7 +137,237 @@
     "mentor": "Merrilyn Elias",
     "description": "Our goal is to help you Learn English speaking so you can speak English fluently. Improve your spoken English Free! Two hours long weekly tutorials.",
     "location": "North London, Hackney",
-    "availability": [
+    "availabilities": [
+      {
+        "date": "Wed Jul 10 2019 12:14:48 GMT+0100",
+        "time": ["10:00 - 12:00", "14:00 - 16:00", "18:00 - 20:00"]
+      }
+    ],
+    "information": [
+      {
+        "name": "Information One",
+        "text": "dfsdfdsf"
+      },
+      {
+        "name": "Information Two",
+        "text": "dfsdfdsf"
+      }
+    ]
+  },
+  {
+    "name": "English speaking tutorial",
+    "category": "Education",
+    "mentor": "Merrilyn Elias",
+    "description": "Our goal is to help you Learn English speaking so you can speak English fluently. Improve your spoken English Free! Two hours long weekly tutorials.",
+    "location": "North London, Hackney",
+    "availabilities": [
+      {
+        "date": "Wed Jul 10 2019 12:14:48 GMT+0100",
+        "time": ["10:00 - 12:00", "14:00 - 16:00", "18:00 - 20:00"]
+      }
+    ],
+    "information": [
+      {
+        "name": "Information One",
+        "text": "dfsdfdsf"
+      },
+      {
+        "name": "Information Two",
+        "text": "dfsdfdsf"
+      }
+    ]
+  },
+  {
+    "name": "English speaking tutorial",
+    "category": "Education",
+    "mentor": "Merrilyn Elias",
+    "description": "Our goal is to help you Learn English speaking so you can speak English fluently. Improve your spoken English Free! Two hours long weekly tutorials.",
+    "location": "North London, Hackney",
+    "availabilities": [
+      {
+        "date": "Wed Jul 10 2019 12:14:48 GMT+0100",
+        "time": ["10:00 - 12:00", "14:00 - 16:00", "18:00 - 20:00"]
+      }
+    ],
+    "information": [
+      {
+        "name": "Information One",
+        "text": "dfsdfdsf"
+      },
+      {
+        "name": "Information Two",
+        "text": "dfsdfdsf"
+      }
+    ]
+  },
+  {
+    "name": "English speaking tutorial",
+    "category": "Education",
+    "mentor": "Merrilyn Elias",
+    "description": "Our goal is to help you Learn English speaking so you can speak English fluently. Improve your spoken English Free! Two hours long weekly tutorials.",
+    "location": "North London, Hackney",
+    "availabilities": [
+      {
+        "date": "Wed Jul 10 2019 12:14:48 GMT+0100",
+        "time": ["10:00 - 12:00", "14:00 - 16:00", "18:00 - 20:00"]
+      }
+    ],
+    "information": [
+      {
+        "name": "Information One",
+        "text": "dfsdfdsf"
+      },
+      {
+        "name": "Information Two",
+        "text": "dfsdfdsf"
+      }
+    ]
+  },
+  {
+    "name": "English speaking tutorial",
+    "category": "Education",
+    "mentor": "Merrilyn Elias",
+    "description": "Our goal is to help you Learn English speaking so you can speak English fluently. Improve your spoken English Free! Two hours long weekly tutorials.",
+    "location": "North London, Hackney",
+    "availabilities": [
+      {
+        "date": "Wed Jul 10 2019 12:14:48 GMT+0100",
+        "time": ["10:00 - 12:00", "14:00 - 16:00", "18:00 - 20:00"]
+      }
+    ],
+    "information": [
+      {
+        "name": "Information One",
+        "text": "dfsdfdsf"
+      },
+      {
+        "name": "Information Two",
+        "text": "dfsdfdsf"
+      }
+    ]
+  },
+  {
+    "name": "Money",
+    "category": "Money",
+    "mentor": "Merrilyn Elias",
+    "description": "Our goal is to help you Learn English speaking so you can speak English fluently. Improve your spoken English Free! Two hours long weekly tutorials.",
+    "location": "North London, Hackney",
+    "availabilities": [
+      {
+        "date": "Wed Jul 10 2019 12:14:48 GMT+0100",
+        "time": ["10:00 - 12:00", "14:00 - 16:00", "18:00 - 20:00"]
+      }
+    ],
+    "information": [
+      {
+        "name": "Information One",
+        "text": "dfsdfdsf"
+      },
+      {
+        "name": "Information Two",
+        "text": "dfsdfdsf"
+      }
+    ]
+  },
+  {
+    "name": "Money",
+    "category": "Money",
+    "mentor": "Merrilyn Elias",
+    "description": "Our goal is to help you Learn English speaking so you can speak English fluently. Improve your spoken English Free! Two hours long weekly tutorials.",
+    "location": "North London, Hackney",
+    "availabilities": [
+      {
+        "date": "Wed Jul 10 2019 12:14:48 GMT+0100",
+        "time": ["10:00 - 12:00", "14:00 - 16:00", "18:00 - 20:00"]
+      }
+    ],
+    "information": [
+      {
+        "name": "Information One",
+        "text": "dfsdfdsf"
+      },
+      {
+        "name": "Information Two",
+        "text": "dfsdfdsf"
+      }
+    ]
+  },
+  {
+    "name": "Money",
+    "category": "Money",
+    "mentor": "Merrilyn Elias",
+    "description": "Our goal is to help you Learn English speaking so you can speak English fluently. Improve your spoken English Free! Two hours long weekly tutorials.",
+    "location": "North London, Hackney",
+    "availabilities": [
+      {
+        "date": "Wed Jul 10 2019 12:14:48 GMT+0100",
+        "time": ["10:00 - 12:00", "14:00 - 16:00", "18:00 - 20:00"]
+      }
+    ],
+    "information": [
+      {
+        "name": "Information One",
+        "text": "dfsdfdsf"
+      },
+      {
+        "name": "Information Two",
+        "text": "dfsdfdsf"
+      }
+    ]
+  },
+  {
+    "name": "Money",
+    "category": "Money",
+    "mentor": "Merrilyn Elias",
+    "description": "Our goal is to help you Learn English speaking so you can speak English fluently. Improve your spoken English Free! Two hours long weekly tutorials.",
+    "location": "North London, Hackney",
+    "availabilities": [
+      {
+        "date": "Wed Jul 10 2019 12:14:48 GMT+0100",
+        "time": ["10:00 - 12:00", "14:00 - 16:00", "18:00 - 20:00"]
+      }
+    ],
+    "information": [
+      {
+        "name": "Information One",
+        "text": "dfsdfdsf"
+      },
+      {
+        "name": "Information Two",
+        "text": "dfsdfdsf"
+      }
+    ]
+  },
+  {
+    "name": "Money",
+    "category": "Money",
+    "mentor": "Merrilyn Elias",
+    "description": "Our goal is to help you Learn English speaking so you can speak English fluently. Improve your spoken English Free! Two hours long weekly tutorials.",
+    "location": "North London, Hackney",
+    "availabilities": [
+      {
+        "date": "Wed Jul 10 2019 12:14:48 GMT+0100",
+        "time": ["10:00 - 12:00", "14:00 - 16:00", "18:00 - 20:00"]
+      }
+    ],
+    "information": [
+      {
+        "name": "Information One",
+        "text": "dfsdfdsf"
+      },
+      {
+        "name": "Information Two",
+        "text": "dfsdfdsf"
+      }
+    ]
+  },
+  {
+    "name": "Immigration",
+    "category": "Immigration",
+    "mentor": "Merrilyn Elias",
+    "description": "Our goal is to help you Learn English speaking so you can speak English fluently. Improve your spoken English Free! Two hours long weekly tutorials.",
+    "location": "North London, Hackney",
+    "availabilities": [
       {
         "date": "Wed Jul 10 2019 12:14:48 GMT+0100",
         "time": ["10:00 - 12:00", "14:00 - 16:00", "18:00 - 20:00"]
