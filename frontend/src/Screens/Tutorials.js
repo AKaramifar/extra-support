@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Tutorial from '../Components/Tutorial';
 import tutorials from '../data/tutorials.json';
+import { Link } from 'react-router-dom';
 
 class Tutorials extends Component {
   render() {
@@ -8,9 +9,13 @@ class Tutorials extends Component {
 
     return (
       <div className="container tutorials-main-container">
-        <i class="fas fa-arrow-left" style={{ fontSize: '25px' }}>
-          <span className="icons">Education</span>
-        </i>
+        <Link to="/categories">
+          <i class="fas fa-arrow-left" style={{ fontSize: '25px' }}></i>
+        </Link>
+        <span className="category-title">
+          <b>Education</b>
+        </span>
+
         <div className="tutorials-container">{tutorialsToShow}</div>
       </div>
     );
