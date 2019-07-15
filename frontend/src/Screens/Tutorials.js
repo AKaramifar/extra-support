@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Tutorial from '../Components/Tutorial';
+
 import fakeTutorials from '../data/tutorials.json';
 import Filters from '../Components/Filters/index';
 import { generateFilters, getLocalStorageArray } from '../Helpers';
+
 
 function checkAvailabilities(availabilities, filters) {
   return availabilities.map(availability => {
