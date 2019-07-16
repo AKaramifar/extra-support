@@ -15,13 +15,7 @@
   margin-top: 10%;
   margin-left: 5%;
 }
-.login-form {
-  /* display: felx; */
-  align-items: center;
-}
-.login-form div {
-  width: 400px !important;
-}
+
 .login-input {
   width: 100% !important;
   height: 40px;
@@ -32,8 +26,12 @@ button {
   font-size: 22px;
   margin-bottom: 30px !important;
 }
-.ml-1 {
+.ml {
   margin-left: 10px !important;
+}
+
+.mt {
+  margin-top: 15% !important;
 }
 .volunteer-register-container,
 .student-register-container {
