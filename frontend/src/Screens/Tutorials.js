@@ -6,49 +6,39 @@ import { generateFilters, getLocalStorageArray } from '../Helpers';
 import { getTutorials } from '../actions/tutorials';
 import swal from 'sweetalert';
 
-// function checkAvailabilities(availabilities, filters) {
-//   return availabilities.map(availability => {
-//     return filters.includes(availability.date && new Date(availability.date).getDay().toString());
-//   });
-// }
 class Tutorials extends Component {
   state = { toggleVisibility: false, availability: [], tutorials: [] };
 
   componentWillMount() {
-    this.setState(
-      {
-        availability: getLocalStorageArray('availability'),
-      },
-      () => {
-        this.getTutorialsByOptions();
-      }
-    );
-  }
-  getTutorialsByOptions = async () => {
     const { category } = this.props.match.params;
-    const { availability } = this.state;
     const options = {
       category,
-      availability,
     };
+    this.setState({
+      availability: getLocalStorageArray('availability'),
+    });
+    this.getTutorialsByOptions(options);
+  }
+  getTutorialsByOptions = async options => {
     try {
       const res = await getTutorials(options);
-      this.setState({ tutorials: res.data });
+      console.log(res);
+      this.setState({ tutorials: res.data.tutorials });
     } catch (error) {
       swal('Oops!', 'Could not get tutorials!', 'error');
     }
   };
 
-  // filtersSearchHandler = async () => {
-  //   //backend logics
-  //   const { availability } = this.state;
-  //   const tutorials = this.filterByCategory().filter(tutorial => {
-  //     return checkAvailabilities(tutorial.availabilities, availability).includes(true);
-  //   });
-  //   this.setState({
-  //     tutorials,
-  //   });
-  // };
+  filtersSearchHandler = async () => {
+    //backend logics
+    const { availability } = this.state;
+    const { category } = this.props.match.params;
+    const options = {
+      category,
+      availability,
+    };
+    this.getTutorialsByOptions(options);
+  };
 
   toggleVisibilityHandler = () => {
     const { toggleVisibility } = this.state;
