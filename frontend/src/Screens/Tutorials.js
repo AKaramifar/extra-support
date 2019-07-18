@@ -7,7 +7,7 @@ import { getTutorials } from '../actions/tutorials';
 import swal from 'sweetalert';
 
 class Tutorials extends Component {
-  state = { toggleVisibility: false, availability: [], tutorials: [] .};
+  state = { toggleVisibility: false, availability: [], tutorials: [] };
 
   componentWillMount() {
     const { category } = this.props.match.params;

@@ -6,6 +6,7 @@ class TimeBox extends Component {
     this.setState(prevState => {
       return { toggelColor: !prevState.toggelColor };
     });
+    this.props.settingBookedTime(this.props.time);
   };
   render() {
     return (

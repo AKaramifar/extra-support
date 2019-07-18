@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import swal from 'sweetalert';
 
 class UserBookingFields extends Component {
   state = {};
@@ -7,7 +8,42 @@ class UserBookingFields extends Component {
   };
 
   handleSubmit = () => {
+    const mentor = this.props.mentor;
+    const category = this.props.category;
+    const bookedTime = this.props.bookedTime.split('-')[0];
+    const selectedDate = this.props.selectedDate;
+    const changePage = category => {
+      this.props.history.replace(`/${category}`);
+    };
     console.log(this.state);
+    swal({
+      title: 'Confirm booking',
+      text: 'Are you sure you want to book an appointment',
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, book it!',
+      cancelButtonText: 'No, cancel!',
+      confirmButtonClass: 'btn btn-success',
+      cancelButtonClass: 'btn btn-danger',
+      buttonsStyling: false,
+    }).then(
+      function() {
+        swal(
+          'Booked!',
+          `Your appointment with ${mentor} is scheduled for  ${bookedTime}  ${selectedDate}. Contact ${mentor} if you need to make any changes`,
+          'success'
+        );
+        changePage(category);
+      },
+      function(dismiss) {
+        // dismiss can be 'cancel', 'overlay', 'close', 'timer'
+        if (dismiss === 'cancel') {
+          swal('Cancelled', 'Your imaginary file is safe :)', 'error');
+        }
+      }
+    );
   };
   render() {
     return (

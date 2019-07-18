@@ -4,9 +4,15 @@ import UserBookingFields from '../Components/UserBookingFields';
 import DropDown from '../Components/DropDown';
 import { getAvailabilities } from '../actions/getAvailabilities';
 import swal from 'sweetalert';
-
+import { availability } from '../Components/Filters/Helpers';
 class Booking extends Component {
-  state: { data: {}, availabilitiesDates: [], availabilitiesTimes: [] };
+  state: {
+    data: {},
+    availabilitiesDates: [],
+    availabilitiesTimes: [],
+    bookedTime: '',
+    selectedDate: '',
+  };
 
   componentWillMount() {
     this.setState(() => {
@@ -20,7 +26,12 @@ class Booking extends Component {
     console.log('this from booking will mount', this.props.location.state.category.tutorial);
   }
 
+  settingBookedTime = time => {
+    this.setState({ bookedTime: time });
+  };
+
   handleGettingetAvailabilities = async date => {
+    this.setState({ selectedDate: new Date(date).toDateString() });
     const options = {
       id: this.state.data.id,
       category: this.state.data.category,
@@ -34,6 +45,7 @@ class Booking extends Component {
       swal('Oops!', 'Could not get availabilities!', 'error');
     }
   };
+
   render() {
     return (
       <div className="container" style={{ width: '100%' }}>
@@ -53,9 +65,9 @@ class Booking extends Component {
           <i class="far fa-clock" style={{ width: '50%', marginBottom: '5px' }}>
             <span className="icons col ">{'Group Service'}</span>
           </i>
-          <i class="far fa-clock" style={{ width: '50%', marginBottom: '5px' }}>
-            <span className="icons col ">{'Wednesdays'}</span>
-          </i>
+          {/* <i class="far fa-clock" style={{ width: '50%', marginBottom: '5px' }}>
+            <span className="icons col ">{day}</span>
+          </i> */}
         </div>
         <br />
         <div style={{ width: '100%' }}>
@@ -65,12 +77,21 @@ class Booking extends Component {
             availabilitiesDates={this.state.availabilitiesDates}
           />
           <div class="d-flex flex-row flex-wrap  justify-content-start" style={{ width: '70%' }}>
-            {this.state.availabilitiesTimes && this.state.availabilitiesTimes.map(time => <TimeBox time={time} />)}
+            {this.state.availabilitiesTimes &&
+              this.state.availabilitiesTimes.map(time => (
+                <TimeBox settingBookedTime={this.settingBookedTime} time={time} />
+              ))}
           </div>
           <br />
           <br />
         </div>
-        <UserBookingFields />
+        <UserBookingFields
+          {...this.props}
+          category={this.state.data.category}
+          bookedTime={this.state.bookedTime}
+          mentor={this.state.data.mentor}
+          selectedDate={this.state.selectedDate}
+        />
         {console.log('this from inside booking render', this.state.data.availabilities.time)}
       </div>
     );
