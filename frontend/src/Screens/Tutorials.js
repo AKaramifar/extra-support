@@ -7,7 +7,7 @@ import { getTutorials } from '../actions/tutorials';
 import swal from 'sweetalert';
 
 class Tutorials extends Component {
-  state = { toggleVisibility: false, availability: [], tutorials: [] .};
+  state = { toggleVisibility: false, availability: [], tutorials: [] };
 
   componentWillMount() {
     const { category } = this.props.match.params;
@@ -73,7 +73,7 @@ class Tutorials extends Component {
             filtersSearchHandler={this.filtersSearchHandler}
           />
         ) : null}
-        <Link to="categories">
+        <Link to="/categories">
           <i class="fas fa-arrow-left" style={{ fontSize: '25px' }}>
             <span className="icons">{category}</span>
           </i>

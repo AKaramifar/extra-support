@@ -1,0 +1,36 @@
+.user-profile {
+  padding: 5% 15%;
+}
+.user-profile-section-one {
+  display: flex;
+  /* justify-content: space-between; */
+  width: 100%;
+}
+.user-profile-name-btn {
+  margin-top: 100px;
+  display: flex;
+  justify-content: space-around;
+  width: 80%;
+}
+.user-profile-avatar {
+  width: 150px !important;
+  height: 150px !important;
+}
+.user-profile-name {
+  font-style: normal;
+  font-weight: bold;
+  font-size: 40px;
+  line-height: 60px;
+  letter-spacing: 0.75px;
+  color: #00a3ff;
+}
+.user-profile-edit-button {
+  border: 3px solid #00a3ff;
+  font-weight: bold;
+  color: #00a3ff;
+  background-color: rgba(255, 255, 255, 0);
+  width: fit-content !important;
+}
+.modal-header {
+  height: 60px !important;
+}

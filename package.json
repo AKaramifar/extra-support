@@ -10,5 +10,8 @@
   "license": "MIT",
   "devDependencies": {
     "eslint-plugin-prettier": "^3.1.0"
+  },
+  "dependencies": {
+    "jwt-decode": "^2.2.0"
   }
 }
