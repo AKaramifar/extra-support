@@ -6,5 +6,5 @@ export const availability = [
   { name: 'Thursday', _id: '4' },
   { name: 'Friday', _id: '5' },
   { name: 'Saturday', _id: '6' },
-  { name: 'Sunday', _id: '7' },
-]
+  { name: 'Sunday', _id: '0' },
+];
