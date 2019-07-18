@@ -73,7 +73,7 @@ class Tutorials extends Component {
             filtersSearchHandler={this.filtersSearchHandler}
           />
         ) : null}
-        <Link to="categories">
+        <Link to="/categories">
           <i class="fas fa-arrow-left" style={{ fontSize: '25px' }}>
             <span className="icons">{category}</span>
           </i>

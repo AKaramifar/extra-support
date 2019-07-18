@@ -95,6 +95,7 @@
 .desktop-display-none {
   display: none;
 }
+
 @media screen and (max-width: 990px) {
   .navbar-div {
     width: '70%';
