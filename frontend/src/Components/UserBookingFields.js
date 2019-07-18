@@ -13,7 +13,7 @@ class UserBookingFields extends Component {
     const bookedTime = this.props.bookedTime.split('-')[0];
     const selectedDate = this.props.selectedDate;
     const changePage = category => {
-      this.props.history.replace(`/${category}`);
+      this.props.history.replace(`/category/${category}`);
     };
     console.log(this.state);
     swal({
