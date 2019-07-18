@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 class Tutorial extends Component {
   render() {
@@ -18,6 +19,9 @@ class Tutorial extends Component {
         <i class="far fa-clock">
           <span className="icons">{this.props.tutorial.information[1].name}</span>
         </i>
+        <Link to={{ pathname: `/booking/${this.props.tutorial.name}`, state: { category: this.props } }}>
+          <h6 className="text-success">Check Availability</h6>
+        </Link>
       </div>
     );
   }
