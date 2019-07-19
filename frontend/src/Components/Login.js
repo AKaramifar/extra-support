@@ -57,7 +57,7 @@ class Login extends Component {
             <div className="student-register-container">
               {'CYF Student - '}
               <a className="student-volunteer-register-link" href="https://application-process.codeyourfuture.io/">
-                Register Here
+                Register Here,
               </a>
             </div>
           </div>
@@ -68,11 +68,10 @@ class Login extends Component {
               value={password}
               onChange={this.onChange}
               className="form-control login-input"
-              id="exampleInputPassword1"
               placeholder="Password"
             />
             <div className="volunteer-register-container">
-              {'Become a Volunteer - '}
+              {' Become a Volunteer - '}
               <a className="student-volunteer-register-link" href="https://codeyourfuture.io/volunteers/">
                 Register Here
               </a>

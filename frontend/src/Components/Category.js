@@ -5,9 +5,12 @@ class Category extends Component {
   render() {
     return (
       <div className="category">
-        <Link to={`/category/${this.props.category.name}`} style={{ fontSize: '150px', color: 'black' }}>
+        <Link to={`/category/${this.props.category.name}`} style={{ fontSize: '150px', color: 'black', textAlign:'center'}}>
           <div className="category-image-container">
-            <i className={this.props.category.image} style={{ fontSize: '150px', color: this.props.category.color?this.props.category.color:'grey' }}></i>
+            <i
+              className={this.props.category.image}
+              style={{ fontSize: '150px', color: this.props.category.color ? this.props.category.color : 'grey' }}
+            ></i>
           </div>
           <h3>{this.props.category.name}</h3>
         </Link>

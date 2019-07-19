@@ -2,7 +2,7 @@ import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import ProfileDropDown from './profileDropDown';
 import { logout, loggedIn } from '../../Auth';
-import logo_CYF_square from './logo-CYF-square.png'
+import logo_CYF_square from './logo-CYF-square.png';
 import './index.css';
 
 export default class Navbar extends React.Component {
@@ -14,9 +14,9 @@ export default class Navbar extends React.Component {
     return (
       <div className="navbar-div">
         <nav className="navbar navbar-expand-lg navbar-light container">
-        <a className="navbar-brand" href="/">
-        <img src={logo_CYF_square} alt="logo" width="80" height="50" />
-      </a>
+          <a className="navbar-brand" href="/">
+            <img src={logo_CYF_square} alt="logo" width="80" height="50" />
+          </a>
           <Link className="nav-link nav-btn" to="/">
             Home
           </Link>
@@ -34,6 +34,13 @@ export default class Navbar extends React.Component {
           </button>
           <div className="collapse navbar-collapse" id="navbarText">
             <ul className="navbar-nav mr-auto">
+              {!loggedIn() && (
+                <li className="nav-item">
+                  <Link className="nav-link nav-btn" to="/register">
+                    Sign up
+                  </Link>
+                </li>
+              )}
               {!loggedIn() && (
                 <li className="nav-item">
                   <Link className="nav-link nav-btn" to="/">
@@ -60,7 +67,7 @@ export default class Navbar extends React.Component {
               )}
             </ul>
           </div>
-          {loggedIn()&&<ProfileDropDown />}
+          {loggedIn() && <ProfileDropDown />}
         </nav>
       </div>
     );
