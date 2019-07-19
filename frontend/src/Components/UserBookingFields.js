@@ -8,6 +8,9 @@ class UserBookingFields extends Component {
   };
 
   handleSubmit = () => {
+    if(!this.props.bookedTime){
+     return swal('Cancelled', 'Please select time.', 'error');
+    }
     const mentor = this.props.mentor;
     const category = this.props.category;
     const bookedTime = this.props.bookedTime.split('-')[0];
