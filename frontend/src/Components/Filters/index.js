@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import FiltersComponent from './Filters';
-import { availability } from './Helpers';
+import { availability, time } from './Helpers';
 
 import './index.css';
 
 class Filters extends Component {
   state = {
     showAvailability: false,
+    showTime: false,
   };
   componentWillMount() {
     this.setState({
@@ -17,7 +18,7 @@ class Filters extends Component {
     this.setState({ [filter]: key });
   };
   render() {
-    const { showAvailability } = this.state;
+    const { showAvailability, showTime } = this.state;
     return (
       <div className="side-nav-filters">
         <div className="side-nav-filters-nav">
@@ -35,6 +36,15 @@ class Filters extends Component {
             showFilters={this.showFilters}
             showListOfFilters={showAvailability}
             showListOfFiltersKey={'showAvailability'}
+          />
+          <FiltersComponent
+            array={time}
+            name={'time'}
+            label={'TIME'}
+            onCheckBoxHandler={this.props.onCheckBoxHandler}
+            showFilters={this.showFilters}
+            showListOfFilters={showTime}
+            showListOfFiltersKey={'showTime'}
           />
         </div>
         <div className="side-nav-filters-footer">
