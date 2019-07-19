@@ -17,6 +17,8 @@ class Categories extends Component {
   render() {
     return (
       <div className="categories-container">
+        <br />
+        <br />
         <h1>Select a category</h1>
         <div className="categories">
           {this.state.categories && this.state.categories.map(category => <Category category={category} />)}
