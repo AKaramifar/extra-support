@@ -49,6 +49,8 @@ class Booking extends Component {
   render() {
     return (
       <div className="container" style={{ width: '100%' }}>
+        <br />
+        <br />
         <h3>{this.state.data.name}</h3>
         <p>{this.state.data.description}</p>
         <div className="d-flex flex-wrap align-items-center" style={{ width: '60%' }}>

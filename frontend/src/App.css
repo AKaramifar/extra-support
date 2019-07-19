@@ -155,6 +155,7 @@ button {
   width: 850px !important;
 }
 
+
 /* register */
 .register-container {
   display: flex;
@@ -172,4 +173,5 @@ button {
   color: #fff !important;
   background-color: #007bff !important;
   border-color: #007bff !important;
+
 }
