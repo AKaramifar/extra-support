@@ -5,13 +5,13 @@ export default ({ text, onChange, value, name, checked }) => {
       <input
         className="form-check-input"
         type="checkbox"
-        id={name}
+        id={value}
         name={name}
         value={value}
         onChange={onChange}
         checked={checked}
       />
-      <label className="form-check-label" htmlFor={name}>
+      <label className="form-check-label" htmlFor={value}>
         {text}
       </label>
     </div>

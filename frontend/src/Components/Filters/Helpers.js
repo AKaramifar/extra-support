@@ -1,5 +1,4 @@
 export const availability = [
-  { name: 'Any Day', _id: 'anyday' },
   { name: 'Monday', _id: '1' },
   { name: 'Tuesday', _id: '2' },
   { name: 'Wednesday', _id: '3' },

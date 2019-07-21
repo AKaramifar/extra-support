@@ -41,9 +41,7 @@ export default ({ user }) => {
                       <span aria-hidden="true">&times;</span>
                     </button>
                   </div>
-                  <div className="modal-body">
-                    <EditProfileForm user={user} />
-                  </div>
+                  <div className="modal-body">{user.firstName && <EditProfileForm user={user} />}</div>
                 </div>
               </div>
             </div>

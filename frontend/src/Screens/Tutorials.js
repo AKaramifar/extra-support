@@ -53,6 +53,7 @@ class Tutorials extends Component {
   };
   clearFilter = () => {
     localStorage.setItem('availability', []);
+    localStorage.setItem('time', []);
     this.setState({
       availability: [],
     });
