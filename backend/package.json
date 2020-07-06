@@ -1,0 +1,38 @@
+{
+  "name": "extra-support",
+  "version": "0.0.1",
+  "description": "This an app that connect students with professionals where a professional can offer their service for students",
+  "main": "server.js",
+  "scripts": {
+    "dev": "nodemon -w . --exec \"babel-node ./src/index.js\"",
+    "lint": "eslint src",
+    "lint:fix": "./node_modules/.bin/eslint --fix src"
+  },
+  "dependencies": {
+    "bcrypt": "^5.0.0",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-jwt": "^6.0.0",
+    "mongoose": "^5.9.21"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.10.4",
+    "@babel/core": "^7.10.4",
+    "@babel/node": "^7.10.4",
+    "@babel/polyfill": "^7.10.4",
+    "@babel/preset-env": "^7.10.4",
+    "nodemon": "^2.0.4"
+  },
+
+
+  "repository": {
+    "url": "https://github.com/codeyourfuture/extra-support"
+  },
+  "license": "MIT",
+  "keywords": [
+    "node",
+    "glitch",
+    "express"
+  ]
+}

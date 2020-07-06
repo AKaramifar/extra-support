@@ -21,7 +21,7 @@ class Login extends Component {
     e.preventDefault();
     const { email, password } = this.state;
     try {
-      const token = await axios.post('https://extra-support-backend.glitch.me/login', {
+      const token = await axios.post('http://localhost:3001/auth/login', {
         email,
         password,
       });

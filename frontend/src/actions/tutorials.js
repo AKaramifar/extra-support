@@ -2,7 +2,7 @@ import axios from 'axios';
 
 export const getTutorials = options => {
   try {
-    return axios('https://extra-support-backend.glitch.me/tutorials', {
+    return axios('http://localhost:3001/tutorials', {
       params: options,
     });
   } catch (error) {

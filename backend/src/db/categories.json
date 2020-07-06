@@ -1,0 +1,32 @@
+[
+  {
+    "name": "Finance",
+    "image": "fa fa-money",
+    "color": "#519872"
+  },
+  {
+    "name": "Education",
+    "image": "fa fa-graduation-cap",
+    "color": "#000"
+  },
+  {
+    "name": "Employment",
+    "image": "fa fa-briefcase",
+    "color": "brown"
+  },
+  {
+    "name": "Legal",
+    "image": "fa fa-balance-scale",
+    "color": "#3B5249"
+  },
+  {
+    "name": "Health",
+    "image": "fa fa-ambulance",
+    "color": "#3B5249"
+  },
+  {
+    "name": "Housing",
+    "image": "fa fa-home",
+    "color": "#11B5E4"
+  }
+]

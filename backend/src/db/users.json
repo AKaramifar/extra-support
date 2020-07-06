@@ -1,0 +1,28 @@
+[
+  {
+    "_id": "ljhirfgiyh4ivui3k4guogbdouhr",
+    "firstName": "Mohsen",
+    "lastName": "Moradi",
+    "email": "mohsen@codeyourfuture.io",
+    "city": "London",
+    "tel": "0987654323",
+    "gender": "Male",
+    "isAsylumSeekerOrRefugee": true,
+    "cyfStudent": true,
+    "avatar": "https://avatars3.githubusercontent.com/u/30389896?v=4",
+    "password": "$2b$10$6fFidw3eS6clCZl8PYt7Q.j9GCdRMpxXmTJUREd3fc6/ioNKT1vRW"
+  },
+  {
+    "_id": "iyg3iou4hiyo3g4oyi3h4iyg",
+    "firstName": "Elamin",
+    "lastName": "Fadlalla",
+    "email": "aldeez911088@gmail.com",
+    "city": "London",
+    "tel": "0987654323",
+    "gender": "Male",
+    "isAsylumSeekerOrRefugee": true,
+    "cyfStudent": true,
+    "avatar": "https://avatars3.githubusercontent.com/u/45502633?s=400&v=4",
+    "password": "$2b$10$6fFidw3eS6clCZl8PYt7Q.j9GCdRMpxXmTJUREd3fc6/ioNKT1vRW"
+  }
+]

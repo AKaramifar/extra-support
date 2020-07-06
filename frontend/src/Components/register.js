@@ -44,7 +44,7 @@ class Register extends Component {
       password,
     };
     try {
-      const token = await axios.post('https://extra-support-backend.glitch.me/register', userData);
+      const token = await axios.post('http://localhost:3001/auth/register', userData);
       setToken(token.data.token);
       this.props.history.replace('/categories');
     } catch (err) {

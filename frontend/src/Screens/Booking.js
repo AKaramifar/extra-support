@@ -4,7 +4,7 @@ import UserBookingFields from '../Components/UserBookingFields';
 import DropDown from '../Components/DropDown';
 import { getAvailabilities } from '../actions/getAvailabilities';
 import swal from 'sweetalert';
-import { availability } from '../Components/Filters/Helpers';
+// import { availability } from '../Components/Filters/Helpers';
 class Booking extends Component {
   state: {
     data: {},
