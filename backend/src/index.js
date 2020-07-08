@@ -2,7 +2,7 @@ import express from "express";
 import cors from "cors";
 import * as dotenv from 'dotenv'
 dotenv.config()
-// import connectToDb from "./db";
+import connectToDb from "./db";
 import { users, categories, tutorials, auth } from "./routes";
 
 export let server;
@@ -19,7 +19,7 @@ export async function startAPI() {
   server = app.listen(3001, () =>
     console.log(`Listening on ${server.address().port}`)
   );
-//   await connectToDb();
+  await connectToDb();
   return app;
 }
 startAPI();

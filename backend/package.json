@@ -14,6 +14,7 @@
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "express-jwt": "^6.0.0",
+    "lodash": "^4.17.16",
     "mongoose": "^5.9.21"
   },
   "devDependencies": {
@@ -24,8 +25,6 @@
     "@babel/preset-env": "^7.10.4",
     "nodemon": "^2.0.4"
   },
-
-
   "repository": {
     "url": "https://github.com/codeyourfuture/extra-support"
   },
