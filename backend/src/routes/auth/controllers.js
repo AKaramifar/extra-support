@@ -20,21 +20,21 @@ export const login = async (req, res) => {
       };
       bcrypt.compare(password, user.password, (err, response) => {
         if (err) {
-          return res.status(400).send({ msg: "Wrong email or password." });
+          return res.status(400).send("Wrong email or password.");
         }
         if (!response) {
-          return res.status(400).send({ msg: "Wrong email or password." });
+          return res.status(400).send("Wrong email or password.");
         } else {
           const token = jwt.sign(options, process.env.JWT_SECRET);
-          return res.status(200).send({ token });
+          return res.status(200).send({ token, user: options });
         }
       });
     } else {
-      return res.status(400).send({ msg: "Wrong email or password." });
+      return res.status(400).send("Wrong email or password.");
     }
   } catch (err) {
     console.log(err);
-    return res.status(400).send({ msg: "Wrong email or password." });
+    return res.status(400).send("Wrong email or password.");
   }
 };
 
@@ -54,11 +54,11 @@ export const register = async (req, res) => {
   try {
     const user = await UserContext.findOneBy({ email });
     if (user) {
-      return res.status(400).send({ msg: "Email already in use." });
+      return res.status(400).send("Email already in use.");
     } else {
       bcrypt.hash(password, 10, async (err, hash) => {
         if (err) {
-          return res.status(400).send({ msg: "something went wrong." });
+          return res.status(400).send("something went wrong.");
         } else {
           const newUser = {
             firstName,
@@ -70,13 +70,13 @@ export const register = async (req, res) => {
             isAsylumSeekerOrRefugee,
             cyfStudent,
           };
-           await UserContext.create({ ...newUser, password: hash });
+        const createdUser =  await UserContext.create({ ...newUser, password: hash });
           const token = jwt.sign(newUser, process.env.JWT_SECRET);
-          return res.status(200).send({ token });
+          return res.status(200).send({ token, user: createdUser });
         }
       });
     }
   } catch (err) {
-    return res.status(400).send({ msg: "Could not register you." });
+    return res.status(400).send("Could not register you.");
   }
 };
