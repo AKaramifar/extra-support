@@ -24,8 +24,6 @@
     "@babel/preset-env": "^7.10.4",
     "nodemon": "^2.0.4"
   },
-
-
   "repository": {
     "url": "https://github.com/codeyourfuture/extra-support"
   },
