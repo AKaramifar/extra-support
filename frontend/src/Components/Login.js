@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import swal from 'sweetalert';
 import { setToken, loggedIn } from '../Auth/index';
+import { connect } from 'react-redux';
+import { userLogin } from '../Redux/Actions';
 
 class Login extends Component {
   state = {
@@ -26,6 +28,7 @@ class Login extends Component {
         password,
       });
       setToken(token.data.token);
+      this.props.userLogin({ email, password });
       this.props.history.replace('/categories');
     } catch (err) {
       if (err.response) {
@@ -86,4 +89,14 @@ class Login extends Component {
   }
 }
 
-export default Login;
+//export default Login;
+
+function mapStateToProps(state) {
+  console.log('state', state);
+  const { ActionController } = state;
+  return { isLoading: ActionController.isLoading };
+}
+export default connect(
+  mapStateToProps,
+  { userLogin }
+)(Login);
