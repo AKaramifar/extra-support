@@ -32,6 +32,7 @@ This an app that connect students with professionals where a professional can of
 #### [Installation and run frontend](./frontend/README.md)
 
 - `cd frontend`
+- Create local `.env` using the `.env.example`
 - `yarn`
 - `yarn start`
 
