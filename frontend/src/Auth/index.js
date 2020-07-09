@@ -36,3 +36,12 @@ export const getProfile = () => {
   const token = getToken()
   if (token) return decode(token)
 }
+
+export const getHeaders = () => {
+  const idToken = getToken();
+  if (idToken) {
+    return {
+      Authorization: `Bearer ${idToken}`,
+    };
+  }
+};

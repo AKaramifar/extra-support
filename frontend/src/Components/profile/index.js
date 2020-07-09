@@ -13,7 +13,7 @@ class Profile extends Component {
   async UNSAFE_componentWillMount() {
     const profile = getProfile();
     try {
-      const user = await axios.get(`https://extra-support-backend.glitch.me/user/${profile._id}`);
+      const user = await axios.get(`http://localhost:3001/users/${profile._id}`);
       this.setState({ user: user.data });
     } catch (err) {
       return swal('No user', 'Somethings went wrong, please try again later.', 'error');

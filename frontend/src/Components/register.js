@@ -1,28 +1,27 @@
 import React, { Component } from 'react';
-import axios from 'axios';
-import { setToken, loggedIn } from '../Auth/index';
-import swal from 'sweetalert';
+import { userSignUp } from "../Redux/Actions";
+import { loggedIn } from '../Auth/index';
+import { connect } from "react-redux";
 
 class Register extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      firstName: '',
-      lastName: '',
-      email: '',
-      city: '',
-      tel: '',
-      gender: '',
-      isAsylumSeekerOrRefugee: '',
-      cyfStudent: '',
-      password: '',
-    };
-  }
+  state = {
+    firstName: '',
+    lastName: '',
+    email: '',
+    city: '',
+    tel: '',
+    gender: '',
+    isAsylumSeekerOrRefugee: '',
+    cyfStudent: '',
+    password: '',
+  };
+
   UNSAFE_componentWillMount() {
     if (loggedIn()) {
       this.props.history.replace('/categories');
     }
   }
+
   onChange = e => {
     this.setState({
       [e.target.name]: e.target.value,
@@ -43,16 +42,7 @@ class Register extends Component {
       cyfStudent,
       password,
     };
-    try {
-      const token = await axios.post('http://localhost:3001/auth/register', userData);
-      setToken(token.data.token);
-      this.props.history.replace('/categories');
-    } catch (err) {
-      if (err.response) {
-        return swal('Cancelled', err.response.data.msg, 'error');
-      }
-      return swal('Cancelled', 'Somethings went wrong, please try again later.', 'error');
-    }
+    this.props.userSignUp(userData)
   };
 
   render() {
@@ -224,5 +214,9 @@ class Register extends Component {
     );
   }
 }
-
-export default Register;
+function mapStateToProps(state) {
+  console.log("state", state)
+  const { ActionController } = state;
+  return { isLoading: ActionController.isLoading };
+}
+export default connect(mapStateToProps, { userSignUp })(Register);
