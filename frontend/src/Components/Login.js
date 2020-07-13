@@ -22,20 +22,7 @@ class Login extends Component {
   handleLogin = async e => {
     e.preventDefault();
     const { email, password } = this.state;
-    try {
-      const token = await axios.post('http://localhost:3001/auth/login', {
-        email,
-        password,
-      });
-      setToken(token.data.token);
-      this.props.userLogin({ email, password });
-      this.props.history.replace('/categories');
-    } catch (err) {
-      if (err.response) {
-        return swal('Cancelled', err.response.data.msg, 'error');
-      }
-      return swal('Cancelled', 'Somethings went wrong, please try again later.', 'error');
-    }
+    this.props.userLogin({ email, password });
   };
   render() {
     const { email, password } = this.state;
@@ -92,7 +79,7 @@ class Login extends Component {
 //export default Login;
 
 function mapStateToProps(state) {
-  console.log('state', state);
+  
   const { ActionController } = state;
   return { isLoading: ActionController.isLoading };
 }
