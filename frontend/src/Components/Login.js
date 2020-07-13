@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
-import axios from 'axios';
-import swal from 'sweetalert';
-import { setToken, loggedIn } from '../Auth/index';
+import { loggedIn } from '../Auth/index';
 import { connect } from 'react-redux';
 import { userLogin } from '../Redux/Actions';
-
 class Login extends Component {
   state = {
     email: '',
@@ -76,10 +73,7 @@ class Login extends Component {
   }
 }
 
-//export default Login;
-
 function mapStateToProps(state) {
-  
   const { ActionController } = state;
   return { isLoading: ActionController.isLoading };
 }
