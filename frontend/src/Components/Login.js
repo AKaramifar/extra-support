@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import axios from 'axios';
-import swal from 'sweetalert';
-import { setToken, loggedIn } from '../Auth/index';
-
+import { loggedIn } from '../Auth/index';
+import { connect } from 'react-redux';
+import { userLogin } from '../Redux/Actions';
 class Login extends Component {
   state = {
     email: '',
@@ -20,19 +19,7 @@ class Login extends Component {
   handleLogin = async e => {
     e.preventDefault();
     const { email, password } = this.state;
-    try {
-      const token = await axios.post('http://localhost:3001/auth/login', {
-        email,
-        password,
-      });
-      setToken(token.data.token);
-      this.props.history.replace('/categories');
-    } catch (err) {
-      if (err.response) {
-        return swal('Cancelled', err.response.data.msg, 'error');
-      }
-      return swal('Cancelled', 'Somethings went wrong, please try again later.', 'error');
-    }
+    this.props.userLogin({ email, password });
   };
   render() {
     const { email, password } = this.state;
@@ -86,4 +73,11 @@ class Login extends Component {
   }
 }
 
-export default Login;
+function mapStateToProps(state) {
+  const { ActionController } = state;
+  return { isLoading: ActionController.isLoading };
+}
+export default connect(
+  mapStateToProps,
+  { userLogin }
+)(Login);
