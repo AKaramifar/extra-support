@@ -1,15 +1,14 @@
-import CategoryContext from "./contexts";
 
-export const getCategories = async (req, res) => {
-  const categories = await CategoryContext.findAll();
+export const getAvailabilities = async (req, res) => {
   try {
-    return res.status(200).send(categories);
-  } catch (error) {
-    return res.status(400).send("Could not get categories");
+        console.log("Hello from Availabilities");
+        return res.status(200).send("");
+      } catch (error) {
+    return res.status(400).send("Could not get Availabilities");
   }
 };
 
-// export const createCategory = async (req, res) => {
+// export const createAvailabilities = async (req, res) => {
 //   try {
 //     return res.status(200).send("");
 //   } catch (err) {
@@ -17,7 +16,7 @@ export const getCategories = async (req, res) => {
 //   }
 // };
 
-// export const getCategory = async (req, res) => {
+// export const getAvailabilities = async (req, res) => {
 //   try {
 //     return res.status(200).send("");
 //   } catch (err) {
@@ -25,7 +24,7 @@ export const getCategories = async (req, res) => {
 //   }
 // };
 
-// export const updateCategory = async (req, res) => {
+// export const updateAvailabilities = async (req, res) => {
 //   try {
 //     return res.status(200).send("");
 //   } catch (err) {
@@ -33,7 +32,7 @@ export const getCategories = async (req, res) => {
 //   }
 // };
 
-// export const deleteCategory = async (req, res) => {
+// export const deleteAvailabilities = async (req, res) => {
 //   try {
 //     return res.status(200).send("");
 //   } catch (err) {

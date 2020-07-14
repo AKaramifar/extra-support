@@ -1,18 +1,15 @@
 import { filters } from "../../utils/filters";
-import tutorials from "../../db/tutorials.json";
-
-export const getTutorials = async (req, res) => {
-  console.log(req.query);
+import sessions from "../../db/sessions.json";
+export const getSessions = async (req, res) => {
   try {
-    console.log("Hello from tutorials");
-    const filteredTutorials = filters(tutorials, req.query);
-    console.log(filteredTutorials);
-    return res.status(200).send({ tutorials: filteredTutorials });
+    console.log("Hello from sessions");
+    const filteredSessions = filters(sessions, req.query);
+    console.log(filteredSessions);
+    return res.status(200).send({ sessions: filteredSessions });
   } catch (error) {
-    return res.status(400).send("Could not get tutorials");
+    return res.status(400).send("Could not get sessions");
   }
 };
-
 export const getAvailabilities = async (req, res) => {
   try {
     const { availabilityDate } = req.query;
@@ -27,37 +24,34 @@ export const getAvailabilities = async (req, res) => {
           new Date(availabilityDate).toDateString()
       );
     // console.log("Hello from tutorials",availabilities);
-
     console.log("availabilities", availabilities.time);
     return res.status(200).send({ availabilities: availabilities.time });
   } catch (error) {
     return res.status(400).send("Could not get availabilities");
   }
 };
-
-// export const createTutorial = async (req, res) => {
+// export const createSession = async (req, res) => {
 //   try {
 //     return res.status(200).send("");
 //   } catch (err) {
 //     return res.status(400).send("");
 //   }
 // };
-
-// export const getTutorial = async (req, res) => {
+// export const getSession = async (req, res) => {
 //   try {
 //     return res.status(200).send("");
 //   } catch (err) {
 //     return res.status(400).send("");
 //   }
 // };
-// export const updateTutorial = async (req, res) => {
+// export const updateSession = async (req, res) => {
 //   try {
 //     return res.status(200).send("");
 //   } catch (err) {
 //     return res.status(400).send("");
 //   }
 // };
-// export const deleteTutorial = async (req, res) => {
+// export const deleteSession = async (req, res) => {
 //   try {
 //     return res.status(200).send("");
 //   } catch (err) {
