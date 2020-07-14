@@ -62,6 +62,7 @@ export const userSignUp = user => {
         type: ACTION_STARTED,
         actionType: USER_SIGN_UP,
       });
+      console.log("hello")
       const userResponse = await httpClient.post('/auth/register', user);
       console.log(userResponse)
       if (userResponse.status === 200) {
