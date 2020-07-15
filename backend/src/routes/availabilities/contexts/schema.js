@@ -5,7 +5,11 @@ const availabilitySchema = new Schema(
     sessionId: String,
     location: String,
     day: String,
-    timeSlots: Array,
+    startDate: Date,
+    endDate: Date,
+    startTime: String,
+    endTime: String,
+    repeated: Boolean
   },
   { timestamps: { createdAt: true, updatedAt: true } }
 );

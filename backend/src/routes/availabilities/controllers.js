@@ -1,41 +1,47 @@
+import AvailabilityContext from "./contexts";
 
 export const getAvailabilities = async (req, res) => {
+  const availabilities = await AvailabilityContext.findAll();
   try {
-        console.log("Hello from Availabilities");
-        return res.status(200).send("");
+        return res.status(200).send(availabilities);
       } catch (error) {
     return res.status(400).send("Could not get Availabilities");
   }
 };
 
-// export const createAvailabilities = async (req, res) => {
-//   try {
-//     return res.status(200).send("");
-//   } catch (err) {
-//     return res.status(400).send("");
-//   }
-// };
+export const createAvailability = async (req, res) => {
+  const startDate = Date(req.body.startDate);
+  const endDate = Date(req.body.endDate);
 
-// export const getAvailabilities = async (req, res) => {
-//   try {
-//     return res.status(200).send("");
-//   } catch (err) {
-//     return res.status(400).send("");
-//   }
-// };
+  console.log(req.body)
+  const availabilityData = {...req.body, startDate, endDate};
 
-// export const updateAvailabilities = async (req, res) => {
-//   try {
-//     return res.status(200).send("");
-//   } catch (err) {
-//     return res.status(400).send("");
-//   }
-// };
+  try {
+    const availability = await AvailabilityContext.create(availabilityData);
+    return res.status(200).send(availability);
+  } catch (err) {
+    console.log(err)
+    return res.status(400).send("Could not create your availability");
+  }
+};
 
-// export const deleteAvailabilities = async (req, res) => {
-//   try {
-//     return res.status(200).send("");
-//   } catch (err) {
-//     return res.status(400).send("");
-//   }
-// };
+export const updateAvailability = async (req, res) => {
+  const availabilityData = req.body;
+  const { sessionId } = req.params;
+  try {
+    const availability = await AvailabilityContext.findOneAndUpdate(sessionId, availabilityData);
+    return res.status(200).send(availability);
+  } catch (err) {
+    return res.status(400).send("Could not update your availability");
+  }
+};
+
+export const deleteAvailability = async (req, res) => {
+  const { sessionId } = req.params;
+  try {
+    const response = AvailabilityContext.hardDelete({ _id: sessionId });
+    return res.status(200).send(response);
+  } catch (err) {
+    return res.status(400).send("Could not delete the availability");
+  }
+};
