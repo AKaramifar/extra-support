@@ -1,5 +1,7 @@
 import { filters } from "../../utils/filters";
 import sessions from "../../db/sessions.json";
+import sessionContext from "./contexts"
+
 export const getSessions = async (req, res) => {
   try {
     console.log("Hello from sessions");
@@ -30,13 +32,17 @@ export const getAvailabilities = async (req, res) => {
     return res.status(400).send("Could not get availabilities");
   }
 };
-// export const createSession = async (req, res) => {
-//   try {
-//     return res.status(200).send("");
-//   } catch (err) {
-//     return res.status(400).send("");
-//   }
-// };
+
+export const createSession = async (req, res) => {
+  const sessionData = req.body;
+  try {
+    const session = await sessionContext.create(sessionData)
+    return res.status(200).send(session);
+  } catch (err) {
+    return res.status(400).send("Sorry We could not create your session!");
+  }
+};
+
 // export const getSession = async (req, res) => {
 //   try {
 //     return res.status(200).send("");
