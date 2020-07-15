@@ -27,7 +27,7 @@ export const updateAvailability = async (req, res) => {
   const { sessionId } = req.params;
   try {
     const availability = await AvailabilityContext.findOneAndUpdate(
-      { _id: sessionId },
+      _id,
       availabilityData
     );
     return res.status(200).send(availability);
@@ -39,7 +39,7 @@ export const updateAvailability = async (req, res) => {
 export const deleteAvailability = async (req, res) => {
   const { sessionId } = req.params;
   try {
-    const response = AvailabilityContext.hardDelete({ _id: sessionId });
+    const response = AvailabilityContext.hardDelete(_id);
     return res.status(200).send(response);
   } catch (err) {
     return res.status(400).send("Could not delete the availability");
