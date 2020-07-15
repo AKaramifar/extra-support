@@ -24,7 +24,7 @@ export const createAvailability = async (req, res) => {
 
 export const updateAvailability = async (req, res) => {
   const availabilityData = req.body;
-  const { _id } = req.params;
+  const { _id } = req.body;
   try {
     const availability = await AvailabilityContext.findOneAndUpdate(
       _id,
@@ -37,7 +37,7 @@ export const updateAvailability = async (req, res) => {
 };
 
 export const deleteAvailability = async (req, res) => {
-  const { _id } = req.params;
+  const { _id } = req.body;
   try {
     const response = AvailabilityContext.hardDelete(_id);
     return res.status(200).send(response);
