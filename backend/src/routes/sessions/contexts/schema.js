@@ -2,14 +2,11 @@ import { Schema, model } from "mongoose";
 
 const sessionSchema = new Schema(
   {
-
-      volunteerId: String,
-      categoryId: String,
-      title: String,
-      contactDetails: String,
-      description: String,
-      requirements: String
-   
+    volunteerId: String,
+    categoryId: String,
+    title: String,
+    description: String,
+    requirements: String,
   },
   { timestamps: { createdAt: true, updatedAt: true } }
 );
