@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import Tutorial from '../Components/Tutorial';
 import Filters from '../Components/Filters/index';
 import { generateFilters, getLocalStorageArray } from '../Helpers';
-import { getTutorials } from '../actions/tutorials';
+import { getSessions } from '../actions/sessions';
 import swal from 'sweetalert';
 
 class Tutorials extends Component {
@@ -21,9 +21,9 @@ class Tutorials extends Component {
   }
   getTutorialsByOptions = async options => {
     try {
-      const res = await getTutorials(options);
+      const res = await getSessions(options);
       console.log(res);
-      this.setState({ tutorials: res.data.tutorials });
+      this.setState({ tutorials: res.data.sessions });
     } catch (error) {
       swal('Oops!', 'Could not get tutorials!', 'error');
     }
