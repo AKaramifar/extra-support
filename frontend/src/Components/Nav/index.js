@@ -1,16 +1,16 @@
-import React, {Fragment} from 'react';
-import {Link} from 'react-router-dom';
+import React, { Fragment } from 'react';
+import { Link } from 'react-router-dom';
 import ProfileDropDown from './profileDropDown';
-import {logout, loggedIn} from '../../Auth';
+import { logout, loggedIn } from '../../Auth';
 import logo_CYF_square from './logo-CYF-square.png';
 import './index.css';
 
 export default class Navbar extends React.Component {
   onLogOut = () => {
-    logout ();
-    window.location.reload (true);
+    logout();
+    window.location.reload(true);
   };
-  render () {
+  render() {
     return (
       <div className="navbar-div">
         <nav className="navbar navbar-expand-lg navbar-light container">
@@ -34,21 +34,22 @@ export default class Navbar extends React.Component {
           </button>
           <div className="collapse navbar-collapse" id="navbarText">
             <ul className="navbar-nav mr-auto">
-
-              {!loggedIn () &&
+              {!loggedIn() && (
                 <li className="nav-item">
-                  <Link className="nav-link nav-btn" to="/login">
+                  <Link className="nav-link nav-btn" to="/student/login">
                     Student Login
                   </Link>
-                </li>}
-              {!loggedIn () &&
+                </li>
+              )}
+              {!loggedIn() && (
                 <li className="nav-item">
-                  <Link className="nav-link nav-btn" to="/loginVolunteer">
+                  <Link className="nav-link nav-btn" to="/volunteer/login">
                     Volunteer Login
                   </Link>
-                </li>}
+                </li>
+              )}
               <li className="nav-item desktop-display-none" />
-              {loggedIn () &&
+              {loggedIn() && (
                 <Fragment>
                   <hr className="m-1 w-25" />
                   <li className="nav-item desktop-display-none">
@@ -62,10 +63,11 @@ export default class Navbar extends React.Component {
                       Log Out
                     </span>
                   </li>
-                </Fragment>}
+                </Fragment>
+              )}
             </ul>
           </div>
-          {loggedIn () && <ProfileDropDown />}
+          {loggedIn() && <ProfileDropDown />}
         </nav>
       </div>
     );

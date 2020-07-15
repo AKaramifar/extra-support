@@ -8,7 +8,7 @@ import {
   LOAD_USER,
   REMOVE_STATE_MESSAGE,
 } from './types';
-import httpClient from '../../common/httpClient'
+import httpClient from '../../common/httpClient';
 import { setToken, getProfile, loggedIn, logout } from '../../Auth/index';
 
 export const loadUser = () => {
@@ -62,9 +62,8 @@ export const userSignUp = user => {
         type: ACTION_STARTED,
         actionType: USER_SIGN_UP,
       });
-      console.log("hello")
       const userResponse = await httpClient.post('/auth/register', user);
-      console.log(userResponse)
+      console.log(userResponse);
       if (userResponse.status === 200) {
         dispatch({
           type: USER_SIGN_UP,
