@@ -8,13 +8,11 @@ import Booking from '../Screens/Booking';
 import Profile from '../Components/profile';
 import Register from '../Components/register';
 import Login from '../Components/Login';
-import LoginVolunteer from '../Components/LoginVolunteer';
 export default () => (
   <Switch>
     <Route exact path="/" component={Home} />
     <Route exact path="/register" component={Register} />
     <Route exact path="/student/login" component={Login} />
-    <Route exact path="/volunteer/login" component={LoginVolunteer} />
     <Private exact path="/categories" component={Categories} />
     <Private exact path="/category/:category?" component={Tutorials} />
     <Private exact path="/booking/:cat?" component={Booking} />
