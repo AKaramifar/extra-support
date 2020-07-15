@@ -3,6 +3,7 @@ import { Schema, model } from "mongoose";
 const availabilitySchema = new Schema(
   {
     sessionId: [String],
+    volunteerId: String,
     location: String,
     day: String,
     startDate: Date,

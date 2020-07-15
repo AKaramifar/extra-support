@@ -15,8 +15,8 @@ export default class AvailabilityService {
     return res;
   }
 
-  async findAll() {
-    const availabilities = await this.availabilityDao.findAll();
+  async findAll(query) {
+    const availabilities = await this.availabilityDao.findAll(query);
     return availabilities;
   }
 
