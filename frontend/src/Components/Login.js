@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { loggedIn } from '../Auth/index';
 import { connect } from 'react-redux';
 import { userLogin } from '../Redux/Actions';
+import { Link } from 'react-router-dom';
 class Login extends Component {
   state = {
     email: '',
@@ -43,9 +44,9 @@ class Login extends Component {
             />
             <div className="student-register-container">
               {'CYF Student - '}
-              <a className="student-volunteer-register-link" href="https://application-process.codeyourfuture.io/">
+              <Link className="student-volunteer-register-link" to="/register">
                 Register Here,
-              </a>
+              </Link>
             </div>
           </div>
           <div className="form-group  ml-1">
@@ -57,12 +58,6 @@ class Login extends Component {
               className="form-control login-input"
               placeholder="Password"
             />
-            <div className="volunteer-register-container">
-              {' Become a Volunteer - '}
-              <a className="student-volunteer-register-link" href="https://codeyourfuture.io/volunteers/">
-                Register Here
-              </a>
-            </div>
           </div>
           <button type="submit" className="btn btn-success ml-1">
             Login

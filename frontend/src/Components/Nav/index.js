@@ -36,15 +36,15 @@ export default class Navbar extends React.Component {
             <ul className="navbar-nav mr-auto">
               {!loggedIn() && (
                 <li className="nav-item">
-                  <Link className="nav-link nav-btn" to="/register">
-                    Sign up
+                  <Link className="nav-link nav-btn" to="/student/login">
+                    Student Login
                   </Link>
                 </li>
               )}
               {!loggedIn() && (
                 <li className="nav-item">
-                  <Link className="nav-link nav-btn" to="/">
-                    Login
+                  <Link className="nav-link nav-btn" to="/volunteer/login">
+                    Volunteer Login
                   </Link>
                 </li>
               )}
