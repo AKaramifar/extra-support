@@ -2,7 +2,7 @@ import { Schema, model } from "mongoose";
 
 const availabilitySchema = new Schema(
   {
-    sessionId: String,
+    sessionId: [String],
     location: String,
     day: String,
     startDate: Date,
