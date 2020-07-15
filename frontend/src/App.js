@@ -4,6 +4,7 @@ import Routes from './Routes';
 import Navbar from './Components/Nav';
 import Footer from './Components/Footer';
 import Errors from './Components/Error';
+import Messages from './Components/Messages'
 import './App.css';
 
 const App = () => (
@@ -11,6 +12,7 @@ const App = () => (
     <div className="app">
       <Navbar />
       <Errors />
+      <Messages />
       <div className="container main">
         <Routes />
       </div>

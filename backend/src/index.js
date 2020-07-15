@@ -1,10 +1,9 @@
 import express from "express";
 import cors from "cors";
-import * as dotenv from 'dotenv'
-dotenv.config()
+import * as dotenv from "dotenv";
+dotenv.config();
 import connectToDb from "./db";
-import { users, categories, tutorials, auth } from "./routes";
-
+import { users, categories, sessions, auth } from "./routes";
 export let server;
 export async function startAPI() {
   const app = express()
@@ -14,8 +13,7 @@ export async function startAPI() {
     .use("/auth", auth)
     .use("/users", users)
     .use("/categories", categories)
-    .use("/tutorials", tutorials);
-
+    .use("/sessions", sessions);
   server = app.listen(3001, () =>
     console.log(`Listening on ${server.address().port}`)
   );
