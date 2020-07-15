@@ -63,7 +63,7 @@ export const userSignUp = user => {
         actionType: USER_SIGN_UP,
       });
       const userResponse = await httpClient.post('/auth/register', user);
-      console.log(userResponse);
+
       if (userResponse.status === 200) {
         dispatch({
           type: USER_SIGN_UP,
