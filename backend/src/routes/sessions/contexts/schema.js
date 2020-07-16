@@ -5,8 +5,8 @@ const sessionSchema = new Schema(
     volunteerId: String,
     categoryId: String,
     title: String,
-    repeated: Boolean,
-    contactDetails: String,
+    description: String,
+    requirements: String,
   },
   { timestamps: { createdAt: true, updatedAt: true } }
 );

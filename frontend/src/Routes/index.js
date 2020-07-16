@@ -10,6 +10,7 @@ import Register from '../Components/register';
 import Login from '../Components/Login';
 import LoginVolunteer from '../Components/LoginVolunteer';
 import AvalabilityForm from '../Screens/Volunteer/AvalabilityForm';
+import SessionForm from '../Screens/Volunteer/SessionForm';
 export default () => (
   <Switch>
     <Route exact path="/" component={Home} />
@@ -21,5 +22,6 @@ export default () => (
     <Private exact path="/booking/:cat?" component={Booking} />
     <Private exact path="/profile" component={Profile} />
     <Private exact path="/volunteer/avalability/form" component={AvalabilityForm} />
+    <Private exact path="/volunteer/session/form" component={SessionForm} />
   </Switch>
 );

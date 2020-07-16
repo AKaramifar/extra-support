@@ -1,14 +1,15 @@
 import express from "express";
 import {
   getAvailabilities,
-  // createAvailability,
-  // getAvailability,
+  createAvailability,
   // updateAvailability,
   // deleteAvailability
 } from "./controllers";
 
 const router = express.Router();
-
-//TODO: Routes need to be created here
+router.get("/:volunteerId?", getAvailabilities);
+router.post("/", createAvailability);
+// router.put("/", updateAvailability);
+// router.delete("/:_id", deleteAvailability);
 
 export default router;

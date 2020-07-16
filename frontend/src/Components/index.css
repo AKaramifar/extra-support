@@ -1,0 +1,72 @@
+.image-input-container {
+    position: relative;
+    width: 99%;
+    margin: 2px;
+  }
+  .image-input-trigger {
+    display: block;
+    padding: 12px;
+    background-color: rgb(29, 112, 184);
+    color: #f5f5f5;
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.4);
+    border: 1px solid #ffffff;
+    outline: 3px dashed #8a8a8a;
+    font-size: 1em;
+    transition: all 0.4s;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;
+  }
+  .image-input-trigger:hover {
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.4);
+    background-color: rgb(0, 48, 120);
+    color: #f5f5f5;
+  }
+  .image-input-trigger span {
+    display: none;
+    position: absolute;
+    color: #f5f5f5;
+    background-color: #000000c0;
+    padding: 20px;
+  }
+  .image-input-trigger:hover span {
+    display: block;
+  }
+  .image-input-trigger div {
+    position: absolute;
+    border: 12px solid #f3f3f37e;
+    border-radius: 50%;
+    border-top: 12px solid #378027;
+    border-bottom: 12px solid #378027;
+    width: 80px;
+    height: 80px;
+    -webkit-animation: spin 2s linear infinite;
+    animation: spin 2s linear infinite;
+  }
+  @-webkit-keyframes spin {
+    0% {
+      -webkit-transform: rotate(0deg);
+    }
+    100% {
+      -webkit-transform: rotate(360deg);
+    }
+  }
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  .image-input {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+  }
