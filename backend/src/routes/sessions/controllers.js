@@ -1,13 +1,15 @@
-import { filters } from "../../utils/filters";
-import sessions from "../../db/sessions.json";
-import sessionContext from "./contexts";
+import SessionContext from "./contexts";
 
 export const getSessions = async (req, res) => {
   try {
-    console.log("Hello from sessions");
-    const filteredSessions = filters(sessions, req.query);
-    console.log(filteredSessions);
-    return res.status(200).send({ sessions: filteredSessions });
+    let sessions;
+    const { volunteerId } = req.params;
+    if (volunteerId) {
+      sessions = await SessionContext.findAll({ volunteerId });
+    } else {
+      sessions = await SessionContext.findAll();
+    }
+    return res.status(200).send(sessions);
   } catch (error) {
     return res.status(400).send("Could not get sessions");
   }
@@ -36,7 +38,7 @@ export const getAvailabilities = async (req, res) => {
 export const createSession = async (req, res) => {
   const sessionData = req.body;
   try {
-    const session = await sessionContext.create(sessionData);
+    const session = await SessionContext.create(sessionData);
     return res.status(200).send(session);
   } catch (err) {
     return res.status(400).send("Sorry We could not create your session!");
@@ -46,7 +48,7 @@ export const createSession = async (req, res) => {
 export const getSessionByVolunteerId = async (req, res) => {
   try {
     const { volunteerId } = req.params;
-    const sessions = await sessionContext.findAll({ volunteerId: volunteerId });
+    const sessions = await SessionContext.findAll({ volunteerId: volunteerId });
     return res.status(200).send({ sessions: sessions });
   } catch (err) {
     return res.status(400).send("Could not get sessions");
