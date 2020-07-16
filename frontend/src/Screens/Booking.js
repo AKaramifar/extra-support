@@ -23,7 +23,7 @@ class Booking extends Component {
         ),
       };
     });
-    console.log('this from booking will mount', this.props.location.state.category.tutorial);
+  
   }
 
   settingBookedTime = time => {
@@ -94,7 +94,7 @@ class Booking extends Component {
           mentor={this.state.data.mentor}
           selectedDate={this.state.selectedDate}
         />
-        {console.log('this from inside booking render', this.state.data.availabilities.time)}
+       
       </div>
     );
   }

@@ -1,11 +1,7 @@
-import {
-  LOAD_USER,
-  USER_SIGN_UP,
-  USER_LOGIN,
-} from "../Actions/types";
+import { LOAD_USER, USER_SIGN_UP, USER_LOGIN } from '../Actions/types';
 const INITIAL_STATE = {
   user: {
-    id: "",
+    id: '',
     firstName: '',
     lastName: '',
     email: '',
@@ -19,8 +15,6 @@ const INITIAL_STATE = {
 };
 
 export default (state = INITIAL_STATE, action) => {
-
-  console.log(action)
   switch (action.type) {
     case LOAD_USER:
       return {

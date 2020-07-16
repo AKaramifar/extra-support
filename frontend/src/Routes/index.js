@@ -6,9 +6,10 @@ import Categories from '../Screens/Categories';
 import Tutorials from '../Screens/Tutorials';
 import Booking from '../Screens/Booking';
 import Profile from '../Components/profile';
-import Register from '../Components/register'
+import Register from '../Components/register';
 import Login from '../Components/Login';
 import LoginVolunteer from '../Components/LoginVolunteer';
+import AvalabilityForm from '../Screens/Volunteer/AvalabilityForm';
 export default () => (
   <Switch>
     <Route exact path="/" component={Home} />
@@ -19,5 +20,6 @@ export default () => (
     <Private exact path="/category/:category?" component={Tutorials} />
     <Private exact path="/booking/:cat?" component={Booking} />
     <Private exact path="/profile" component={Profile} />
+    <Private exact path="/volunteer/avalability/form" component={AvalabilityForm} />
   </Switch>
 );

@@ -7,9 +7,12 @@ import Errors from './Components/Error';
 import Messages from './Components/Messages'
 import './App.css';
 
+
 const App = () => (
   <Router>
     <div className="app">
+     
+      
       <Navbar />
       <Errors />
       <Messages />

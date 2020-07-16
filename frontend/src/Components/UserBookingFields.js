@@ -19,7 +19,7 @@ class UserBookingFields extends Component {
       const changePage = category => {
         this.props.history.replace(`/category/${category}`);
       };
-      console.log(this.state);
+      
       swal({
         title: 'Confirm booking',
         text: 'Are you sure you want to book an appointment',
