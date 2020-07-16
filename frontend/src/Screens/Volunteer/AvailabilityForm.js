@@ -2,14 +2,16 @@ import React, { useEffect } from 'react';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import { connect } from 'react-redux';
 import { getVolunteerSessions, createAvailability } from '../../Redux/Actions';
+import Spinner from '../../Components/Spinner';
 
 function mapStateToProps(state) {
   return {
     volunteerSessions: state.sessions.volunteerSessions,
+    isLoading: state.ActionController.isLoading,
   };
 }
 
-const AvailabilityForm = ({ volunteerSessions, getVolunteerSessions, createAvailability}) => {
+const AvailabilityForm = ({ volunteerSessions, getVolunteerSessions, createAvailability, isLoading }) => {
   const [values, setValues] = React.useState({
     session: '',
     startDate: '',
@@ -36,6 +38,7 @@ const AvailabilityForm = ({ volunteerSessions, getVolunteerSessions, createAvail
 
   return (
     <div style={{ width: '75%' }}>
+      <Spinner isLoading={isLoading} style={{width: '200px', height: '200px'}}/>
       <h1 style={{ margin: '5% 0' }}>Volunteers Availability Form</h1>
       <hr />
       <Form onSubmit={handleSubmit}>
@@ -108,7 +111,7 @@ const AvailabilityForm = ({ volunteerSessions, getVolunteerSessions, createAvail
             placeholder="Add a location"
           ></Input>
         </FormGroup>
-        <Button color="primary">Submit</Button>
+        <Button color="primary" disabled={isLoading}>Submit</Button>
       </Form>
     </div>
   );

@@ -27,10 +27,9 @@ export const getCategories = () => {
   };
 };
 
-export const createCategory = categoryData => { 
+export const createCategory = categoryData => {
   return async dispatch => {
     const profile = getProfile();
-
     try {
       dispatch({
         type: ACTION_STARTED,
@@ -40,13 +39,13 @@ export const createCategory = categoryData => {
         volunteerId: profile._id,
         ...categoryData,
       });
-
       dispatch({
         type: CREATE_CATEGORY,
         category: category.data,
       });
       dispatch({
         type: ACTION_SUCCESS,
+        message: 'Success: category created.'
       });
     } catch (error) {
       dispatch({

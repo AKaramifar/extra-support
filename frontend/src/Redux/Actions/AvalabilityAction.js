@@ -20,6 +20,7 @@ export const createAvailability = availabilityData => {
       });
       dispatch({
         type: ACTION_SUCCESS,
+        message: 'Success: availability created.'
       });
     } catch (error) {
       dispatch({
