@@ -1,12 +1,14 @@
 import AvailabilityContext from "./contexts";
 
 export const getAvailabilities = async (req, res) => {
-  const getByVolunteerId = {};
-  if (req.params.volunteerid) {
-    getByVolunteerId.volunteerId = req.params.volunteerid;
-  }
-  const availabilities = await AvailabilityContext.findAll(getByVolunteerId);
   try {
+    let availabilities;
+    const { volunteerId } = req.params;
+    if (volunteerId) {
+      availabilities = await AvailabilityContext.findAll({ volunteerId });
+    } else {
+      availabilities = await AvailabilityContext.findAll();
+    }
     return res.status(200).send(availabilities);
   } catch (error) {
     return res.status(400).send("Could not get Availabilities");

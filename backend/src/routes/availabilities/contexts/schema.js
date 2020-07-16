@@ -10,7 +10,7 @@ const availabilitySchema = new Schema(
     endDate: Date,
     startTime: String,
     endTime: String,
-    repeated: Boolean
+    repeat: String
   },
   { timestamps: { createdAt: true, updatedAt: true } }
 );
