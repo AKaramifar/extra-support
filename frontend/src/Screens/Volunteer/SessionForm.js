@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import { getCategories, createSession } from '../../Redux/Actions';
+import CategoryModal from '../../Components/Category/CategoryModal';
 
 function mapStateToProps(state) {
   return {
@@ -9,7 +10,7 @@ function mapStateToProps(state) {
   };
 }
 
-const SessionForm = ({ categories, getCategories }) => {
+const SessionForm = ({ categories, getCategories, createSession }) => {
   const [values, setValues] = React.useState({
     categories: '',
     title: '',
@@ -26,7 +27,7 @@ const SessionForm = ({ categories, getCategories }) => {
 
   const handleSubmit = event => {
     event.preventDefault();
-    console.log("hi")
+    console.log('hi');
     createSession(values);
   };
 
@@ -57,7 +58,7 @@ const SessionForm = ({ categories, getCategories }) => {
                 </option>
               ))}
             </Input>
-            <Button color="success">New Category</Button>
+            <CategoryModal />
           </div>
         </FormGroup>
 
@@ -105,5 +106,5 @@ const SessionForm = ({ categories, getCategories }) => {
 
 export default connect(
   mapStateToProps,
-  { getCategories }
+  { getCategories, createSession }
 )(SessionForm);
