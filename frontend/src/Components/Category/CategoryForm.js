@@ -34,7 +34,7 @@ const CategoryForm = ({ createCategory }) => {
 
   return (
     <div>
-      <Form onSubmit={handleSubmit}>
+      <Form>
         <FormGroup>
           <Label for="nameText">Name</Label>
           <Input type="text" name="name" onChange={handleChange} value={values.name} id="nameText" placeholder="Name" />
@@ -43,7 +43,7 @@ const CategoryForm = ({ createCategory }) => {
           <ImageUpload label="Upload Image" onChange={handleImageUpload} image={values.image} isLoading={false} />
         </FormGroup>
 
-        <Button type="submit" color="primary">
+        <Button onClick={handleSubmit} color="primary">
           Submit
         </Button>
       </Form>
