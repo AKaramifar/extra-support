@@ -3,7 +3,6 @@ import httpClient from '../../common/httpClient';
 import { getProfile } from '../../Auth/index';
 
 export const createSession = sessionData => {
-    
   return async dispatch => {
     const profile = getProfile();
     try {
@@ -21,6 +20,7 @@ export const createSession = sessionData => {
       });
       dispatch({
         type: ACTION_SUCCESS,
+        message: 'Success: category created.',
       });
     } catch (error) {
       console.log(error);
@@ -36,7 +36,6 @@ export const createSession = sessionData => {
 export const getVolunteerSessions = () => {
   return async dispatch => {
     const profile = getProfile();
-
     try {
       dispatch({
         type: ACTION_STARTED,

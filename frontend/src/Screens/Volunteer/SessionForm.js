@@ -3,14 +3,16 @@ import { connect } from 'react-redux';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import { getCategories, createSession } from '../../Redux/Actions';
 import CategoryModal from '../../Components/Category/CategoryModal';
+import Spinner from '../../Components/Spinner';
 
 function mapStateToProps(state) {
   return {
     categories: state.categories.categories,
+    isLoading: state.ActionController.isLoading,
   };
 }
 
-const SessionForm = ({ categories, getCategories, createSession }) => {
+const SessionForm = ({ categories, getCategories, createSession, isLoading }) => {
   const [values, setValues] = React.useState({
     categories: '',
     title: '',
@@ -27,7 +29,6 @@ const SessionForm = ({ categories, getCategories, createSession }) => {
 
   const handleSubmit = event => {
     event.preventDefault();
-    console.log('hi');
     createSession(values);
   };
 
@@ -37,6 +38,7 @@ const SessionForm = ({ categories, getCategories, createSession }) => {
 
   return (
     <div style={{ width: '75%', marginLeft: '10%', marginTop: '5%' }}>
+      <Spinner isLoading={isLoading} style={{width: '200px', height: '200px'}}/>
       <h1 style={{ margin: '5% 0 ' }}>Volunteers Session Form</h1>
       <hr />
       <Form onSubmit={handleSubmit}>
@@ -96,7 +98,7 @@ const SessionForm = ({ categories, getCategories, createSession }) => {
           />
         </FormGroup>
 
-        <Button type="submit" color="primary">
+        <Button disabled={isLoading} type="submit" color="primary">
           Submit
         </Button>
       </Form>

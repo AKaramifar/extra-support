@@ -12,6 +12,7 @@ const CategoryForm = ({ createCategory }) => {
   const [values, setValues] = React.useState({
     name: '',
     image: '',
+    icon: ''
   });
 
   const handleChange = event => {
@@ -40,9 +41,12 @@ const CategoryForm = ({ createCategory }) => {
           <Input type="text" name="name" onChange={handleChange} value={values.name} id="nameText" placeholder="Name" />
         </FormGroup>
         <FormGroup>
+          <Label for="iconText">Icon code</Label>
+          <Input type="text" name="icon" onChange={handleChange} value={values.icon} id="iconText" placeholder="example: fa fa-money " />
+        </FormGroup>
+        <FormGroup>
           <ImageUpload label="Upload Image" onChange={handleImageUpload} image={values.image} isLoading={false} />
         </FormGroup>
-
         <Button onClick={handleSubmit} color="primary">
           Submit
         </Button>
