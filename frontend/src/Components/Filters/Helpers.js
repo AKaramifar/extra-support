@@ -1,11 +1,11 @@
-export const availability = [
-  { name: 'Monday', _id: '1' },
-  { name: 'Tuesday', _id: '2' },
-  { name: 'Wednesday', _id: '3' },
-  { name: 'Thursday', _id: '4' },
-  { name: 'Friday', _id: '5' },
-  { name: 'Saturday', _id: '6' },
-  { name: 'Sunday', _id: '0' },
+export const weekdays = [
+  { name: 'Monday', _id: 'Monday' },
+  { name: 'Tuesday', _id: 'Tuesday' },
+  { name: 'Wednesday', _id: 'Wednesday' },
+  { name: 'Thursday', _id: 'Thursday' },
+  { name: 'Friday', _id: 'Friday' },
+  { name: 'Saturday', _id: 'Saturday' },
+  { name: 'Sunday', _id: 'Sunday' },
 ];
 export const time = [
   { name: '10-12', _id: '10-12' },

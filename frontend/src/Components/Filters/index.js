@@ -1,24 +1,29 @@
 import React, { Component } from 'react';
 import FiltersComponent from './Filters';
-import { availability, time } from './Helpers';
+import { weekdays, time } from './Helpers';
+import { FormGroup, Label, Input } from 'reactstrap';
 
 import './index.css';
 
 class Filters extends Component {
   state = {
-    showAvailability: false,
+    showWeekdays: false,
     showTime: false,
+    showDate: false,
   };
+
   componentWillMount() {
     this.setState({
-      showAvailability: this.props.availability.length > 0,
+      showWeekdays: this.props.values.weekdays.length > 0,
+      showTime: this.props.values.time.length > 0,
+      showDate: this.props.values.date.length > 0,
     });
   }
   showFilters = (filter, key) => {
     this.setState({ [filter]: key });
   };
   render() {
-    const { showAvailability, showTime } = this.state;
+    const { showWeekdays, showTime } = this.state;
     return (
       <div className="side-nav-filters">
         <div className="side-nav-filters-nav">
@@ -28,14 +33,24 @@ class Filters extends Component {
           </span>
         </div>
         <div className="filters-container">
+          <FormGroup>
+            <Label className="filters-list-headers">Date</Label>
+            <Input
+              type="date"
+              name="date"
+              onChange={this.props.onCheckBoxHandler}
+              value={this.props.values.date[0]}
+              placeholder="date placeholder"
+            />
+          </FormGroup>
           <FiltersComponent
-            array={availability}
-            name={'availability'}
-            label={'AVAILABILITY'}
+            array={weekdays}
+            name={'weekdays'}
+            label={'WEEKDAYS'}
             onCheckBoxHandler={this.props.onCheckBoxHandler}
             showFilters={this.showFilters}
-            showListOfFilters={showAvailability}
-            showListOfFiltersKey={'showAvailability'}
+            showListOfFilters={showWeekdays}
+            showListOfFiltersKey={'showWeekdays'}
           />
           <FiltersComponent
             array={time}

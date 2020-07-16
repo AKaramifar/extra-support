@@ -1,4 +1,4 @@
-import { ACTION_STARTED, ACTION_SUCCESS, ACTION_ERROR, CREATE_AVAILABILITY } from './types';
+import { ACTION_STARTED, ACTION_SUCCESS, ACTION_ERROR, CREATE_AVAILABILITY, GET_AVAILABILITY } from './types';
 import httpClient from '../../common/httpClient';
 import { getProfile } from '../../Auth/index';
 
@@ -27,6 +27,32 @@ export const createAvailability = availabilityData => {
         type: ACTION_ERROR,
         error: 'could not create availability',
         actionType: CREATE_AVAILABILITY,
+      });
+    }
+  };
+};
+
+
+export const getAvailabilities = () => {
+  return async dispatch => {
+    try {
+      dispatch({
+        type: ACTION_STARTED,
+        actionType: GET_AVAILABILITY,
+      });
+      const availabilities = await httpClient.get(`/availabilities`);
+      dispatch({
+        type: GET_AVAILABILITY,
+        availabilities: availabilities.data,
+      });
+      dispatch({
+        type: ACTION_SUCCESS,
+      });
+    } catch (error) {
+      dispatch({
+        type: ACTION_ERROR,
+        error: 'Error: Could not get availabilities',
+        actionType: GET_AVAILABILITY,
       });
     }
   };

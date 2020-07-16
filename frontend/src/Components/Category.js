@@ -1,22 +1,22 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 
-class Category extends Component {
-  render() {
-    return (
-      <div className="category">
-        <Link to={`/category/${this.props.category.name}`} style={{ fontSize: '150px', color: 'black', textAlign:'center'}}>
-          <div className="category-image-container">
-            <i
-              className={this.props.category.image}
-              style={{ fontSize: '150px', color: this.props.category.color ? this.props.category.color : 'grey' }}
-            ></i>
-          </div>
-          <h3>{this.props.category.name}</h3>
-        </Link>
-      </div>
-    );
-  }
-}
-
-export default Category;
+export default ({ category }) => {
+  const random_rgba = () => {
+    const o = Math.round,
+      r = Math.random,
+      s = 255;
+    return 'rgba(' + o(r() * s) + ',' + o(r() * s) + ',' + o(r() * s) + ')';
+  };
+  const color = random_rgba();
+  return (
+    <div className="category">
+      <Link to={`/sessions/${category.name}`} style={{ fontSize: '150px', color: 'black', textAlign: 'center' }}>
+        <div className="category-image-container">
+          <i className={category.icon} style={{ fontSize: '150px', color }}></i>
+        </div>
+        <h3>{category.name}</h3>
+      </Link>
+    </div>
+  );
+};
