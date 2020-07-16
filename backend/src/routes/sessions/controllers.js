@@ -46,11 +46,7 @@ export const createSession = async (req, res) => {
 export const getSessionByVolunteerId = async (req, res) => {
   try {
     const { volunteerId } = req.params;
-
-    console.log(volunteerId);
-
     const sessions = await sessionContext.findAll({ volunteerId: volunteerId });
-
     return res.status(200).send({ sessions: sessions });
   } catch (err) {
     return res.status(400).send("Could not get sessions");
