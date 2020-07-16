@@ -15,8 +15,8 @@ export default class SessionService {
     return res;
   }
 
-  async findAll() {
-    const sessions = await this.sessionDao.findAll();
+  async findAll(query) {
+    const sessions = await this.sessionDao.findAll(query);
     return sessions;
   }
 
