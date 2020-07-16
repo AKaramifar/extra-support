@@ -3,7 +3,7 @@ import { Switch, Route } from 'react-router-dom';
 import Private from '../Auth/Private';
 import Home from '../Screens/Home';
 import Categories from '../Screens/Categories';
-import Tutorials from '../Screens/Tutorials';
+import Sessions from '../Screens/Sessions';
 import Booking from '../Screens/Booking';
 import Profile from '../Components/profile';
 import Register from '../Components/register';
@@ -18,7 +18,7 @@ export default () => (
     <Route exact path="/volunteer/login" component={LoginVolunteer} />
     <Route exact path="/student/login" component={Login} />
     <Private exact path="/categories" component={Categories} />
-    <Private exact path="/category/:category?" component={Tutorials} />
+    <Private exact path="/sessions/:category?" component={Sessions} />
     <Private exact path="/booking/:cat?" component={Booking} />
     <Private exact path="/profile" component={Profile} />
     <Private exact path="/volunteer/availability/form" component={AvailabilityForm} />

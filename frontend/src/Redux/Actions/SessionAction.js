@@ -1,4 +1,11 @@
-import { ACTION_STARTED, ACTION_SUCCESS, ACTION_ERROR, CREATE_SESSION, GET_VOLUNTEER_SESSIONS } from './types';
+import {
+  ACTION_STARTED,
+  ACTION_SUCCESS,
+  ACTION_ERROR,
+  CREATE_SESSION,
+  GET_VOLUNTEER_SESSIONS,
+  GET_SESSIONS,
+} from './types';
 import httpClient from '../../common/httpClient';
 import { getProfile } from '../../Auth/index';
 
@@ -54,6 +61,33 @@ export const getVolunteerSessions = () => {
         type: ACTION_ERROR,
         error: 'could not get sessions',
         actionType: GET_VOLUNTEER_SESSIONS,
+      });
+    }
+  };
+};
+
+export const getSessions = params => {
+  return async dispatch => {
+    try {
+      dispatch({
+        type: ACTION_STARTED,
+        actionType: GET_SESSIONS,
+      });
+      const sessions = await httpClient.get(`/sessions`, {
+        params,
+      });
+      dispatch({
+        type: GET_SESSIONS,
+        sessions: sessions.data,
+      });
+      dispatch({
+        type: ACTION_SUCCESS,
+      });
+    } catch (error) {
+      dispatch({
+        type: ACTION_ERROR,
+        error: 'could not get sessions',
+        actionType: GET_SESSIONS,
       });
     }
   };

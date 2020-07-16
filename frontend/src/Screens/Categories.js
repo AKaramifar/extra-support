@@ -1,31 +1,30 @@
-import React, { Component } from 'react';
+import React, { useEffect } from 'react';
+import { connect } from 'react-redux';
+import { getCategories } from '../Redux/Actions';
 import Category from '../Components/Category.js';
-import { getCategories } from '../actions/categories';
-import swal from 'sweetalert';
-class Categories extends Component {
-  state = { categories: [] };
-  async componentWillMount() {
-    const categories = await await getCategories();
-    if (categories.status === 200) {
-      console.log(categories);
-      this.setState({ categories: categories.data });
-     
-    } else {
-      swal('Oops!', 'Could not get categories!', 'error');
-    }
-  }
-  render() {
-    return (
-      <div className="categories-container">
-        <br />
-        <br />
-        <h1>Select a category</h1>
-        <div className="categories">
-          {this.state.categories && this.state.categories.map(category => <Category category={category} />)}
-        </div>
-      </div>
-    );
-  }
+function mapStateToProps(state) {
+  return {
+    categories: state.categories.categories,
+  };
 }
 
-export default Categories;
+const Categories = ({ categories, getCategories }) => {
+  useEffect(() => {
+    getCategories();
+  }, [getCategories]);
+  return (
+    <div className="categories-container">
+      <br />
+      <br />
+      <h1>Select a category</h1>
+      <div className="categories">
+        {categories.length > 0 && categories.map(category => <Category key={category._id} category={category} />)}
+      </div>
+    </div>
+  );
+};
+
+export default connect(
+  mapStateToProps,
+  { getCategories }
+)(Categories);

@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import TimeBox from '../Components/TimeBox';
 import UserBookingFields from '../Components/UserBookingFields';
 import DropDown from '../Components/DropDown';
-import { getAvailabilities } from '../actions/getAvailabilities';
-import swal from 'sweetalert';
+// import { getAvailabilities } from '../actions/getAvailabilities';
 // import { availability } from '../Components/Filters/Helpers';
 class Booking extends Component {
   state: {
@@ -31,19 +30,19 @@ class Booking extends Component {
   };
 
   handleGettingetAvailabilities = async date => {
-    this.setState({ selectedDate: new Date(date).toDateString() });
-    const options = {
-      id: this.state.data.id,
-      category: this.state.data.category,
-      availabilityDate: new Date(date).toDateString(),
-    };
-    try {
-      const res = await getAvailabilities(options);
-      console.log('from booking', res);
-      this.setState({ availabilitiesTimes: res.data.availabilities });
-    } catch (error) {
-      swal('Oops!', 'Could not get availabilities!', 'error');
-    }
+    // this.setState({ selectedDate: new Date(date).toDateString() });
+    // const options = {
+    //   id: this.state.data.id,
+    //   category: this.state.data.category,
+    //   availabilityDate: new Date(date).toDateString(),
+    // };
+    // try {
+    //   const res = await getAvailabilities(options);
+    //   console.log('from booking', res);
+    //   this.setState({ availabilitiesTimes: res.data.availabilities });
+    // } catch (error) {
+    //   swal('Oops!', 'Could not get availabilities!', 'error');
+    // }
   };
 
   render() {
@@ -67,9 +66,7 @@ class Booking extends Component {
           <i class="far fa-clock" style={{ width: '50%', marginBottom: '5px' }}>
             <span className="icons col ">{'Group Service'}</span>
           </i>
-          {/* <i class="far fa-clock" style={{ width: '50%', marginBottom: '5px' }}>
-            <span className="icons col ">{day}</span>
-          </i> */}
+
         </div>
         <br />
         <div style={{ width: '100%' }}>

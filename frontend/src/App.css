@@ -101,13 +101,13 @@ button {
   width: 100%;
 }
 
-/* Tutorials */
-.tutorials-main-container {
+/* session */
+.session-main-container {
   margin-top: 5%;
   width: 100%;
   font-size: 17px;
 }
-.tutorials-container {
+.session-container {
   display: flex;
   width: 100%;
   margin-top: 20px;
