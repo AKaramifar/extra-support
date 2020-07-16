@@ -4,7 +4,7 @@ const categorySchema = new Schema(
   {
     name: String,
     image: String,
-    color: String
+    icon: String
   },
   { timestamps: { createdAt: true, updatedAt: true } }
 );

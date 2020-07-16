@@ -1,8 +1,8 @@
 import CategoryContext from "./contexts";
 
 export const getCategories = async (req, res) => {
-  const categories = await CategoryContext.findAll();
   try {
+    const categories = await CategoryContext.findAll();
     return res.status(200).send(categories);
   } catch (error) {
     return res.status(400).send("Could not get categories");
