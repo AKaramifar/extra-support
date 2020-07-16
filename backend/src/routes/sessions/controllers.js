@@ -1,6 +1,6 @@
 import { filters } from "../../utils/filters";
 import sessions from "../../db/sessions.json";
-import sessionContext from "./contexts";
+import SessionContext from "./contexts";
 
 export const getSessions = async (req, res) => {
   try {
@@ -36,7 +36,7 @@ export const getAvailabilities = async (req, res) => {
 export const createSession = async (req, res) => {
   const sessionData = req.body;
   try {
-    const session = await sessionContext.create(sessionData);
+    const session = await SessionContext.create(sessionData);
     return res.status(200).send(session);
   } catch (err) {
     console.error(err);
@@ -47,7 +47,7 @@ export const createSession = async (req, res) => {
 export const getSessionByVolunteerId = async (req, res) => {
   try {
     const { volunteerId } = req.params;
-    const sessions = await sessionContext.findAll({ volunteerId: volunteerId });
+    const sessions = await SessionContext.findAll({ volunteerId: volunteerId });
     return res.status(200).send({ sessions: sessions });
   } catch (err) {
     return res.status(400).send("Could not get session");
@@ -65,11 +65,11 @@ export const updateSession = async (req, res) => {
     delete sessionData._id;
 
     const query = { _id: sessionId };
-    const session = await sessionContext.findOneAndUpdate(query, sessionData);
+    const session = await SessionContext.findOneAndUpdate(query, sessionData);
 
-    // if (!session) {
-    //   throw "Session not found!";
-    // }
+    if (!session) {
+      throw "Session not found!";
+    }
 
     return res.status(200).send(session);
   } catch (err) {
