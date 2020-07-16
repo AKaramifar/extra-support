@@ -1,50 +1,22 @@
-import { ACTION_STARTED, ACTION_SUCCESS, ACTION_ERROR, GET_VOLUNTEER_SESSIONS, CREATE_AVALABILITY } from './types';
+import { ACTION_STARTED, ACTION_SUCCESS, ACTION_ERROR, CREATE_AVAILABILITY } from './types';
 import httpClient from '../../common/httpClient';
 import { getProfile } from '../../Auth/index';
 
-export const getVolunteerSessions = () => {
-  return async dispatch => {
-    const profile = getProfile();
-
-    try {
-      dispatch({
-        type: ACTION_STARTED,
-        actionType: GET_VOLUNTEER_SESSIONS,
-      });
-      const volunteerSessions = await httpClient.get(`/sessions/${profile._id}`);
-      dispatch({
-        type: GET_VOLUNTEER_SESSIONS,
-        volunteerSessions: volunteerSessions.data,
-      });
-      dispatch({
-        type: ACTION_SUCCESS,
-      });
-    } catch (error) {
-      dispatch({
-        type: ACTION_ERROR,
-        error: 'could not get sessions',
-        actionType: GET_VOLUNTEER_SESSIONS,
-      });
-    }
-  };
-};
-
-export const createAvalability = avalabilityData => {
+export const createAvailability = availabilityData => {
   return async dispatch => {
     const profile = getProfile();
     try {
       dispatch({
         type: ACTION_STARTED,
-        actionType: CREATE_AVALABILITY,
+        actionType: CREATE_AVAILABILITY,
       });
-      const avalability = await httpClient.post(`/avalability`, {
+      const availability = await httpClient.post(`/availabilities`, {
         volunteerId: profile._id,
-        ...avalabilityData,
+        ...availabilityData,
       });
-
       dispatch({
-        type: CREATE_AVALABILITY,
-        avalability: avalability.data,
+        type: CREATE_AVAILABILITY,
+        availability: availability.data,
       });
       dispatch({
         type: ACTION_SUCCESS,
@@ -52,8 +24,8 @@ export const createAvalability = avalabilityData => {
     } catch (error) {
       dispatch({
         type: ACTION_ERROR,
-        error: 'could not create avalability',
-        actionType: CREATE_AVALABILITY,
+        error: 'could not create availability',
+        actionType: CREATE_AVAILABILITY,
       });
     }
   };

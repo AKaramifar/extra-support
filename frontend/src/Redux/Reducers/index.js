@@ -1,15 +1,13 @@
 import { combineReducers } from 'redux';
 import user from './UserReducer';
 import ActionController from './ActionControllerReducer';
-import Sessions from './SessionsReducer';
-import avalability from './AvalabilityReducer';
+import availability from './AvailabilityReducer';
 import categories from './CategoryReducer';
 import sessions from './SessionReducer';
 export default combineReducers({
   categories,
   sessions, 
-  Sessions,
-  avalability,
+  availability,
   user,
   ActionController,
 });

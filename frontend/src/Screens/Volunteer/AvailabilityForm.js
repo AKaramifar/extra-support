@@ -1,15 +1,15 @@
 import React, { useEffect } from 'react';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import { connect } from 'react-redux';
-import { getVolunteerSessions, createAvalability } from '../../Redux/Actions';
+import { getVolunteerSessions, createAvailability } from '../../Redux/Actions';
 
 function mapStateToProps(state) {
   return {
-    volunteerSessions: state.Sessions.volunteerSessions,
+    volunteerSessions: state.sessions.volunteerSessions,
   };
 }
 
-const AvalabilityForm = ({ volunteerSessions, getVolunteerSessions, createAvalability}) => {
+const AvailabilityForm = ({ volunteerSessions, getVolunteerSessions, createAvailability}) => {
   const [values, setValues] = React.useState({
     session: '',
     startDate: '',
@@ -27,7 +27,7 @@ const AvalabilityForm = ({ volunteerSessions, getVolunteerSessions, createAvalab
 
   const handleSubmit = e => {
     e.preventDefault();
-    createAvalability(values);
+    createAvailability(values);
   };
 
   useEffect(() => {
@@ -36,14 +36,14 @@ const AvalabilityForm = ({ volunteerSessions, getVolunteerSessions, createAvalab
 
   return (
     <div style={{ width: '75%' }}>
-      <h1 style={{ margin: '5% 0' }}>Volunteers Avalability Form</h1>
+      <h1 style={{ margin: '5% 0' }}>Volunteers Availability Form</h1>
       <hr />
       <Form onSubmit={handleSubmit}>
         <FormGroup>
           <Label for="exampleSession">Session</Label>
           <Input type="select" name="session" onChange={onChange} value={values.session} id="exampleSession">
             <option>Select here</option>
-            <option value="GENERALL_SESSION">General session</option>
+            <option value="GENERAL_SESSION">General session</option>
 
             {volunteerSessions.map(session => (
               <option key={session._id} value={session._id}>
@@ -115,5 +115,5 @@ const AvalabilityForm = ({ volunteerSessions, getVolunteerSessions, createAvalab
 };
 export default connect(
   mapStateToProps,
-  { getVolunteerSessions, createAvalability }
-)(AvalabilityForm);
+  { getVolunteerSessions, createAvailability: createAvailability }
+)(AvailabilityForm);
