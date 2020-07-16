@@ -60,7 +60,7 @@ export const register = async (req, res) => {
         if (err) {
           return res.status(400).send('something went wrong.')
         } else {
-          const newUser = {
+          let newUser = {
             firstName,
             lastName,
             email,
@@ -69,13 +69,11 @@ export const register = async (req, res) => {
             gender,
             isAsylumSeekerOrRefugee,
             cyfStudent,
-          }
-          const createdUser = await UserContext.create({
-            ...newUser,
-            password: hash,
-          })
-          const token = jwt.sign(newUser, process.env.JWT_SECRET)
-          return res.status(200).send({token, user: createdUser})
+          };
+        const createdUser =  await UserContext.create({ ...newUser, password: hash });
+          newUser._id = createdUser._id; 
+          const token = jwt.sign(newUser, process.env.JWT_SECRET);
+          return res.status(200).send({ token, user: createdUser });
         }
       })
     }

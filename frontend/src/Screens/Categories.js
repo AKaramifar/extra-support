@@ -9,7 +9,7 @@ class Categories extends Component {
     if (categories.status === 200) {
       console.log(categories);
       this.setState({ categories: categories.data });
-      console.log(this.state.categories);
+     
     } else {
       swal('Oops!', 'Could not get categories!', 'error');
     }
