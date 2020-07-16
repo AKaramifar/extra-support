@@ -15,8 +15,8 @@ export default class BookingService {
     return res;
   }
 
-  async findAll() {
-    const bookings = await this.bookingDao.findAll();
+  async findAll(query) {
+    const bookings = await this.bookingDao.findAll(query);
     return bookings;
   }
 
