@@ -1,13 +1,19 @@
-import { GET_SESSION_CATEGORIES } from '../Actions/types';
+import { GET_CATEGORIES, CREATE_CATEGORY } from '../Actions/types';
 const INITIAL_STATE = {
-  sessionCategories: [],
+  categories: [],
 };
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
-    case GET_SESSION_CATEGORIES:
+    case GET_CATEGORIES:
       return {
         ...state,
-        sessionCategories: action.sessionCategories,
+        categories: action.categories,
+      };
+
+    case CREATE_CATEGORY:
+      return {
+        ...state,
+        categories: [...state.categories, action.category],
       };
     default:
       return state;

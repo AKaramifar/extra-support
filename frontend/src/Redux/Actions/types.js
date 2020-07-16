@@ -8,4 +8,8 @@ export const LOAD_USER = 'LOAD_USER';
 export const USER_SIGN_UP = 'USER_SIGN_UP';
 export const USER_LOGIN = 'USER_LOGIN';
 
-export const GET_SESSION_CATEGORIES = 'GET_SESSION_CATEGORIES';
+export const CREATE_CATEGORY = 'CREATE_CATEGORY';
+export const CREATE_SESSION = 'CREATE_SESSION';
+export const GET_SESSIONS = 'GET_SESSIONS';
+
+export const GET_CATEGORIES = 'GET_CATEGORIES';

@@ -1,15 +1,15 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
-import { getSessionCategories } from '../../Redux/Actions';
+import { getCategories, createSession } from '../../Redux/Actions';
 
 function mapStateToProps(state) {
   return {
-    sessionCategories: state.categories.sessionCategories,
+    categories: state.categories.categories,
   };
 }
 
-const SessionForm = ({ sessionCategories, getSessionCategories }) => {
+const SessionForm = ({ categories, getCategories }) => {
   const [values, setValues] = React.useState({
     categories: '',
     title: '',
@@ -24,15 +24,21 @@ const SessionForm = ({ sessionCategories, getSessionCategories }) => {
     });
   };
 
+  const handleSubmit = event => {
+    event.preventDefault();
+    console.log("hi")
+    createSession(values);
+  };
+
   useEffect(() => {
-    getSessionCategories();
-  }, []);
+    getCategories();
+  }, [getCategories]);
 
   return (
     <div style={{ width: '75%', marginLeft: '10%', marginTop: '5%' }}>
       <h1 style={{ margin: '5% 0 ' }}>Volunteers Session Form</h1>
       <hr />
-      <Form>
+      <Form onSubmit={handleSubmit}>
         <FormGroup>
           <Label for="categoriesSelect">Categories</Label>
           <div style={{ display: 'flex', justifyContent: 'space-between' }}>
@@ -45,9 +51,9 @@ const SessionForm = ({ sessionCategories, getSessionCategories }) => {
               style={{ marginRight: '20px' }}
             >
               <option>Select here</option>
-              {sessionCategories.map(category => (
+              {categories.map(category => (
                 <option key={category._id} value={category._id}>
-                  {category.title}
+                  {category.name}
                 </option>
               ))}
             </Input>
@@ -89,7 +95,9 @@ const SessionForm = ({ sessionCategories, getSessionCategories }) => {
           />
         </FormGroup>
 
-        <Button color="primary">Submit</Button>
+        <Button type="submit" color="primary">
+          Submit
+        </Button>
       </Form>
     </div>
   );
@@ -97,5 +105,5 @@ const SessionForm = ({ sessionCategories, getSessionCategories }) => {
 
 export default connect(
   mapStateToProps,
-  { getSessionCategories }
+  { getCategories }
 )(SessionForm);
