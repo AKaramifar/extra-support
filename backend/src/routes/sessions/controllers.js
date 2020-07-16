@@ -39,7 +39,8 @@ export const createSession = async (req, res) => {
     const session = await sessionContext.create(sessionData);
     return res.status(200).send(session);
   } catch (err) {
-    return res.status(400).send("Sorry We could not create your session!");
+    console.error(err);
+    return res.status(400).send("Could not create session");
   }
 };
 
@@ -49,17 +50,34 @@ export const getSessionByVolunteerId = async (req, res) => {
     const sessions = await sessionContext.findAll({ volunteerId: volunteerId });
     return res.status(200).send({ sessions: sessions });
   } catch (err) {
-    return res.status(400).send("Could not get sessions");
+    return res.status(400).send("Could not get session");
   }
 };
 
-// export const updateSession = async (req, res) => {
-//   try {
-//     return res.status(200).send("");
-//   } catch (err) {
-//     return res.status(400).send("");
-//   }
-// };
+export const updateSession = async (req, res) => {
+  try {
+    const { sessionId } = req.params;
+    const sessionData = req.body;
+
+    //removed the _id property from the request body because:
+    //previously mongoose complained with error:
+    //Cast to ObjectId failed for value "{ '$oid': '5f0ef8ac9b8c785a5cf3ded9' }" at path "_id"
+    delete sessionData._id;
+
+    const query = { _id: sessionId };
+    const session = await sessionContext.findOneAndUpdate(query, sessionData);
+
+    // if (!session) {
+    //   throw "Session not found!";
+    // }
+
+    return res.status(200).send(session);
+  } catch (err) {
+    console.error(err);
+    return res.status(400).send("Could not update session");
+  }
+};
+
 // export const deleteSession = async (req, res) => {
 //   try {
 //     return res.status(200).send("");
