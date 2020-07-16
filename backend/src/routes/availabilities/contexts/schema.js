@@ -2,10 +2,15 @@ import { Schema, model } from "mongoose";
 
 const availabilitySchema = new Schema(
   {
-    sessionId: String,
+    sessionId: [String],
+    volunteerId: String,
     location: String,
     day: String,
-    timeSlots: Array,
+    startDate: Date,
+    endDate: Date,
+    startTime: String,
+    endTime: String,
+    repeat: String
   },
   { timestamps: { createdAt: true, updatedAt: true } }
 );
