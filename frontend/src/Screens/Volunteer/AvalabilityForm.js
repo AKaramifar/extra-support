@@ -5,7 +5,7 @@ import { getVolunteerSessions, createAvalability } from '../../Redux/Actions';
 
 function mapStateToProps(state) {
   return {
-    volunteerSessions: state.sessions.volunteerSessions,
+    volunteerSessions: state.Sessions.volunteerSessions,
   };
 }
 
