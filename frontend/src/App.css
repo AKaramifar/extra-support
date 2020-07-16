@@ -33,7 +33,6 @@ body {
   height: 40px;
 }
 button {
-  width: 100px !important;
   height: 40px;
   font-size: 22px;
   margin-bottom: 30px !important;
@@ -155,7 +154,6 @@ button {
   width: 850px !important;
 }
 
-
 /* register */
 .register-container {
   display: flex;
@@ -173,7 +171,6 @@ button {
   color: #fff !important;
   background-color: #007bff !important;
   border-color: #007bff !important;
-
 }
 .loader {
   border: 16px solid #f3f3f3;
