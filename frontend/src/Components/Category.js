@@ -11,7 +11,10 @@ export default ({ category }) => {
   const color = random_rgba();
   return (
     <div className="category">
-      <Link to={`/sessions/${category.name}`} style={{ fontSize: '150px', color: 'black', textAlign: 'center' }}>
+      <Link
+        to={{ pathname: `/sessions/${category._id}`, state: { category } }}
+        style={{ fontSize: '150px', color: 'black', textAlign: 'center' }}
+      >
         <div className="category-image-container">
           <i className={category.icon} style={{ fontSize: '150px', color }}></i>
         </div>

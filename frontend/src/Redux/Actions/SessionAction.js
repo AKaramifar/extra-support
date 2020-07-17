@@ -18,8 +18,8 @@ export const createSession = sessionData => {
         actionType: CREATE_SESSION,
       });
       const session = await httpClient.post(`/sessions`, {
-        volunteerId: profile._id,
         ...sessionData,
+        volunteerId: profile._id,
       });
       dispatch({
         type: CREATE_SESSION,

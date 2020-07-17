@@ -12,7 +12,7 @@ const CategoryForm = ({ createCategory }) => {
   const [values, setValues] = React.useState({
     name: '',
     image: '',
-    icon: ''
+    icon: '',
   });
 
   const handleChange = event => {
@@ -41,8 +41,20 @@ const CategoryForm = ({ createCategory }) => {
           <Input type="text" name="name" onChange={handleChange} value={values.name} id="nameText" placeholder="Name" />
         </FormGroup>
         <FormGroup>
-          <Label for="iconText">Icon code</Label>
-          <Input type="text" name="icon" onChange={handleChange} value={values.icon} id="iconText" placeholder="example: fa fa-money " />
+          <Label for="iconText">
+            Icon code:{' '}
+            <a href="https://fontawesome.com/icons?d=gallery" target="_blank" rel="noopener noreferrer">
+              font awesome
+            </a>
+          </Label>
+          <Input
+            type="text"
+            name="icon"
+            onChange={handleChange}
+            value={values.icon}
+            id="iconText"
+            placeholder="example: fa fa-money "
+          />
         </FormGroup>
         <FormGroup>
           <ImageUpload label="Upload Image" onChange={handleImageUpload} image={values.image} isLoading={false} />
