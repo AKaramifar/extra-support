@@ -1,4 +1,4 @@
-import { CREATE_BOOKING, GET_BOOKINGS } from '../Actions/types';
+import { CREATE_BOOKING, GET_BOOKINGS, REMOVE_BOOKING_FROM_STATE } from '../Actions/types';
 
 const INITIAL_STATE = {
   bookings: [],
@@ -17,6 +17,11 @@ export default (state = INITIAL_STATE, action) => {
       return {
         ...state,
         bookings: action.bookings,
+      };
+    case REMOVE_BOOKING_FROM_STATE:
+      return {
+        ...state,
+        booking: {},
       };
     default:
       return state;

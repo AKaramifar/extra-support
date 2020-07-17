@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { getSessions, createBooking } from '../Redux/Actions';
+import { getSessions, createBooking, removeBooking } from '../Redux/Actions';
 import { connect } from 'react-redux';
 import { Button, Form, FormGroup, Label, Input, Modal, ModalBody, ModalFooter } from 'reactstrap';
 import { getProfile } from '../Auth/index';
@@ -50,8 +50,8 @@ function mapStateToProps(state) {
 }
 export default connect(
   mapStateToProps,
-  { getSessions, createBooking }
-)(({ session = SESSION, getSessions, createBooking, match, isLoading, booking }) => {
+  { getSessions, createBooking, removeBooking }
+)(({ session = SESSION, getSessions, createBooking, match, isLoading, booking, removeBooking }) => {
   const [values, setValues] = useState({
     studentName: getProfile() ? getProfile().firstName + ' ' + getProfile().lastName : '',
     tel: getProfile() ? getProfile().tel : '',
@@ -80,6 +80,7 @@ export default connect(
     values.sessionId = session._id;
     createBooking(values);
   };
+
   const availabilities = session.availabilities ? session.availabilities : [];
   if (!!booking._id) {
     return (
@@ -120,10 +121,8 @@ export default connect(
             </div>
           </ModalBody>
           <ModalFooter style={{ backgroundColor: '#adffbf' }}>
-            <Button color="success">
-              <Link to="/categories" style={{ color: '#fff' }}>
-                OK
-              </Link>
+            <Button color="success" onClick={() => removeBooking()}>
+              OK
             </Button>
           </ModalFooter>
         </Modal>

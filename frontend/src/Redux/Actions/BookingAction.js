@@ -1,4 +1,4 @@
-import { ACTION_STARTED, ACTION_SUCCESS, ACTION_ERROR, CREATE_BOOKING, GET_BOOKINGS } from './types';
+import { ACTION_STARTED, ACTION_SUCCESS, ACTION_ERROR, CREATE_BOOKING, GET_BOOKINGS, REMOVE_BOOKING_FROM_STATE } from './types';
 import httpClient from '../../common/httpClient';
 import { getProfile } from '../../Auth/index';
 
@@ -56,5 +56,14 @@ export const getBookings = () => {
         actionType: GET_BOOKINGS,
       });
     }
+  };
+};
+
+export const removeBooking = () => {
+  return async dispatch => {
+      dispatch({
+        type: REMOVE_BOOKING_FROM_STATE,
+      });
+      window.location.replace('/categories')
   };
 };
