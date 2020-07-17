@@ -78,14 +78,16 @@ export default connect(
           filtersSearchHandler={filtersSearchHandler}
         />
       ) : null}
-      <Link to="/categories">
-        <i className="fas fa-arrow-left" style={{ fontSize: '25px' }}>
-          <span className="icons">{category}</span>
-        </i>
-      </Link>
-      <button className="btn side-nav-filters-button" onClick={toggleVisibilityHandler}>
-        Filters
-      </button>
+      <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '20px', alignItems:'center' }}>
+        <Link to="/categories">
+          <i className="fas fa-arrow-left" style={{ fontSize: '30px' }}>
+            <span className="icons" style={{ fontSize: '35px' }}>{category}</span>
+          </i>
+        </Link>
+        <button className="btn side-nav-filters-button" onClick={toggleVisibilityHandler}>
+          Filters
+        </button>
+      </div>
       <br />
       {sessions && sessions.length > 0 ? (
         <div className="sessions-container">

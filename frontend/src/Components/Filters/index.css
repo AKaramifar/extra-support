@@ -26,7 +26,9 @@
 }
 .side-nav-filters-button {
   background-color: #00a3ff;
-  margin-left: 10%;
+  color: #ffffff;
+  font-size: 18px;
+  font-family: Arial, Helvetica, sans-serif;
 }
 .side-nav {
   height: 100%;
