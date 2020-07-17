@@ -3,17 +3,21 @@ import { Link } from 'react-router-dom';
 import Session from '../Components/Session';
 import Filters from '../Components/Filters/index';
 import { generateFilters, getLocalStorageArray } from '../Helpers';
-import { getSessions } from '../Redux/Actions';
+import { getSessions, getCategories } from '../Redux/Actions';
 import { connect } from 'react-redux';
 
 function mapStateToProps(state) {
-  return { sessions: state.sessions.sessions, isLoading: state.ActionController.isLoading };
+  return {
+    sessions: state.sessions.sessions,
+    isLoading: state.ActionController.isLoading,
+    categories: state.categories.categories,
+  };
 }
 
 export default connect(
   mapStateToProps,
-  { getSessions }
-)(({ sessions, getSessions, ...props }) => {
+  { getSessions, getCategories }
+)(({ sessions, getSessions, categories, getCategories, match, location }) => {
   const [values, setValues] = useState({
     toggleVisibility: false,
     weekdays: getLocalStorageArray('weekdays') ? getLocalStorageArray('weekdays') : [],
@@ -21,24 +25,25 @@ export default connect(
     date: getLocalStorageArray('date') ? getLocalStorageArray('date') : [],
   });
   const filtersSearchHandler = async () => {
-    const { category } = props.match.params;
+    const { categoryId } = match.params;
     const { weekdays, time, date } = values;
     const options = {
       weekdays,
       time,
-      category: [category],
+      categoryId: [categoryId],
       date,
     };
     getSessions(options);
   };
 
   useEffect(() => {
-    const { category } = props.match.params;
+    const { categoryId } = match.params;
     const options = {
-      category: [category],
+      categoryId: [categoryId],
     };
     getSessions(options);
-  }, [getSessions, props.match.params]);
+    getCategories();
+  }, [getSessions, match.params, getCategories]);
 
   const toggleVisibilityHandler = () => {
     setValues({
@@ -65,7 +70,8 @@ export default connect(
       date: [],
     });
   };
-  const { category } = props.match.params;
+  const { categoryId } = match.params;
+  const category = categories.find(sCategory => sCategory._id === categoryId);
   return (
     <div className="container sessions-main-container">
       {values.toggleVisibility ? (
@@ -78,10 +84,12 @@ export default connect(
           filtersSearchHandler={filtersSearchHandler}
         />
       ) : null}
-      <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '20px', alignItems:'center' }}>
+      <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '20px', alignItems: 'center' }}>
         <Link to="/categories">
           <i className="fas fa-arrow-left" style={{ fontSize: '30px' }}>
-            <span className="icons" style={{ fontSize: '35px' }}>{category}</span>
+            <span className="icons" style={{ fontSize: '35px' }}>
+              {category ? category.name : null}
+            </span>
           </i>
         </Link>
         <button className="btn side-nav-filters-button" onClick={toggleVisibilityHandler}>
@@ -90,9 +98,9 @@ export default connect(
       </div>
       <br />
       {sessions && sessions.length > 0 ? (
-        <div className="sessions-container">
+        <div style={{ display: ' flex', flexWrap: 'wrap' }}>
           {sessions.map(session => (
-            <Session session={session} />
+            <Session key={session._id} session={session} />
           ))}
         </div>
       ) : (
