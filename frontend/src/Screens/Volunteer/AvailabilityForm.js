@@ -13,7 +13,7 @@ function mapStateToProps(state) {
 
 const AvailabilityForm = ({ volunteerSessions, getVolunteerSessions, createAvailability, isLoading }) => {
   const [values, setValues] = React.useState({
-    session: '',
+    sessionId: '',
     startDate: '',
     startTime: '',
     endTime: '',
@@ -44,7 +44,7 @@ const AvailabilityForm = ({ volunteerSessions, getVolunteerSessions, createAvail
       <Form onSubmit={handleSubmit}>
         <FormGroup>
           <Label for="exampleSession">Session</Label>
-          <Input type="select" name="session" onChange={onChange} value={values.session} id="exampleSession">
+          <Input type="select" name="sessionId" onChange={onChange} value={values.sessionId} id="exampleSession">
             <option>Select here</option>
             <option value="GENERAL_SESSION">General session</option>
 
