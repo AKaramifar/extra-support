@@ -1,13 +1,15 @@
 import express from "express";
 import {
   getBookings,
-  // createBooking,
-  // getBooking,
-  // updateBooking,
-  // deleteBooking,
+  createBooking,
+  updateBooking,
+  deleteBooking,
 } from "./controllers";
 
 const router = express.Router();
-//TODO: Routes need to be created here
+router.get("/:availabilityId?", getBookings);
+router.post("/", createBooking);
+router.put("/", updateBooking);
+router.delete("/:_id", deleteBooking);
 
 export default router;
