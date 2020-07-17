@@ -1,6 +1,6 @@
 import { filters } from "../../utils/filters";
-import sessions from "../../db/sessions.json";
-import sessionContext from "./contexts";
+import sessions from "../../db/sessions2020.json";
+import SessionContext from "./contexts";
 
 export const getSessions = async (req, res) => {
   try {
@@ -36,7 +36,7 @@ export const getAvailabilities = async (req, res) => {
 export const createSession = async (req, res) => {
   const sessionData = req.body;
   try {
-    const session = await sessionContext.create(sessionData);
+    const session = await SessionContext.create(sessionData);
     return res.status(200).send(session);
   } catch (err) {
     return res.status(400).send("Sorry We could not create your session!");
@@ -46,7 +46,7 @@ export const createSession = async (req, res) => {
 export const getSessionByVolunteerId = async (req, res) => {
   try {
     const { volunteerId } = req.params;
-    const sessions = await sessionContext.findAll({ volunteerId: volunteerId });
+    const sessions = await SessionContext.findAll({ volunteerId: volunteerId });
     return res.status(200).send({ sessions: sessions });
   } catch (err) {
     return res.status(400).send("Could not get sessions");
@@ -60,10 +60,14 @@ export const getSessionByVolunteerId = async (req, res) => {
 //     return res.status(400).send("");
 //   }
 // };
-// export const deleteSession = async (req, res) => {
-//   try {
-//     return res.status(200).send("");
-//   } catch (err) {
-//     return res.status(400).send("");
-//   }
-// };
+
+export const deleteSession = async (req, res) => {
+  const { sessionId } = req.params;
+  try {
+    const response = SessionContext.hardDelete({ _id: sessionId });
+    return res.status(200).send(response);
+  } catch (err) {
+    console.error(err);
+    return res.status(400).send("Could not delete session");
+  }
+};
