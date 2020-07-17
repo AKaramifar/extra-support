@@ -2,9 +2,16 @@ import { Schema, model } from "mongoose";
 
 const bookingSchema = new Schema(
   {
-    availabilityId: String,
     studentId: String,
-    time: String
+    studentName: String,
+    tel: String,
+    email: String,
+    volunteerId: String,
+    sessionId: String,
+    date: Date,
+    time: String,
+    active: Boolean,
+    canceledById: String,
   },
   { timestamps: { createdAt: true, updatedAt: true } }
 );

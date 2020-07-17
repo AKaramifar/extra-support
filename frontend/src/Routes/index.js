@@ -18,8 +18,8 @@ export default () => (
     <Route exact path="/volunteer/login" component={LoginVolunteer} />
     <Route exact path="/student/login" component={Login} />
     <Private exact path="/categories" component={Categories} />
-    <Private exact path="/sessions/:category?" component={Sessions} />
-    <Private exact path="/booking/:cat?" component={Booking} />
+    <Private exact path="/sessions/:categoryId?" component={Sessions} />
+    <Private exact path="/booking/:sessionId?" component={Booking} />
     <Private exact path="/profile" component={Profile} />
     <Private exact path="/volunteer/availability/form" component={AvailabilityForm} />
     <Private exact path="/volunteer/session/form" component={SessionForm} />

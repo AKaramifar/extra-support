@@ -14,7 +14,7 @@ function mapStateToProps(state) {
 
 const SessionForm = ({ categories, getCategories, createSession, isLoading }) => {
   const [values, setValues] = React.useState({
-    categories: '',
+    categoryId: '',
     title: '',
     description: '',
     requirements: '',
@@ -43,14 +43,14 @@ const SessionForm = ({ categories, getCategories, createSession, isLoading }) =>
       <hr />
       <Form onSubmit={handleSubmit}>
         <FormGroup>
-          <Label for="categoriesSelect">Categories</Label>
+          <Label for="categorySelect">Categories</Label>
           <div style={{ display: 'flex', justifyContent: 'space-between' }}>
             <Input
               type="select"
-              name="categories"
+              name="categoryId"
               onChange={handleChange}
-              value={values.categories}
-              id="categoriesSelect"
+              value={values.categoryId}
+              id="categorySelect"
               style={{ marginRight: '20px' }}
             >
               <option>Select here</option>

@@ -69,4 +69,3 @@ export const deleteSession = async (req, res) => {
     return res.status(400).send("Could not delete session");
   }
 };
-

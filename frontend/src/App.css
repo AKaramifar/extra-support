@@ -32,11 +32,7 @@ body {
   width: 100% !important;
   height: 40px;
 }
-button {
-  height: 40px;
-  font-size: 22px;
-  margin-bottom: 30px !important;
-}
+
 .ml {
   margin-left: 10px !important;
 }
