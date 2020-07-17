@@ -1,17 +1,17 @@
 import { filters } from "../../utils/filters";
-import sessions from "../../db/sessions.json";
+import sessions from "../../db/sessions2020.json";
 import SessionContext from "./contexts";
 
 export const getSessions = async (req, res) => {
   try {
-    console.log("Hello from sessions");
-    const filteredSessions = filters(sessions, req.query);
-    console.log(filteredSessions);
-    return res.status(200).send({ sessions: filteredSessions });
-  } catch (error) {
-    return res.status(400).send("Could not get sessions");
+    const { volunteerId } = req.params;
+    const sessions = await SessionContext.findAll({ volunteerId });
+    return res.status(200).send(sessions);
+  } catch (err) {
+    return res.status(400).send("Could not get session");
   }
 };
+
 export const getAvailabilities = async (req, res) => {
   try {
     const { availabilityDate } = req.query;
@@ -25,8 +25,6 @@ export const getAvailabilities = async (req, res) => {
           new Date(availability.date).toDateString() ===
           new Date(availabilityDate).toDateString()
       );
-    // console.log("Hello from tutorials",availabilities);
-    console.log("availabilities", availabilities.time);
     return res.status(200).send({ availabilities: availabilities.time });
   } catch (error) {
     return res.status(400).send("Could not get availabilities");
@@ -44,33 +42,16 @@ export const createSession = async (req, res) => {
   }
 };
 
-export const getSessionByVolunteerId = async (req, res) => {
-  try {
-    const { volunteerId } = req.params;
-    const sessions = await SessionContext.findAll({ volunteerId: volunteerId });
-    return res.status(200).send({ sessions: sessions });
-  } catch (err) {
-    return res.status(400).send("Could not get session");
-  }
-};
 
 export const updateSession = async (req, res) => {
   try {
     const { sessionId } = req.params;
     const sessionData = req.body;
-
-    //removed the _id property from the request body because:
-    //previously mongoose complained with error:
-    //Cast to ObjectId failed for value "{ '$oid': '5f0ef8ac9b8c785a5cf3ded9' }" at path "_id"
-    delete sessionData._id;
-
     const query = { _id: sessionId };
     const session = await SessionContext.findOneAndUpdate(query, sessionData);
-
     if (!session) {
       throw "Session not found!";
     }
-
     return res.status(200).send(session);
   } catch (err) {
     console.error(err);
@@ -78,10 +59,14 @@ export const updateSession = async (req, res) => {
   }
 };
 
-// export const deleteSession = async (req, res) => {
-//   try {
-//     return res.status(200).send("");
-//   } catch (err) {
-//     return res.status(400).send("");
-//   }
-// };
+export const deleteSession = async (req, res) => {
+  const { sessionId } = req.params;
+  try {
+    const response = SessionContext.hardDelete({ _id: sessionId });
+    return res.status(200).send(response);
+  } catch (err) {
+    console.error(err);
+    return res.status(400).send("Could not delete session");
+  }
+};
+
