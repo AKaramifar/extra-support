@@ -4,7 +4,6 @@ import CategoryContext from "./contexts";
 export const getCategories = async (req, res) => {
   try {
     const categories = await CategoryContext.findAll();
-    console.log("categories", categories);
     return res.status(200).send(categories);
   } catch (err) {
     console.error(err);
@@ -25,7 +24,7 @@ export const createCategory = async (req, res) => {
 export const getCategoryById = async (req, res) => {
   try {
     const { categoryId } = req.params;
-    const category = await CategoryContext.findOneBy(categoryId);
+    const category = await CategoryContext.findOneBy({ _id: categoryId });
     return res.status(200).send(category);
   } catch (err) {
     console.error(err);
