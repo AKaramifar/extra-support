@@ -4,14 +4,14 @@ import SessionContext from "./contexts";
 
 export const getSessions = async (req, res) => {
   try {
-    console.log("Hello from sessions");
-    const filteredSessions = filters(sessions, req.query);
-    console.log(filteredSessions);
-    return res.status(200).send({ sessions: filteredSessions });
-  } catch (error) {
-    return res.status(400).send("Could not get sessions");
+    const { volunteerId } = req.params;
+    const sessions = await SessionContext.findAll({ volunteerId });
+    return res.status(200).send(sessions);
+  } catch (err) {
+    return res.status(400).send("Could not get session");
   }
 };
+
 export const getAvailabilities = async (req, res) => {
   try {
     const { availabilityDate } = req.query;
@@ -25,8 +25,6 @@ export const getAvailabilities = async (req, res) => {
           new Date(availability.date).toDateString() ===
           new Date(availabilityDate).toDateString()
       );
-    // console.log("Hello from tutorials",availabilities);
-    console.log("availabilities", availabilities.time);
     return res.status(200).send({ availabilities: availabilities.time });
   } catch (error) {
     return res.status(400).send("Could not get availabilities");
@@ -39,27 +37,27 @@ export const createSession = async (req, res) => {
     const session = await SessionContext.create(sessionData);
     return res.status(200).send(session);
   } catch (err) {
-    return res.status(400).send("Sorry We could not create your session!");
+    console.error(err);
+    return res.status(400).send("Could not create session");
   }
 };
 
-export const getSessionByVolunteerId = async (req, res) => {
+
+export const updateSession = async (req, res) => {
   try {
-    const { volunteerId } = req.params;
-    const sessions = await SessionContext.findAll({ volunteerId: volunteerId });
-    return res.status(200).send({ sessions: sessions });
+    const { sessionId } = req.params;
+    const sessionData = req.body;
+    const query = { _id: sessionId };
+    const session = await SessionContext.findOneAndUpdate(query, sessionData);
+    if (!session) {
+      throw "Session not found!";
+    }
+    return res.status(200).send(session);
   } catch (err) {
-    return res.status(400).send("Could not get sessions");
+    console.error(err);
+    return res.status(400).send("Could not update session");
   }
 };
-
-// export const updateSession = async (req, res) => {
-//   try {
-//     return res.status(200).send("");
-//   } catch (err) {
-//     return res.status(400).send("");
-//   }
-// };
 
 export const deleteSession = async (req, res) => {
   const { sessionId } = req.params;
@@ -71,3 +69,4 @@ export const deleteSession = async (req, res) => {
     return res.status(400).send("Could not delete session");
   }
 };
+

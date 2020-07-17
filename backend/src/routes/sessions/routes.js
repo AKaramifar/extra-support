@@ -4,14 +4,16 @@ import {
   getSessions,
   createSession,
   getSessionByVolunteerId,
-  // updateTutorial,
   deleteSession,
+  updateSession,
 } from "./controllers";
+
 const router = express.Router();
-router.get("/", getSessions);
+
+router.get("/:volunteerId?", getSessions);
 router.get("/getAvailabilities", getAvailabilities);
 router.post("/", createSession);
-router.get("/:volunteerId", getSessionByVolunteerId);
-// router.put("/", updateTutorial);
 router.delete("/:sessionId", deleteSession);
+router.put("/:sessionId", updateSession);
+
 export default router;
