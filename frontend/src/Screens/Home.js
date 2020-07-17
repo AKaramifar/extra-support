@@ -1,31 +1,31 @@
 import React, { Component } from 'react';
+import { loggedIn } from '../Auth/index';
 class Home extends Component {
   render() {
     return (
-      <div className="container" style={{ width: '100%', paddingTop: '20px!important' }}>
-        <div className="row">
-          <div className="col-sm-12 col-lg-6 col-12" style={{ width: '70%' }}>
+      <div className="container">
+        <div className="row" style={{ width: '100%', marginTop: '30px' }}>
+          <div style={{ width: '50%' }}>
             <img
               className="img-fluid mt-2 mr-5"
               src="https://airtame.com/wp-content/uploads/2019/06/Code-your-future-02-1024x468.png"
               alt="cyf community"
-              width="90%"
+              width="100%"
             />
-
             <iframe
               title="Welcome to the CYF Extra Support"
               style={{
                 width: '100%',
                 height: '60%',
-                padding: '3%',
                 allowFullScreen: 'true',
                 border: 'none',
+                margin: '20px 0',
               }}
               src="https://www.youtube.com/embed/GYsXIW2Kh3A"
               allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
             />
           </div>
-          <div className="col-lg-6 " style={{ width: '70%' }}>
+          <div className="col-lg-6" style={{ width: '70%' }}>
             <h2 className="mt-2 mb-3">Welcome To CYF Extra Support!</h2>
             <p>
               We are a non-profit organization supporting refugees and disadvantaged individuals with the dream of
@@ -46,7 +46,50 @@ class Home extends Component {
                 <li>An opportunity to practice job interviews.</li>
               </ul>
             </div>
-            <div>
+            {!loggedIn() ? (
+              <div>
+                <a
+                  className="btn"
+                  style={{
+                    color: '#219653',
+                    left: '321px',
+                    top: '1114px',
+                    border: '3px solid #219653',
+                    boxSizing: 'border-box',
+                    width: '40%',
+                    fontWeight: '700',
+                    padding: '.5rem 1rem',
+                    fontSize: '1.25rem',
+                    lineHeight: '1.5',
+                    borderRadius: '.3rem',
+                    margin: '2%',
+                  }}
+                  href="/student/login"
+                >
+                  Student Login
+                </a>
+                <a
+                  className="btn"
+                  style={{
+                    color: '#219653',
+                    left: '321px',
+                    top: '1114px',
+                    border: '3px solid #219653',
+                    boxSizing: 'border-box',
+                    width: '40%',
+                    fontWeight: '700',
+                    padding: '.5rem 1rem',
+                    fontSize: '1.25rem',
+                    lineHeight: '1.5',
+                    borderRadius: '.3rem',
+                    margin: '2%',
+                  }}
+                  href="/volunteer/login"
+                >
+                  Volunteer Login
+                </a>
+              </div>
+            ) : (
               <a
                 className="btn"
                 style={{
@@ -63,31 +106,11 @@ class Home extends Component {
                   borderRadius: '.3rem',
                   margin: '2%',
                 }}
-                href="/student/login"
+                href="/categories"
               >
-                Student Login{' '}
+                Categorise
               </a>
-              <a
-                className="btn"
-                style={{
-                  color: '#219653',
-                  left: '321px',
-                  top: '1114px',
-                  border: '3px solid #219653',
-                  boxSizing: 'border-box',
-                  width: '40%',
-                  fontWeight: '700',
-                  padding: '.5rem 1rem',
-                  fontSize: '1.25rem',
-                  lineHeight: '1.5',
-                  borderRadius: '.3rem',
-                  margin: '2%',
-                }}
-                href="/volunteer/login"
-              >
-                Volunteer Login
-              </a>
-            </div>
+            )}
           </div>
         </div>
         <hr />

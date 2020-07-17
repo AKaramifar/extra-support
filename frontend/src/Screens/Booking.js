@@ -43,6 +43,7 @@ const SESSION = {
 function mapStateToProps(state) {
   return {
     sessions: state.sessions.sessions,
+    session: state.sessions.session,
     isLoading: state.ActionController.isLoading,
     categories: state.categories.categories,
     booking: state.bookings.booking,
