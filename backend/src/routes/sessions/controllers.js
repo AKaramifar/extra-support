@@ -1,5 +1,4 @@
 import { filters } from "../../utils/filters";
-import sessions from "../../db/sessions2020.json";
 import SessionContext from "./contexts";
 
 export const getSessions = async (req, res) => {

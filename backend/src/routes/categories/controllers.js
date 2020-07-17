@@ -1,4 +1,3 @@
-import categories from "../../db/categories.json";
 import CategoryContext from "./contexts";
 
 export const getCategories = async (req, res) => {
