@@ -1,14 +1,10 @@
+import { filters } from "../../utils/filters";
 import SessionContext from "./contexts";
 
 export const getSessions = async (req, res) => {
   try {
-    let sessions;
-    const { volunteerId } = req.params;
-    if (volunteerId) {
-      sessions = await SessionContext.findAll({ volunteerId });
-    } else {
-      sessions = await SessionContext.findAll();
-    }
+    const sessions = await SessionContext.findAll();
+    const filteredSessions = filters(sessions, req.query);
     return res.status(200).send(sessions);
   } catch (error) {
     return res.status(400).send("Could not get sessions");
