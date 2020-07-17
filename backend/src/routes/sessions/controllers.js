@@ -8,6 +8,7 @@ export const getSessions = async (req, res) => {
     const sessions = await SessionContext.findAll({ volunteerId });
     return res.status(200).send(sessions);
   } catch (err) {
+    console.error(err);
     return res.status(400).send("Could not get session");
   }
 };
@@ -26,7 +27,8 @@ export const getAvailabilities = async (req, res) => {
           new Date(availabilityDate).toDateString()
       );
     return res.status(200).send({ availabilities: availabilities.time });
-  } catch (error) {
+  } catch (err) {
+    console.error(err);
     return res.status(400).send("Could not get availabilities");
   }
 };
@@ -41,7 +43,6 @@ export const createSession = async (req, res) => {
     return res.status(400).send("Could not create session");
   }
 };
-
 
 export const updateSession = async (req, res) => {
   try {
@@ -69,4 +70,3 @@ export const deleteSession = async (req, res) => {
     return res.status(400).send("Could not delete session");
   }
 };
-
