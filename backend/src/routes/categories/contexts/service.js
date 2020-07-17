@@ -15,8 +15,8 @@ export default class CategoryService {
     return res;
   }
 
-  async findAll() {
-    const categories = await this.categoryDao.findAll();
+  async findAll(query) {
+    const categories = await this.categoryDao.findAll(query);
     return categories;
   }
 

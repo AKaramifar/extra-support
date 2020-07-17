@@ -7,5 +7,6 @@ export default {
   hardDelete: (query) => categoryService.hardDelete(query),
   findAll: (query) => categoryService.findAll(query),
   create: (set) => categoryService.create(set),
-  findOneAndUpdate: (query, set) => categoryService.findOneAndUpdate(query, set),
+  findOneAndUpdate: (query, set) =>
+    categoryService.findOneAndUpdate(query, set),
 };
