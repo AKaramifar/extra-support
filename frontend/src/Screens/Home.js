@@ -25,7 +25,7 @@ export default () => {
           />
         </div>
         <div className="col-lg-6" style={{ width: '70%' }}>
-          <h2 className="mt-2 mb-3">Welcome To CYF Extra Support!</h2>
+          <h2 className="mt-5 mb-3">Welcome To CYF Extra Support!</h2>
           <p>
             We are a non-profit organization supporting refugees and disadvantaged individuals with the dream of
             becoming developers. In their journey of interrupted lives, unfinished studies and integration challenges,
