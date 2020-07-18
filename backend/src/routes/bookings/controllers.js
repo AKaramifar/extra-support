@@ -1,4 +1,6 @@
 import BookingsContext from "./contexts";
+import { bookingConfirmationEmail } from "../../utils/notification";
+import dayjs from "dayjs";
 export const getBookings = async (req, res) => {
   try {
     let bookings;
@@ -18,8 +20,21 @@ export const createBooking = async (req, res) => {
   try {
     const bookingData = req.body;
     const booking = await BookingsContext.create(bookingData);
+    const emailData = {
+      volunteerName: bookingData.volunteerName,
+      studentName: bookingData.studentName,
+      date: `${dayjs(bookingData.date).format("dddd, MMMM D YYYY")} ${
+        booking.time
+      }`,
+      location: bookingData.location,
+      studentEmail: bookingData.email,
+      studentName: bookingData.studentName,
+      volunteerEmail: bookingData.volunteerEmail,
+    };
+    await bookingConfirmationEmail(emailData);
     return res.status(200).send(booking);
   } catch (err) {
+    console.log(err)
     return res.status(400).send("Could not create your booking");
   }
 };

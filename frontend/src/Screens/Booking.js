@@ -78,6 +78,9 @@ export default connect(
     e.preventDefault();
     values.volunteerId = session.volunteer.volunteerId;
     values.sessionId = session._id;
+    values.volunteerEmail = session.volunteer.email;
+    values.volunteerName = session.volunteer.firstName;
+    values.location = session.location;
     createBooking(values);
   };
 
