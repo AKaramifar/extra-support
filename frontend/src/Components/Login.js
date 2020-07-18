@@ -25,44 +25,46 @@ class Login extends Component {
   render() {
     const { email, password } = this.state;
     return (
-      <div className="container-fluid d-flex flex-column align-items-start justify-content-center mt ml">
+      <div style={{ display: 'flex', justifyContent: 'center', marginTop: '40px' }}>
         <div>
-          <h1>Welcome To Extra Support</h1>
-          <h3>Start your search now...</h3>
-        </div>
-        <form onSubmit={this.handleLogin} className="row">
-          <div className="form-group">
-            <input
-              type="email"
-              name="email"
-              value={email}
-              className="form-control login-input"
-              id="exampleInputEmail1"
-              aria-describedby="emailHelp"
-              placeholder="Email"
-              onChange={this.onChange}
-            />
-            <div className="student-register-container">
-              {'CYF Student - '}
-              <Link className="student-volunteer-register-link" to="/register">
-                Register Here,
-              </Link>
+          <div>
+            <h1>Welcome To Extra Support</h1>
+            <h3>Start your search now...</h3>
+          </div>
+          <form onSubmit={this.handleLogin}>
+            <div className="form-group">
+              <input
+                type="email"
+                name="email"
+                value={email}
+                className="form-control login-input"
+                id="exampleInputEmail1"
+                aria-describedby="emailHelp"
+                placeholder="Email"
+                onChange={this.onChange}
+              />
             </div>
+            <div className="form-group">
+              <input
+                type="password"
+                name="password"
+                value={password}
+                onChange={this.onChange}
+                className="form-control login-input"
+                placeholder="Password"
+              />
+            </div>
+            <button type="submit" className="btn btn-success">
+              Login
+            </button>
+          </form>
+          <div className="student-register-container">
+            {'CYF Student - '}
+            <Link className="student-volunteer-register-link" to="/register">
+              Register Here,
+            </Link>
           </div>
-          <div className="form-group  ml-1">
-            <input
-              type="password"
-              name="password"
-              value={password}
-              onChange={this.onChange}
-              className="form-control login-input"
-              placeholder="Password"
-            />
-          </div>
-          <button type="submit" className="btn btn-success ml-1">
-            Login
-          </button>
-        </form>
+        </div>
       </div>
     );
   }

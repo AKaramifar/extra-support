@@ -1,4 +1,4 @@
-import { Schema, model } from 'mongoose'
+import { Schema, model } from "mongoose";
 
 const userSchema = new Schema(
   {
@@ -6,26 +6,29 @@ const userSchema = new Schema(
     lastName: String,
     gender: String,
     avatar: String,
+    githubId: String,
+    admin: Boolean,
     email: {
       type: String,
       required: true,
-      lowercase: true
+      lowercase: true,
     },
     city: {
-      type: String
+      type: String,
     },
     tel: {
       type: String,
-      trim: true
+      trim: true,
     },
     cityId: String,
     password: String,
     cyfStudent: Boolean,
-    isAsylumSeekerOrRefugee: Boolean
+    isAsylumSeekerOrRefugee: Boolean,
+    roles: [String],
   },
   { timestamps: { createdAt: true, updatedAt: true } }
-)
+);
 
-const UserModel = model('user', userSchema)
+const UserModel = model("user", userSchema);
 
-export default UserModel
+export default UserModel;

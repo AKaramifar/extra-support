@@ -37,7 +37,7 @@ const SessionForm = ({ categories, getCategories, createSession, isLoading }) =>
   }, [getCategories]);
 
   return (
-    <div style={{ width: '75%', marginLeft: '10%', marginTop: '5%' }}>
+    <div style={{ width: '75%'}}>
       <Spinner isLoading={isLoading} style={{width: '200px', height: '200px'}}/>
       <h1 style={{ margin: '5% 0 ' }}>Volunteers Session Form</h1>
       <hr />

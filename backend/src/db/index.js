@@ -1,17 +1,17 @@
 import mongoose from "mongoose";
-
+import config from "../config";
 const mongooseOptions = {
   useNewUrlParser: true,
   useCreateIndex: true,
   useFindAndModify: false,
-  useUnifiedTopology: true
+  useUnifiedTopology: true,
 };
 
 export default async function connectToDb() {
-  const { DB_CONNECTION_URL, ENV } = process.env;
+  const { db, env } = config;
   try {
-    await mongoose.connect(DB_CONNECTION_URL, mongooseOptions);
-    console.log(`Connecting to ${ENV} DB`);
+    await mongoose.connect(db.connection, mongooseOptions);
+    console.log(`Connecting to ${env} DB`);
   } catch (e) {
     console.log(e, "Error connecting to db");
   }
