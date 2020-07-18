@@ -7,11 +7,11 @@ import Spinner from '../../Components/Spinner';
 function mapStateToProps(state) {
   return {
     volunteerSessions: state.sessions.volunteerSessions,
-    isLoading: state.ActionController.isLoading,
+    ActionController: state.ActionController,
   };
 }
 
-const AvailabilityForm = ({ volunteerSessions, getVolunteerSessions, createAvailability, isLoading }) => {
+const AvailabilityForm = ({ volunteerSessions, getVolunteerSessions, createAvailability, ActionController }) => {
   const [values, setValues] = React.useState({
     sessionId: '',
     startDate: '',
@@ -20,6 +20,9 @@ const AvailabilityForm = ({ volunteerSessions, getVolunteerSessions, createAvail
     repeat: '',
     location: '',
   });
+
+  const [submitted, setSubmitted] = React.useState(false);
+
   const onChange = event => {
     setValues({
       ...values,
@@ -29,8 +32,21 @@ const AvailabilityForm = ({ volunteerSessions, getVolunteerSessions, createAvail
 
   const handleSubmit = e => {
     e.preventDefault();
+    setSubmitted(true);
     createAvailability(values);
   };
+
+  if (ActionController.actionType === '' && !ActionController.isLoading && submitted) {
+    setValues({
+      sessionId: '',
+      startDate: '',
+      startTime: '',
+      endTime: '',
+      repeat: '',
+      location: '',
+    });
+    setSubmitted(false);
+  }
 
   useEffect(() => {
     getVolunteerSessions();
@@ -38,7 +54,7 @@ const AvailabilityForm = ({ volunteerSessions, getVolunteerSessions, createAvail
 
   return (
     <div style={{ width: '75%' }}>
-      <Spinner isLoading={isLoading} style={{width: '200px', height: '200px'}}/>
+      <Spinner isLoading={ActionController.isLoading} style={{width: '200px', height: '200px'}}/>
       <h1 style={{ margin: '5% 0' }}>Volunteers Availability Form</h1>
       <hr />
       <Form onSubmit={handleSubmit}>
@@ -111,7 +127,7 @@ const AvailabilityForm = ({ volunteerSessions, getVolunteerSessions, createAvail
             placeholder="Add a location"
           ></Input>
         </FormGroup>
-        <Button color="primary" disabled={isLoading}>Submit</Button>
+        <Button color="primary" disabled={ActionController.isLoading}>Submit</Button>
       </Form>
     </div>
   );
