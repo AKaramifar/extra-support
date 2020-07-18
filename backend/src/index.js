@@ -1,15 +1,25 @@
+import passport from "passport";
 import express from "express";
 import cors from "cors";
 import * as dotenv from "dotenv";
+import './routes/auth/passport'
 dotenv.config();
 import connectToDb from "./db";
-import { users, categories, sessions, auth, availabilities, bookings } from "./routes";
+import {
+  users,
+  categories,
+  sessions,
+  auth,
+  availabilities,
+  bookings,
+} from "./routes";
 export let server;
 export async function startAPI() {
   const app = express()
     .use(cors())
-    .get("/", (reg, res) => res.sendStatus(200))
     .use(express.json({ limit: "50mb", parameterLimit: 50000 }))
+    .use(passport.initialize())
+    .get("/", (reg, res) => res.sendStatus(200))
     .use("/auth", auth)
     .use("/users", users)
     .use("/categories", categories)

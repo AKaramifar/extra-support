@@ -141,3 +141,37 @@ export const removeMessage = id => {
     });
   };
 };
+
+export const volunteerSignUp = (id, user) => {
+  return async dispatch => {
+    try {
+      dispatch({
+        type: ACTION_STARTED,
+        actionType: USER_SIGN_UP,
+      });
+      const userResponse = await httpClient.post(`/auth/volunteer/register/${id}`, user);
+      if (userResponse.status === 200) {
+        dispatch({
+          type: USER_SIGN_UP,
+          user: userResponse.data.user,
+          loggedIn: true,
+        });
+        dispatch({
+          type: ACTION_SUCCESS,
+        });
+        setToken(userResponse.data.token);
+      } else {
+        throw new Error('');
+      }
+    } catch (error) {
+      dispatch({
+        type: ACTION_ERROR,
+        error:
+          error.response && error.response.data && typeof error.response.data === 'string'
+            ? error.response.data
+            : 'Server is not available, please try again later.',
+        actionType: USER_SIGN_UP,
+      });
+    }
+  };
+};

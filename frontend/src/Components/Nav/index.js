@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import ProfileDropDown from './profileDropDown';
-import { logout, loggedIn } from '../../Auth';
+import { logout, loggedIn, isAuthorized } from '../../Auth';
 import logo_CYF_square from './logo-CYF-square.png';
 import './index.css';
 
@@ -48,6 +48,20 @@ export default class Navbar extends React.Component {
                   </Link>
                 </li>
               )}
+              {isAuthorized(['VOLUNTEER']) ? (
+                <li className="nav-item">
+                  <Link className="nav-link nav-btn" to="/volunteer/session/form">
+                    Session form
+                  </Link>
+                </li>
+              ) : null}
+              {isAuthorized(['VOLUNTEER']) ? (
+                <li className="nav-item">
+                  <Link className="nav-link nav-btn" to="/volunteer/availability/form">
+                    Availability form
+                  </Link>
+                </li>
+              ) : null}
               <li className="nav-item desktop-display-none" />
               {loggedIn() && (
                 <Fragment>

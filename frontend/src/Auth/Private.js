@@ -1,13 +1,13 @@
 import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
-import { loggedIn } from '../Auth';
+import { isAuthorized } from '../Auth';
 
-const Private = ({ component: Component, ...rest }) => {
+const Private = ({ component: Component, roles, ...rest }) => {
   return (
     <Route
       {...rest}
       render={props => {
-        return loggedIn() ? (
+        return isAuthorized(roles) ? (
           <div>
             <Component {...props} />
           </div>

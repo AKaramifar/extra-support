@@ -11,17 +11,21 @@ import Login from '../Components/Login';
 import LoginVolunteer from '../Components/LoginVolunteer';
 import AvailabilityForm from '../Screens/Volunteer/AvailabilityForm';
 import SessionForm from '../Screens/Volunteer/SessionForm';
+import VolunteerRegister from '../Components/VolunteerRegister';
+import VolunteerLogin from '../Auth/Login';
 export default () => (
   <Switch>
     <Route exact path="/" component={Home} />
     <Route exact path="/register" component={Register} />
     <Route exact path="/volunteer/login" component={LoginVolunteer} />
+    <Route exact path="/volunteer/register/:volunteerId" component={VolunteerRegister} />
     <Route exact path="/student/login" component={Login} />
-    <Private exact path="/categories" component={Categories} />
-    <Private exact path="/sessions/:categoryId?" component={Sessions} />
-    <Private exact path="/booking/:sessionId?" component={Booking} />
-    <Private exact path="/profile" component={Profile} />
-    <Private exact path="/volunteer/availability/form" component={AvailabilityForm} />
-    <Private exact path="/volunteer/session/form" component={SessionForm} />
+    <Route exact path="/volunteer/login/:token" component={VolunteerLogin} />
+    <Private exact path="/categories" component={Categories} roles={['STUDENT']} />
+    <Private exact path="/sessions/:categoryId?" component={Sessions} roles={['STUDENT']} />
+    <Private exact path="/booking/:sessionId?" component={Booking} roles={['STUDENT']} />
+    <Private exact path="/profile" component={Profile} roles={['STUDENT', 'VOLUNTEER']} />
+    <Private exact path="/volunteer/availability/form" component={AvailabilityForm} roles={['VOLUNTEER']} />
+    <Private exact path="/volunteer/session/form" component={SessionForm} roles={['VOLUNTEER']} />
   </Switch>
 );

@@ -3,7 +3,7 @@ import UserContext from "./contexts";
 export const getUser = async (req, res) => {
   const { userId } = req.params;
   try {
-    const user = await UserContext.findOneBy({ email: userId });
+    const user = await UserContext.findOneBy({ _id: userId });
     return res.status(200).send(user);
   } catch (err) {
     console.log(err);

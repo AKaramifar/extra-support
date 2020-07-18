@@ -45,3 +45,32 @@ export const getHeaders = () => {
     };
   }
 };
+
+const checkRoles = (decodedRoles, roles) => {
+  return roles.map(role => {
+    return decodedRoles.includes(role)
+  })
+}
+
+export const isTokenAuthorized = (token, roles) => {
+  try {
+    const decoded = decode(token)
+    if (decoded.admin) {
+      return true
+    }
+    if (!roles && roles.length === 0) {
+      return false
+    }
+    const checkedRoles = checkRoles(decoded.roles, roles)
+    if (checkedRoles.includes(true)) {
+      return true
+    }
+    return false
+  } catch (err) {
+    return false
+  }
+}
+export const isAuthorized = roles => {
+  const token = getToken()
+  return !!token && isTokenAuthorized(token, roles)
+}
