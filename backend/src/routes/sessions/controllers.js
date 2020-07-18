@@ -4,18 +4,8 @@ import SessionContext from "./contexts";
 
 export const getSessions = async (req, res) => {
   try {
-    const { query } = req;
-    let _query = {};
     const { volunteerId } = req.params;
-    if (volunteerId) {
-      _query.volunteerId = volunteerId;
-    }
-    if (query) {
-      if (query.sessionId) {
-        _query._id = query.sessionId;
-      }
-    }
-    const sessions = await SessionContext.findAll(_query);
+    const sessions = await SessionContext.findAll({ volunteerId });
     return res.status(200).send(sessions);
   } catch (err) {
     return res.status(400).send("Could not get session");
