@@ -19,7 +19,7 @@ export default connect(
   });
   React.useEffect(() => {
     if (loggedIn()) {
-      history.replace('/categories');
+      history.replace('/');
     }
   }, [history]);
   const onChange = event => {
