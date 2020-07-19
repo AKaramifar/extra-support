@@ -8,6 +8,8 @@ const config = {
   extraSupportClientUrl: process.env.EXTRA_SUPPORT_CLIENT_URL,
   volunteerFormClientUrl: process.env.VOLUNTEER_FORM_CLIENT_URL,
   jwtSecret: process.env.JWT_SECRET,
+  sourceEmail: process.env.EXTRA_SUPPORT_SOURCE_EMAIL,
+  catchOnAllEmail:process.env.CATCH_ON_ALL_EMAIL,
   db: {
     connection: process.env.DB_CONNECTION_STRING,
   },

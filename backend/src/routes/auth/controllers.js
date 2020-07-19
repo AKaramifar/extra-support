@@ -19,6 +19,7 @@ export const login = async (req, res) => {
         classId: user.classId,
         className: user.className,
         roles: user.roles,
+        tel: user.tel
       };
       bcrypt.compare(password, user.password, async (err, response) => {
         if (err) {

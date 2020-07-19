@@ -1,4 +1,4 @@
-import decode from 'jwt-decode'
+import decode from 'jwt-decode';
 
 export const setToken = idToken => {
   localStorage.setItem('id_token', idToken);
@@ -33,9 +33,9 @@ export const loggedIn = () => {
   return !!token && !isTokenExpired(token);
 };
 export const getProfile = () => {
-  const token = getToken()
-  if (token) return decode(token)
-}
+  const token = getToken();
+  if (token) return decode(token);
+};
 
 export const getHeaders = () => {
   const idToken = getToken();
@@ -48,29 +48,32 @@ export const getHeaders = () => {
 
 const checkRoles = (decodedRoles, roles) => {
   return roles.map(role => {
-    return decodedRoles.includes(role)
-  })
-}
+    return decodedRoles.includes(role);
+  });
+};
 
 export const isTokenAuthorized = (token, roles) => {
   try {
-    const decoded = decode(token)
+    if (!token && isTokenExpired(token)) {
+      return false;
+    }
+    const decoded = decode(token);
     if (decoded.admin) {
-      return true
+      return true;
     }
     if (!roles && roles.length === 0) {
-      return false
+      return false;
     }
-    const checkedRoles = checkRoles(decoded.roles, roles)
+    const checkedRoles = checkRoles(decoded.roles, roles);
     if (checkedRoles.includes(true)) {
-      return true
+      return true;
     }
-    return false
+    return false;
   } catch (err) {
-    return false
+    return false;
   }
-}
+};
 export const isAuthorized = roles => {
-  const token = getToken()
-  return !!token && isTokenAuthorized(token, roles)
-}
+  const token = getToken();
+  return !!token && isTokenAuthorized(token, roles);
+};
