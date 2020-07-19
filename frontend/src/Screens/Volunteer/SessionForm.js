@@ -8,17 +8,18 @@ import Spinner from '../../Components/Spinner';
 function mapStateToProps(state) {
   return {
     categories: state.categories.categories,
-    isLoading: state.ActionController.isLoading,
+    ActionController: state.ActionController,
   };
 }
-
-const SessionForm = ({ categories, getCategories, createSession, isLoading }) => {
+const SessionForm = ({ categories, getCategories, createSession, ActionController }) => {
   const [values, setValues] = React.useState({
     categoryId: '',
     title: '',
     description: '',
     requirements: '',
   });
+
+  const [submitted, setSubmitted] = React.useState(false);
 
   const handleChange = event => {
     setValues({
@@ -29,16 +30,26 @@ const SessionForm = ({ categories, getCategories, createSession, isLoading }) =>
 
   const handleSubmit = event => {
     event.preventDefault();
+    setSubmitted(true);
     createSession(values);
   };
+  if (ActionController.actionType === '' && !ActionController.isLoading && submitted) {
+    setValues({
+      categoryId: '',
+      title: '',
+      description: '',
+      requirements: '',
+    });
+    setSubmitted(false);
+  }
 
   useEffect(() => {
     getCategories();
   }, [getCategories]);
 
   return (
-    <div style={{ width: '75%'}}>
-      <Spinner isLoading={isLoading} style={{width: '200px', height: '200px'}}/>
+    <div style={{ width: '75%', margin: '5% 0 0 10%' }}>
+      <Spinner isLoading={ActionController.isLoading} style={{ width: '200px', height: '200px' }} />
       <h1 style={{ margin: '5% 0 ' }}>Volunteers Session Form</h1>
       <hr />
       <Form onSubmit={handleSubmit}>
@@ -98,7 +109,7 @@ const SessionForm = ({ categories, getCategories, createSession, isLoading }) =>
           />
         </FormGroup>
 
-        <Button disabled={isLoading} type="submit" color="primary">
+        <Button disabled={ActionController.isLoading} type="submit" color="primary">
           Submit
         </Button>
       </Form>
