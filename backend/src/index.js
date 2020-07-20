@@ -2,7 +2,7 @@ import passport from "passport";
 import express from "express";
 import cors from "cors";
 import * as dotenv from "dotenv";
-import './routes/auth/passport'
+import "./routes/auth/passport";
 dotenv.config();
 import connectToDb from "./db";
 import {
