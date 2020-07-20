@@ -6,21 +6,70 @@ function checkAvailabilities(availabilities, filters) {
   });
 }
 
-function filterByCategory(tutorials, category) {
-  return tutorials.filter((tutorial) => tutorial.category === category);
+function filterByCategories(sessions, categoryIds) {
+  return sessions.filter((session) => {
+    return categoryIds.find((categoryId) => session.categoryId === categoryId);
+  });
 }
 
-export function filters(tutorials, options) {
-  const { category, availability } = options;
-  tutorials = category ? filterByCategory(tutorials, category) : tutorials;
+function filterByTimes(sessions, times) {
+  return sessions.filter((session) => {
+    return times.find((time) => {
+      const [startTime, endTime] = time.split("-");
 
-  tutorials = availability
-    ? tutorials.filter((tutorial) => {
-        return checkAvailabilities(
-          tutorial.availabilities,
-          availability
-        ).includes(true);
-      })
-    : tutorials;
-  return tutorials;
+      const availableTimes = session.availabilities.filter((availability) => {
+        return (
+          Date.parse(`01/01/2020 ${startTime}:00`) >=
+            Date.parse(`01/01/2020 ${availability.startTime}`) &&
+          Date.parse(`01/01/2020 ${endTime}:00`) <=
+            Date.parse(`01/01/2020 ${availability.endTime}`)
+        );
+      });
+      return availableTimes.length > 0;
+    });
+  });
+}
+
+function filterByDate(sessions, Dates) {
+  return sessions.filter((session) => {
+    return Dates.find((date) => {
+      const availableDates = session.availabilities.filter((availability) => {
+        return availability.startDate.toDateString() === new Date(date).toDateString();
+      });
+      return availableDates.length > 0;
+    });
+  });
+}
+function filterByWeekdays(sessions, weekdays) {
+  return sessions.filter((session) => {
+    return weekdays.find((weekday) => {
+      const availableWeekDays = session.availabilities.filter(
+        (availability) => {
+          return availability.weekDay === weekday;
+        }
+      );
+      return availableWeekDays.length > 0;
+    });
+  });
+}
+export function filtersSessionsByQuery(sessions, options) {
+  const { categoryId, time, weekdays, date } = options;
+
+  let filteredSessions =
+    categoryId && categoryId.length
+      ? filterByCategories(sessions, categoryId)
+      : sessions;
+
+  filteredSessions =
+    time && time.length ? filterByTimes(sessions, time) : filteredSessions;
+
+  filteredSessions =
+    weekdays && weekdays.length
+      ? filterByWeekdays(sessions, weekdays)
+      : filteredSessions;
+
+  filteredSessions =
+    date && date.length ? filterByDate(sessions, date) : filteredSessions;
+
+  return filteredSessions;
 }
