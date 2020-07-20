@@ -5,6 +5,7 @@ import {
   CREATE_SESSION,
   GET_VOLUNTEER_SESSIONS,
   GET_SESSIONS,
+  GET_SESSION,
 } from './types';
 import httpClient from '../../common/httpClient';
 import { getProfile } from '../../Auth/index';
@@ -88,6 +89,31 @@ export const getSessions = params => {
         type: ACTION_ERROR,
         error: 'could not get sessions',
         actionType: GET_SESSIONS,
+      });
+    }
+  };
+};
+
+export const getSession = sessionId => {
+  return async dispatch => {
+    try {
+      dispatch({
+        type: ACTION_STARTED,
+        actionType: GET_SESSION,
+      });
+      const session = await httpClient.get(`/sessions/session/${sessionId}`);
+      dispatch({
+        type: GET_SESSION,
+        session: session.data,
+      });
+      dispatch({
+        type: ACTION_SUCCESS,
+      });
+    } catch (error) {
+      dispatch({
+        type: ACTION_ERROR,
+        error: 'could not get session',
+        actionType: GET_SESSION,
       });
     }
   };
