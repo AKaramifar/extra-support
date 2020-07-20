@@ -1,7 +1,9 @@
+
+import AvailabilityContext from "../availabilities/contexts";
+import UsersContext from "../users/contexts";
 import { filtersSessionsByQuery } from "../../utils/filters";
 import { mergeSessionsWithAvailabilities } from "./utils/mergeSessions";
 import SessionContext from "./contexts";
-import AvailabilityContext from "../availabilities/contexts";
 
 export const getSessions = async (req, res) => {
   try {
@@ -19,6 +21,30 @@ export const getSessions = async (req, res) => {
   const filteredSessions = filtersSessionsByQuery(sessionWithAvailabilities, req.query);
     return res.status(200).send(filteredSessions);
   } catch (err) {
+    return res.status(400).send("Could not get session");
+  }
+};
+
+export const getSession = async (req, res) => {
+  try {
+    const { sessionId } = req.params;
+    if (sessionId) {
+      const session = await SessionContext.findOneBy({ _id: sessionId });
+      const availabilities = await AvailabilityContext.findAll({ sessionId });
+      if (session && availabilities) {
+        let volunteer = await UsersContext.findOneBy({
+          _id: session.volunteerId,
+        });
+        const newSession = {
+          ...session,
+          volunteer,
+          availabilities,
+        };
+        return res.status(200).send(newSession);
+      }
+    }
+  } catch (err) {
+    console.log("Error", err);
     return res.status(400).send("Could not get session");
   }
 };
