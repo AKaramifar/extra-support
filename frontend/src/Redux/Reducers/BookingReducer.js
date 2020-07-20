@@ -1,8 +1,9 @@
-import { CREATE_BOOKING, GET_BOOKINGS, REMOVE_BOOKING_FROM_STATE } from '../Actions/types';
+import { CREATE_BOOKING, GET_BOOKINGS, GET_VOLUNTEER_BOOKINGS, REMOVE_BOOKING_FROM_STATE } from '../Actions/types';
 
 const INITIAL_STATE = {
   bookings: [],
   booking: {},
+  volunteerBookings: [],
 };
 
 export default (state = INITIAL_STATE, action) => {
@@ -22,6 +23,11 @@ export default (state = INITIAL_STATE, action) => {
       return {
         ...state,
         booking: {},
+      };
+    case GET_VOLUNTEER_BOOKINGS:
+      return {
+        ...state,
+        volunteerBookings: action.volunteerBookings,
       };
     default:
       return state;

@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { getBookings } from '../Redux/Actions';
-import Spinner from '../Components/Spinner';
+import { getVolunteerBookings } from '../Redux/Actions';
 
 const fakeBooking = [
   {
@@ -32,21 +31,20 @@ const fakeBooking = [
 
 function mapStateToProps(state) {
   return {
-    bookings: state.categories.categories,
+    volunteerBookings: state.volunteerBookings.volunteerBookings,
   };
 }
-const VolunteerBookings = ({ bookings = fakeBooking, getBookings }) => {
+const VolunteerBookings = ({ volunteerBookings = fakeBooking, getVolunteerBookings }) => {
   useEffect(() => {
-    getBookings();
-  }, [getBookings]);
+    getVolunteerBookings();
+  }, [getVolunteerBookings]);
 
   return (
     <div style={{ width: '75%' }}>
-      <Spinner style={{ width: '200px', height: '200px' }} />
       <h1 style={{ margin: '5% 0 ' }}>Volunteer Bookings</h1>
       <hr />
       <ul>
-        {bookings.map((booking, index) => (
+        {volunteerBookings.map((booking, index) => (
           <li key={index} value={booking.studentName}>
             {(booking.studentName, booking.studentEmail, booking.bookingDate, booking.bookingTime)}
           </li>
@@ -58,5 +56,5 @@ const VolunteerBookings = ({ bookings = fakeBooking, getBookings }) => {
 
 export default connect(
   mapStateToProps,
-  { getBookings }
+  { getVolunteerBookings }
 )(VolunteerBookings);
