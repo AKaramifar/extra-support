@@ -1,47 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { getSessions, createBooking, removeBooking } from '../Redux/Actions';
+import { getSession, createBooking, removeBooking } from '../Redux/Actions';
 import { connect } from 'react-redux';
 import { Button, Form, FormGroup, Label, Input, Modal, ModalBody, ModalFooter } from 'reactstrap';
 import { getProfile } from '../Auth/index';
 import dayjs from 'dayjs';
 
-const SESSION = {
-  _id: '5f1172a97d937a0582001335',
-  categoryId: '5f1171ee7d937a0582001330',
-  title: 'English speaking',
-  description:
-    'Our goal is to help you Learn English speaking so you can speak English fluently. Improve your spoken English Free! Two hours long weekly tutorials.',
-  requirements: 'test',
-  location: 'london',
-  volunteer: {
-    volunteerId: '5f1171a67d937a058200132e',
-    firstName: 'Ahmad',
-    lastName: 'moradi',
-    email: 'ahmad@gmail.com',
-  },
-  availabilities: [
-    {
-      availabilityId: '5f1171a67d937a0582001dhj',
-      startDate: '2020-07-18T11:25:15.000Z',
-      startTime: '12:30',
-      endTime: '13:00',
-      repeat: 'Daly',
-      location: 'gggggg',
-    },
-    {
-      availabilityId: '5f1171ad67d937a0582001dhj',
-      startDate: '2020-07-17T11:25:15.000Z',
-      startTime: '06:30',
-      endTime: '07:00',
-      repeat: 'Daly',
-      location: 'gggggg',
-    },
-  ],
-};
-
 function mapStateToProps(state) {
   return {
-    sessions: state.sessions.sessions,
     session: state.sessions.session,
     isLoading: state.ActionController.isLoading,
     categories: state.categories.categories,
@@ -50,8 +15,8 @@ function mapStateToProps(state) {
 }
 export default connect(
   mapStateToProps,
-  { getSessions, createBooking, removeBooking }
-)(({ session = SESSION, getSessions, createBooking, match, isLoading, booking, removeBooking }) => {
+  { getSession, createBooking, removeBooking }
+)(({ session, getSession, createBooking, match, isLoading, booking, removeBooking }) => {
   const [values, setValues] = useState({
     studentName: getProfile() ? getProfile().firstName + ' ' + getProfile().lastName : '',
     tel: getProfile() ? getProfile().tel : '',
@@ -62,11 +27,8 @@ export default connect(
 
   useEffect(() => {
     const { sessionId } = match.params;
-    const options = {
-      sessionId: sessionId,
-    };
-    getSessions(options);
-  }, [getSessions, match.params]);
+    getSession(sessionId);
+  }, [getSession, match.params]);
 
   const onChangeHandler = e => {
     setValues({
@@ -85,6 +47,13 @@ export default connect(
   };
 
   const availabilities = session.availabilities ? session.availabilities : [];
+  if (!session._id) {
+    return (
+      <div>
+        <h1>No session to find.</h1>
+      </div>
+    );
+  }
   if (!!booking._id) {
     return (
       <div>

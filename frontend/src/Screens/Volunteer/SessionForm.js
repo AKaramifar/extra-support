@@ -48,7 +48,7 @@ const SessionForm = ({ categories, getCategories, createSession, ActionControlle
   }, [getCategories]);
 
   return (
-    <div style={{ width: '75%', margin: '5% 0 0 10%' }}>
+    <div style={{ width: '75%'}}>
       <Spinner isLoading={ActionController.isLoading} style={{ width: '200px', height: '200px' }} />
       <h1 style={{ margin: '5% 0 ' }}>Volunteers Session Form</h1>
       <hr />
@@ -74,7 +74,6 @@ const SessionForm = ({ categories, getCategories, createSession, ActionControlle
             <CategoryModal />
           </div>
         </FormGroup>
-
         <FormGroup>
           <Label for="titleText">Title</Label>
           <Input

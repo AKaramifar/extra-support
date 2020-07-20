@@ -9,7 +9,6 @@ import {
 } from "./controllers";
 
 const router = express.Router();
-
 router.get("/:volunteerId?", getSessions);
 router.get("/session/:sessionId", getSession);
 router.get("/getAvailabilities", getAvailabilities);
