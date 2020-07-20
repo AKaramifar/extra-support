@@ -20,7 +20,7 @@ export default class Navbar extends React.Component {
           <Link className="nav-link nav-btn" to="/">
             Home
           </Link>
-          {loggedIn() && !isAuthorized(['VOLUNTEER']) && (
+          {loggedIn() && isAuthorized(['STUDENT']) && (
             <Link className="nav-link nav-btn" to="/categories">
               Start Booking a Session
             </Link>
