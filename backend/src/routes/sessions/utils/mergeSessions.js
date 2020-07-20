@@ -21,12 +21,12 @@ export function getWeekDay(dayNumber) {
     case 2:
       return "Tuesday";
     case 3:
-      "Wednesday";
+      return "Wednesday";
     case 4:
-      "Thursday";
+     return "Thursday";
     case 5:
-      "Friday";
+     return "Friday";
     case 6:
-      "Saturday";
+     return "Saturday";
   }
 }
