@@ -1,4 +1,4 @@
-import { ACTION_STARTED, ACTION_SUCCESS, ACTION_ERROR, CREATE_BOOKING, GET_BOOKINGS, REMOVE_BOOKING_FROM_STATE } from './types';
+import { ACTION_STARTED, ACTION_SUCCESS, ACTION_ERROR, CREATE_BOOKING, GET_STUDENT_BOOKINGS, GET_BOOKINGS, REMOVE_BOOKING_FROM_STATE } from './types';
 import httpClient from '../../common/httpClient';
 import { getProfile } from '../../Auth/index';
 
@@ -58,6 +58,34 @@ export const getBookings = () => {
     }
   };
 };
+
+
+export const getStudentBookings = () => {
+  return async dispatch => {
+    const profile = getProfile();
+    try {
+      dispatch({
+        type: ACTION_STARTED,
+        actionType: GET_STUDENT_BOOKINGS,
+      });
+      const studentBookings = await httpClient.get(`/student/bookings/${profile._id}`);
+      dispatch({
+        type: GET_STUDENT_BOOKINGS,
+        studentBookings: studentBookings.data,
+      });
+      dispatch({
+        type: ACTION_SUCCESS,
+      });
+    } catch (error) {
+      dispatch({
+        type: ACTION_ERROR,
+        error: 'Error: Could not get student booking',
+        actionType: GET_STUDENT_BOOKINGS,
+      });
+    }
+  };
+};
+
 
 export const removeBooking = () => {
   return async dispatch => {

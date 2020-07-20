@@ -7,6 +7,7 @@ import Sessions from '../Screens/Sessions';
 import Booking from '../Screens/Booking';
 import Profile from '../Components/profile';
 import Register from '../Components/register';
+import StudentBookings from '../Components/StudentBookings';
 import Login from '../Components/Login';
 import LoginVolunteer from '../Components/LoginVolunteer';
 import AvailabilityForm from '../Screens/Volunteer/AvailabilityForm';
@@ -27,5 +28,6 @@ export default () => (
     <Private exact path="/profile" component={Profile} roles={['STUDENT', 'VOLUNTEER']} />
     <Private exact path="/volunteer/availability/form" component={AvailabilityForm} roles={['VOLUNTEER']} />
     <Private exact path="/volunteer/session/form" component={SessionForm} roles={['VOLUNTEER']} />
+    <Private exact path="/student/bookings" component={StudentBookings} roles={['STUDENT']} />
   </Switch>
 );

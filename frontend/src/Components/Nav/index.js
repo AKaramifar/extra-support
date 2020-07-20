@@ -20,6 +20,10 @@ export default class Navbar extends React.Component {
           <Link className="nav-link nav-btn" to="/">
             Home
           </Link>
+          {loggedIn() && !isAuthorized(['VOLUNTEER']) && (
+          <Link className="nav-link nav-btn" to="/student/bookings">
+            bookings
+          </Link>)}
           <span className="sr-only">(current)</span>
           <button
             className="navbar-toggler"

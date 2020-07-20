@@ -19,7 +19,7 @@ export default () => {
               border: 'none',
               margin: '20px 0',
             }}
-            allowFullScreen="true"
+            allowFullScreen={true}
             src="https://www.youtube.com/embed/GYsXIW2Kh3A"
             allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
           />
