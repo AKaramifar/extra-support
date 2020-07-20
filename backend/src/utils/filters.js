@@ -43,7 +43,6 @@ function filterByDate(sessions, Dates) {
 function filterByWeekdays(sessions, weekdays) {
   return sessions.filter((session) => {
     return weekdays.find((weekday) => {
-      console.log("sfdsfsdfsdfsdf", session.availabilities);
       const availableWeekDays = session.availabilities.filter(
         (availability) => {
           return availability.weekDay === weekday;
@@ -71,6 +70,6 @@ export function filtersSessionsByQuery(sessions, options) {
 
   filteredSessions =
     date && date.length ? filterByDate(sessions, date) : filteredSessions;
-    
+
   return filteredSessions;
 }
