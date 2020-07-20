@@ -16,13 +16,13 @@ export const getAvailabilities = async (req, res) => {
 };
 
 export const createAvailability = async (req, res) => {
-  try {
+  try {    
     const startDate = Date(req.body.startDate);
     const endDate = Date(req.body.endDate);
     const availabilityData = { ...req.body, startDate, endDate };
     const availability = await AvailabilityContext.create(availabilityData);
     return res.status(200).send(availability);
-  } catch (err) {
+  } catch (err) {    
     return res.status(400).send("Could not create your availability");
   }
 };
