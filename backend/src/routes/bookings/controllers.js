@@ -20,21 +20,32 @@ export const createBooking = async (req, res) => {
   try {
     const bookingData = req.body;
     const booking = await BookingsContext.create(bookingData);
+    const time = bookingData.time.split("-");
+    const startDateTime = `${dayjs(bookingData.date).format(
+      "YYYYMMDD"
+    )}T${time[0].replace(/:/g, "")}00Z`;
+    const endDateTime = `${dayjs(bookingData.date).format(
+      "YYYYMMDD"
+    )}T${time[1].replace(/:/g, "")}00Z`;
+    const calendarDate = `${startDateTime}/${endDateTime}`;
+
     const emailData = {
       volunteerName: bookingData.volunteerName,
       studentName: bookingData.studentName,
       date: `${dayjs(bookingData.date).format("dddd, MMMM D YYYY")} ${
         booking.time
       }`,
+      calendarDate: calendarDate.replace(/ /g, ""),
       location: bookingData.location,
       studentEmail: bookingData.email,
       studentName: bookingData.studentName,
       volunteerEmail: bookingData.volunteerEmail,
+      description: bookingData.description
     };
     await bookingConfirmationEmail(emailData);
     return res.status(200).send(booking);
   } catch (err) {
-    console.log(err)
+    console.log(err);
     return res.status(400).send("Could not create your booking");
   }
 };

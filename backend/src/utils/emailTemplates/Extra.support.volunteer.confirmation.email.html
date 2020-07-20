@@ -5,6 +5,25 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>booking conformation email</title>
+    <style>
+        u~div .gmail-hide {
+            display: none;
+        }
+
+        u~div .gmail-show {
+            display: block !important;
+        }
+
+        @media yahoo {
+            .yahoo-hide {
+                display: none;
+            }
+
+            .yahoo-show {
+                display: block !important;
+            }
+        }
+    </style>
 </head>
 
 <body>
@@ -33,30 +52,33 @@
                         font-size: 14px;
                         line-height: 1.2rem;
                       ">
-                            Dear [Volunteer Name],
+                            Dear ${data.volunteerName},
                         </p>
                         <p style="
                         margin-top: 0;
                         font-size: 14px;
                         line-height: 1.2rem;
                       ">
-                            This is a special reminder to confirm your meeting with [Student name] on [
-                            Meeting date] .
+                            This is a special reminder to confirm your meeting with ${data.studentName} on ${data.date},
+                            <a href="event.ics" class="gmail-hide yahoo-hide owa-hide">add to calendar</a>
+                            <a class="extra-support-calender-gmail"
+                                href="http://www.google.com/calendar/event?action=TEMPLATE&text=Session%20with%20${data.studentName}&dates=${data.calendarDate}&location=${data.location}&details=${data.description}">
+                                add to calendar
+                            </a>
                         </p>
                         <p style="
                         margin-top: 0;
                         font-size: 14px;
                         line-height: 1.2rem;
                       ">
-                            Your meeting is scheduled to hold at [Meeting location]
-                        </p>
+                            Your meeting is scheduled to hold at ${data.location} </p>
                         <p style="
                         margin-top: 0;
                         margin-bottom: 6px;
                         font-size: 14px;
                         line-height: 1.2rem;
                       ">
-                            This is [Student name]’s email: [Student email]
+                            This is ${data.studentName}’s email: ${data.studentEmail}
                         </p>
                         <p style="
                                     margin-top: 0;
@@ -64,7 +86,7 @@
                                     font-size: 14px;
                                     line-height: 1.2rem;
                                   ">
-                            Please feel free to contact [Student name] if you have any question.
+                            Please feel free to contact ${data.studentName} if you have any question.
                         </p>
                         <p style="
                                     margin-top: 0;
@@ -137,4 +159,5 @@
         </tbody>
     </table>
 </body>
+
 </html>
