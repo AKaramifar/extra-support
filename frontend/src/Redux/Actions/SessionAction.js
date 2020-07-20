@@ -28,7 +28,7 @@ export const createSession = sessionData => {
       });
       dispatch({
         type: ACTION_SUCCESS,
-        message: 'Success: category created.',
+        message: 'Success: session created.',
       });
     } catch (error) {
       console.log(error);

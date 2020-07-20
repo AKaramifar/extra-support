@@ -1,3 +1,5 @@
+import dayjs from "dayjs";
+
 function checkAvailabilities(availabilities, filters) {
   return availabilities.map((availability) => {
     return filters.includes(
@@ -34,7 +36,7 @@ function filterByDate(sessions, Dates) {
   return sessions.filter((session) => {
     return Dates.find((date) => {
       const availableDates = session.availabilities.filter((availability) => {
-        return availability.startDate.toDateString() === new Date(date).toDateString();
+        return dayjs(availability.date) === dayjs(date);
       });
       return availableDates.length > 0;
     });
