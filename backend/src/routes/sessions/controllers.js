@@ -19,22 +19,21 @@ export const getSessions = async (req, res) => {
 
 export const getSession = async (req, res) => {
   try {
-    let queryForAvailability = {};
-    let queryForSession = {};
     const { sessionId } = req.params;
     if (sessionId) {
-      queryForSession._id = sessionId;
-      queryForAvailability.sessionId = sessionId;
-      const session = await SessionContext.findAll(queryForSession);
-      const availabilities = await AvailabilityContext.findAll(
-        queryForAvailability
-      );
+      const session = await SessionContext.findOneBy({ _id: sessionId });
+      const availabilities = await AvailabilityContext.findAll({ sessionId });
       if (session && availabilities) {
-        session[0].availabilities = availabilities;
-        let volunteer = await UsersContext.findOneBy({ _id: session[0].volunteerId });
-        session[0].volunteer = volunteer;
+        let volunteer = await UsersContext.findOneBy({
+          _id: session.volunteerId,
+        });
+        const newSession = {
+          ...session,
+          volunteer,
+          availabilities,
+        };
+        return res.status(200).send(newSession);
       }
-      return res.status(200).send(session);
     }
   } catch (err) {
     console.log("Error", err);
