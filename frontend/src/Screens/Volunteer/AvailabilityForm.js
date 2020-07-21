@@ -3,7 +3,7 @@ import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import { connect } from 'react-redux';
 import { getVolunteerSessions, createAvailability } from '../../Redux/Actions';
 import Spinner from '../../Components/Spinner';
-
+import './index.css';
 function mapStateToProps(state) {
   return {
     volunteerSessions: state.sessions.volunteerSessions,
@@ -53,82 +53,88 @@ const AvailabilityForm = ({ volunteerSessions, getVolunteerSessions, createAvail
   }, [getVolunteerSessions]);
 
   return (
-    <div style={{ width: '75%' }}>
-      <Spinner isLoading={ActionController.isLoading} style={{width: '200px', height: '200px'}}/>
-      <h1 style={{ margin: '5% 0' }}>Volunteers Availability Form</h1>
-      <hr />
-      <Form onSubmit={handleSubmit}>
-        <FormGroup>
-          <Label for="exampleSession">Session</Label>
-          <Input type="select" name="sessionId" onChange={onChange} value={values.sessionId} id="exampleSession">
-            <option>Select here</option>
-            <option value="GENERAL_SESSION">General session</option>
-
-            {volunteerSessions.map(session => (
-              <option key={session._id} value={session._id}>
-                {session.title}
-              </option>
-            ))}
-          </Input>
-        </FormGroup>
-        <div>
-          <Label for="exampleDateAndTime">Date and Time</Label>
-          <FormGroup style={{ display: 'flex', justifyContent: 'space-between' }}>
-            <Input
-              type="date"
-              name="date"
-              onChange={onChange}
-              value={values.date}
-              id="exampledate"
-              placeholder="date placeholder"
-            />
-
-            <Input
-              type="time"
-              name="startTime"
-              onChange={onChange}
-              value={values.startTime}
-              id="exampleStartTime"
-              placeholder="time placeholder"
-              style={{ marginLeft: '10px' }}
-            />
-            <span style={{ marginLeft: '10px', width: '20px', lineHeight: '35px' }}> &rarr; </span>
-
-            <Input
-              type="time"
-              name="endTime"
-              onChange={onChange}
-              value={values.endTime}
-              id="exampleEndTime"
-              placeholder="time placeholder"
-              style={{ marginLeft: '10px' }}
-            />
+    <div className="availability-form-container">
+      <div className="availability-form">
+        <Spinner isLoading={ActionController.isLoading} style={{ width: '200px', height: '200px' }} />
+        <h1 style={{ margin: '5% 0' }}>Availability Form</h1>
+        <hr />
+        <Form onSubmit={handleSubmit}>
+          <FormGroup>
+            <Label for="AvailabilitySession">Session</Label>
+            <Input type="select" name="sessionId" onChange={onChange} value={values.sessionId} id="AvailabilitySession">
+              <option>Select here</option>
+              <option value="GENERAL_SESSION">General session</option>
+              {volunteerSessions.map(session => (
+                <option key={session._id} value={session._id}>
+                  {session.title}
+                </option>
+              ))}
+            </Input>
           </FormGroup>
-        </div>
-        <FormGroup>
-          <Label for="exampleRepeat">Repeat</Label>
-          <Input type="select" name="repeat" onChange={onChange} value={values.repeat} id="exampleRepeat">
-            <option>Dose not repeat</option>
-            <option>Daly</option>
-            <option>Weekly</option>
-            <option>Monthly</option>
-            <option>Yearly</option>
-            <option>Custom</option>
-          </Input>
-        </FormGroup>
-        <FormGroup>
-          <Label for="exampleLocationAndContactDetails">Location</Label>
-          <Input
-            type="text"
-            name="location"
-            onChange={onChange}
-            value={values.location}
-            id="exampleLocation"
-            placeholder="Add a location"
-          ></Input>
-        </FormGroup>
-        <Button color="primary" disabled={ActionController.isLoading}>Submit</Button>
-      </Form>
+          <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+            <FormGroup style={{ width: '40%' }}>
+              <Label for="Availabilitydate">Date</Label>
+              <Input
+                type="date"
+                name="date"
+                onChange={onChange}
+                value={values.date}
+                id="Availabilitydate"
+                placeholder="date placeholder"
+              />
+            </FormGroup>
+            <FormGroup style={{ width: '25%' }}>
+              <Label for="AvailabilityStartTime">Start time</Label>
+              <Input
+                type="time"
+                name="startTime"
+                onChange={onChange}
+                value={values.startTime}
+                id="AvailabilityStartTime"
+                placeholder="time placeholder"
+              />
+            </FormGroup>
+            <span style={{ width: '20px', lineHeight: '35px', marginTop: '34px' }}> &rarr; </span>
+            <FormGroup style={{ width: '25%' }}>
+              <Label for="AvailabilityEndTime">End time</Label>
+              <Input
+                type="time"
+                name="endTime"
+                onChange={onChange}
+                value={values.endTime}
+                id="AvailabilityEndTime"
+                placeholder="time placeholder"
+              />
+            </FormGroup>
+          </div>
+          <FormGroup>
+            <Label for="AvailabilityRepeat">Repeat</Label>
+            <Input type="select" name="repeat" onChange={onChange} value={values.repeat} id="AvailabilityRepeat">
+              <option>Dose not repeat</option>
+              <option>Daly</option>
+              <option>Weekly</option>
+              <option>Monthly</option>
+              <option>Yearly</option>
+              <option>Custom</option>
+            </Input>
+          </FormGroup>
+          <FormGroup>
+            <Label for="AvailabilityLocationAndContactDetails">Location</Label>
+            <Input
+              type="text"
+              name="location"
+              onChange={onChange}
+              value={values.location}
+              id="AvailabilityLocation"
+              placeholder="Add a location"
+            ></Input>
+          </FormGroup>
+          <Button color="primary" disabled={ActionController.isLoading}>
+            Submit
+          </Button>
+        </Form>
+      </div>
+      <div></div>
     </div>
   );
 };

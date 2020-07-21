@@ -4,7 +4,7 @@ import { getVolunteerBookings } from '../Redux/Actions';
 
 function mapStateToProps(state) {
   return {
-    volunteerBookings: state.volunteerBookings.volunteerBookings,
+    volunteerBookings: state.bookings.volunteerBookings,
   };
 }
 const VolunteerBookings = ({ volunteerBookings, getVolunteerBookings }) => {

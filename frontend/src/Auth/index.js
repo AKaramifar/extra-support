@@ -58,9 +58,9 @@ export const isTokenAuthorized = (token, roles) => {
       return false;
     }
     const decoded = decode(token);
-    if (decoded.admin) {
-      return true;
-    }
+    // if (decoded.admin) {
+    //   return true;
+    // }
     if (!roles && roles.length === 0) {
       return false;
     }

@@ -2,6 +2,9 @@ html {
   position: relative;
   min-height: 100%;
 }
+* {
+  background-color: rgb(255, 255, 255);
+}
 body {
   font-family: 'Roboto', sans-serif !important;
   margin-bottom: 0px;
