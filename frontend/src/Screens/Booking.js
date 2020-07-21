@@ -114,12 +114,12 @@ export default connect(
     ));
   };
   const dateOptions = () => {
-    const newAvailabilities = uniqArray(availabilities, it => it.startDate);
+    const newAvailabilities = uniqArray(availabilities, it => it.date);
     return newAvailabilities
       .filter(availability => availability.location === values.location)
       .map(availability => (
-        <option key={availability._id} value={availability.startDate}>
-          {dayjs(availability.startDate).format('dddd, MMMM D YYYY')}
+        <option key={availability._id} value={availability.date}>
+          {dayjs(availability.date).format('dddd, MMMM D YYYY')}
         </option>
       ));
   };
@@ -175,7 +175,7 @@ export default connect(
                     Select time
                   </option>
                   {availabilities
-                    .filter(availability => availability.startDate === values.date)
+                    .filter(availability => availability.date === values.date)
                     .map(availability => (
                       <option key={availability._id} value={`${availability.startTime} - ${availability.endTime}`}>
                         {availability.startTime} - {availability.endTime}

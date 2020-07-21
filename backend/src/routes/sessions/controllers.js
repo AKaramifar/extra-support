@@ -21,6 +21,7 @@ export const getSessions = async (req, res) => {
   const filteredSessions = filtersSessionsByQuery(sessionWithAvailabilities, req.query);
     return res.status(200).send(filteredSessions);
   } catch (err) {
+    console.log("Error", err)
     return res.status(400).send("Could not get session");
   }
 };
@@ -46,26 +47,6 @@ export const getSession = async (req, res) => {
   } catch (err) {
     console.log("Error", err);
     return res.status(400).send("Could not get session");
-  }
-};
-
-export const getAvailabilities = async (req, res) => {
-  try {
-    const { availabilityDate } = req.query;
-    if (!availabilityDate) {
-      return res.status(404).send("Availabilities date can not be empty");
-    }
-    const availabilities = tutorials
-      .find((tutorial) => tutorial.id === Number(req.query.id))
-      .availabilities.find(
-        (availability) =>
-          new Date(availability.date).toDateString() ===
-          new Date(availabilityDate).toDateString()
-      );
-    return res.status(200).send({ availabilities: availabilities.time });
-  } catch (err) {
-    console.error(err);
-    return res.status(400).send("Could not get availabilities");
   }
 };
 
