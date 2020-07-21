@@ -1,4 +1,4 @@
-import { ACTION_STARTED, ACTION_SUCCESS, ACTION_ERROR, CREATE_BOOKING, GET_BOOKINGS, REMOVE_BOOKING_FROM_STATE } from './types';
+import { ACTION_STARTED, ACTION_SUCCESS, ACTION_ERROR, CREATE_BOOKING, GET_BOOKINGS,GET_VOLUNTEER_BOOKINGS, REMOVE_BOOKING_FROM_STATE } from './types';
 import httpClient from '../../common/httpClient';
 import { getProfile } from '../../Auth/index';
 
@@ -54,6 +54,32 @@ export const getBookings = () => {
         type: ACTION_ERROR,
         error: 'Error: Could not get booking',
         actionType: GET_BOOKINGS,
+      });
+    }
+  };
+};
+
+export const getVolunteerBookings = () => {
+  return async dispatch => {
+    const profile = getProfile();
+    try {
+      dispatch({
+        type: ACTION_STARTED,
+        actionType: GET_VOLUNTEER_BOOKINGS,
+      });
+      const volunteerBooking = await httpClient.get(`/bookings/volunteer/${profile._id}`);
+      dispatch({
+        type: GET_VOLUNTEER_BOOKINGS,
+        volunteerBooking: volunteerBooking.data,
+      });
+      dispatch({
+        type: ACTION_SUCCESS,
+      });
+    } catch (error) {
+      dispatch({
+        type: ACTION_ERROR,
+        error: 'Error: Could not get volunteer booking',
+        actionType: GET_VOLUNTEER_BOOKINGS,
       });
     }
   };
