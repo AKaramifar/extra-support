@@ -52,8 +52,8 @@ const SessionForm = ({ categories, getCategories, createSession, ActionControlle
   }, [getCategories]);
 
   return (
-    <div className="availability-form-container">
-      <div className="availability-form">
+    <div className="session-form-container">
+      <div className="session-form">
         <Spinner isLoading={ActionController.isLoading} style={{ width: '200px', height: '200px' }} />
         <h1 style={{ margin: '5% 0 ' }}>Session Form</h1>
         <hr />

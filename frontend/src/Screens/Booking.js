@@ -57,11 +57,13 @@ export default connect(
   }
   if (!!booking._id) {
     return (
-      <div>
+      <div className="booking-modal-container">
         <Modal isOpen={!!booking._id}>
           <ModalBody style={{ backgroundColor: '#adffbf' }}>
             <h3>Good news</h3>
-            <p>Congratulation, you have booked your {session.title} session successfully.</p>
+            <p>
+              Congratulation, you have booked your {session.title} session successfully.
+            </p>
             <h5>Booking Details</h5>
             <hr />
             <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>

@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import dayjs from 'dayjs';
-import { getVolunteerBookings } from '../Redux/Actions';
+import { getVolunteerBookings } from '../../Redux/Actions';
 
 function mapStateToProps(state) {
   return {

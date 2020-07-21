@@ -7,8 +7,20 @@
   width: 50%;
 }
 
+.session-form-container {
+  display: flex;
+  justify-content: space-around;
+}
+
+.session-form {
+  width: 50%;
+}
+
 @media screen and (max-width: 640px) {
   .availability-form {
+    width: 100%;
+  }
+  .session-form {
     width: 100%;
   }
 }
