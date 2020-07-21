@@ -30,7 +30,11 @@ const CategoryForm = ({ createCategory }) => {
 
   const handleSubmit = event => {
     event.preventDefault();
-    createCategory(values);
+    if (!values.name || !values.icon) {
+      alert('Please, Fill in the Name and Icon of the New Category!');
+    } else {
+      createCategory(values);
+    }
   };
 
   return (
@@ -59,7 +63,7 @@ const CategoryForm = ({ createCategory }) => {
         <FormGroup>
           <ImageUpload label="Upload Image" onChange={handleImageUpload} image={values.image} isLoading={false} />
         </FormGroup>
-        <Button onClick={handleSubmit} color="primary">
+        <Button disabled={!values.name || !values.icon} onClick={handleSubmit} color="primary">
           Submit
         </Button>
       </Form>
