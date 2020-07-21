@@ -1,6 +1,7 @@
 import React from 'react';
 import EditProfileForm from './EditProfile';
 import Profile from '../Nav/profile.svg';
+import { loggedIn, isAuthorized } from '../../Auth';
 
 export default ({ user }) => {
   return (
@@ -56,12 +57,17 @@ export default ({ user }) => {
           <dd className="col-sm-7 position-static">{user.tel}</dd>
           <dt className="col-sm-5 position-static">City</dt>
           <dd className="col-sm-7 position-static">{user.city}</dd>
-          <dt className="col-sm-5 position-static">Gender</dt>
-          <dd className="col-sm-7 position-static">{user.gender}</dd>
-          <dt className="col-sm-5 position-static">Asylum seeker or refugee?</dt>
-          <dd className="col-sm-7 position-static">{user.isAsylumSeekerOrRefugee ? 'Yes' : 'No'}</dd>
-          <dt className="col-sm-5 position-static">Code your future student?</dt>
-          <dd className="col-sm-7 position-static">{user.cyfStudent ? 'Yes' : 'No'}</dd>
+
+          {loggedIn() && isAuthorized(['STUDENT']) && (
+            <React.Fragment>
+              <dt className="col-sm-5 position-static">Gender</dt>
+              <dd className="col-sm-7 position-static">{user.gender}</dd>
+              <dt className="col-sm-5 position-static">Asylum seeker or refugee?</dt>
+              <dd className="col-sm-7 position-static">{user.isAsylumSeekerOrRefugee ? 'Yes' : 'No'}</dd>
+              <dt className="col-sm-5 position-static">Code your future student?</dt>
+              <dd className="col-sm-7 position-static">{user.cyfStudent ? 'Yes' : 'No'}</dd>
+            </React.Fragment>
+          )}
         </dl>
       </div>
     </div>
