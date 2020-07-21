@@ -20,15 +20,6 @@ export default class Navbar extends React.Component {
           <Link className="nav-link nav-btn" to="/">
             Home
           </Link>
-          {loggedIn() && !isAuthorized(['VOLUNTEER']) && (
-          <Link className="nav-link nav-btn" to="/student/bookings">
-            bookings
-          </Link>)}
-          {loggedIn() && isAuthorized(['STUDENT']) && (
-            <Link className="nav-link nav-btn" to="/categories">
-              Start Booking a Session
-            </Link>
-          )}
           <span className="sr-only">(current)</span>
           <button
             className="navbar-toggler"
@@ -43,6 +34,22 @@ export default class Navbar extends React.Component {
           </button>
           <div className="collapse navbar-collapse" id="navbarText">
             <ul className="navbar-nav mr-auto">
+              {loggedIn() && isAuthorized(['STUDENT']) && (
+                <li className="nav-item">
+                  <Link className="nav-link nav-btn" to="/student/bookings">
+                    bookings
+                  </Link>
+                </li>
+              )}
+
+              {loggedIn() && isAuthorized(['STUDENT']) && (
+                <li className="nav-item">
+                  <Link className="nav-link nav-btn" to="/categories">
+                    Start Booking a Session
+                  </Link>
+                </li>
+              )}
+
               {!loggedIn() && (
                 <li className="nav-item">
                   <Link className="nav-link nav-btn" to="/student/login">

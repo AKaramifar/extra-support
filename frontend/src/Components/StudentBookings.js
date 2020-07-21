@@ -4,11 +4,14 @@ import { getStudentBookings } from '../Redux/Actions';
 import dayjs from 'dayjs';
 function mapStateToProps(state) {
   return {
-    studentBookings: state.studentBookings.studentBookings,
+    studentBookings: state.bookings.studentBookings,
   };
 }
 
-const StudentBookings = (studentBookings, getStudentBookings) => {
+const StudentBookings = ({ studentBookings, getStudentBookings }) => {
+  React.useEffect(() => {
+    getStudentBookings();
+  }, [getStudentBookings]);
   return (
     <div style={{ width: '75%' }}>
       <br />
