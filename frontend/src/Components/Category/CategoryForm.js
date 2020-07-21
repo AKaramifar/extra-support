@@ -6,7 +6,7 @@ import ImageUpload from '../../Components/ImageUpload';
 
 function mapStateToProps(state) {
   return {
-    ActionController: state.ActionController.isLoading,
+    ActionController: state.ActionController,
   };
 }
 
