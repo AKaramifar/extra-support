@@ -40,7 +40,7 @@ class ErrorComponent extends Component {
         }}
       >
         <div
-          style={{ width: "95%" }}
+          style={{ width: "95%", backgroundColor: "rgba(206, 17, 38, 0.01)", }}
           dangerouslySetInnerHTML={{ __html:error }}
         />
         <span
@@ -72,6 +72,7 @@ class ErrorComponent extends Component {
             right: "2px",
             cursor: "pointer",
             fontSize: "14px",
+            backgroundColor: "rgba(206, 17, 38, 0.01)",
           }}
         >
           {this.state.time}

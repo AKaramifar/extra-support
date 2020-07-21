@@ -40,7 +40,7 @@ class Message extends Component {
         }}
       >
         <div
-          style={{ width: "95%" }}
+          style={{ width: "95%", backgroundColor: "rgba(4, 199, 4, 0.01)", }}
           dangerouslySetInnerHTML={{ __html:message }}
         />
         <span
@@ -72,6 +72,7 @@ class Message extends Component {
             right: "2px",
             cursor: "pointer",
             fontSize: "14px",
+            backgroundColor: "rgba(4, 199, 4, 0.01)",
           }}
         >
           {this.state.time}

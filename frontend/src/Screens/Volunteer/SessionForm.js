@@ -48,9 +48,9 @@ const SessionForm = ({ categories, getCategories, createSession, ActionControlle
   }, [getCategories]);
 
   return (
-    <div style={{ width: '75%'}}>
+    <div style={{ width: '75%' }}>
       <Spinner isLoading={ActionController.isLoading} style={{ width: '200px', height: '200px' }} />
-      <h1 style={{ margin: '5% 0 ' }}>Volunteers Session Form</h1>
+      <h1 style={{ margin: '5% 0 ' }}>Session Form</h1>
       <hr />
       <Form onSubmit={handleSubmit}>
         <FormGroup>
@@ -108,7 +108,11 @@ const SessionForm = ({ categories, getCategories, createSession, ActionControlle
           />
         </FormGroup>
 
-        <Button disabled={ActionController.isLoading} type="submit" color="primary">
+        <Button
+          disabled={ActionController.isLoading || !values.categoryId || !values.title || !values.description}
+          type="submit"
+          color="primary"
+        >
           Submit
         </Button>
       </Form>
