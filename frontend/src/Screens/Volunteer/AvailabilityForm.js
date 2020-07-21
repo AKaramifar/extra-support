@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import { connect } from 'react-redux';
 import { getVolunteerSessions, createAvailability } from '../../Redux/Actions';
@@ -20,10 +20,22 @@ const AvailabilityForm = ({ volunteerSessions, getVolunteerSessions, createAvail
     repeat: '',
     location: '',
   });
-
+  const [showMessage, setShowMessage] = useState('');
   const [submitted, setSubmitted] = React.useState(false);
 
   const onChange = event => {
+    if (event.target.name === 'endTime') {
+      if (values.startTime >= event.target.value) {
+        setShowMessage(<div style={{ color: 'red' }}>End time should be bigger than start time</div>);
+        event.target.value = '0';
+      } else {
+        setShowMessage('');
+        setValues({
+          ...values,
+          [event.target.name]: event.target.value,
+        });
+      }
+    }
     setValues({
       ...values,
       [event.target.name]: event.target.value,
@@ -107,6 +119,7 @@ const AvailabilityForm = ({ volunteerSessions, getVolunteerSessions, createAvail
               />
             </FormGroup>
           </div>
+          {showMessage}
           <FormGroup>
             <Label for="AvailabilityRepeat">Repeat</Label>
             <Input type="select" name="repeat" onChange={onChange} value={values.repeat} id="AvailabilityRepeat">
@@ -129,7 +142,18 @@ const AvailabilityForm = ({ volunteerSessions, getVolunteerSessions, createAvail
               placeholder="Add a location"
             ></Input>
           </FormGroup>
-          <Button color="primary" disabled={ActionController.isLoading}>
+          <Button
+            color="primary"
+            disabled={
+              ActionController.isLoading ||
+              !values.sessionId ||
+              !values.date ||
+              !values.startTime ||
+              !values.endTime ||
+              !values.repeat ||
+              !values.location
+            }
+          >
             Submit
           </Button>
         </Form>
