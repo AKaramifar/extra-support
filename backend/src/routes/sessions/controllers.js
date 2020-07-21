@@ -1,7 +1,9 @@
+
+import AvailabilityContext from "../availabilities/contexts";
+import UsersContext from "../users/contexts";
 import { filtersSessionsByQuery } from "../../utils/filters";
 import { mergeSessionsWithAvailabilities } from "./utils/mergeSessions";
 import SessionContext from "./contexts";
-import AvailabilityContext from "../availabilities/contexts";
 
 export const getSessions = async (req, res) => {
   try {
@@ -19,27 +21,32 @@ export const getSessions = async (req, res) => {
   const filteredSessions = filtersSessionsByQuery(sessionWithAvailabilities, req.query);
     return res.status(200).send(filteredSessions);
   } catch (err) {
+    console.log("Error", err)
     return res.status(400).send("Could not get session");
   }
 };
 
-export const getAvailabilities = async (req, res) => {
+export const getSession = async (req, res) => {
   try {
-    const { availabilityDate } = req.query;
-    if (!availabilityDate) {
-      return res.status(404).send("Availabilities date can not be empty");
+    const { sessionId } = req.params;
+    if (sessionId) {
+      const session = await SessionContext.findOneBy({ _id: sessionId });
+      const availabilities = await AvailabilityContext.findAll({ sessionId });
+      if (session && availabilities) {
+        let volunteer = await UsersContext.findOneBy({
+          _id: session.volunteerId,
+        });
+        const newSession = {
+          ...session,
+          volunteer,
+          availabilities,
+        };
+        return res.status(200).send(newSession);
+      }
     }
-    const availabilities = tutorials
-      .find((tutorial) => tutorial.id === Number(req.query.id))
-      .availabilities.find(
-        (availability) =>
-          new Date(availability.date).toDateString() ===
-          new Date(availabilityDate).toDateString()
-      );
-    return res.status(200).send({ availabilities: availabilities.time });
   } catch (err) {
-    console.error(err);
-    return res.status(400).send("Could not get availabilities");
+    console.log("Error", err);
+    return res.status(400).send("Could not get session");
   }
 };
 

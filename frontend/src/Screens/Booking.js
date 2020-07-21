@@ -23,6 +23,7 @@ export default connect(
     email: getProfile() ? getProfile().email : '',
     date: '',
     time: '',
+    location: '',
   });
 
   useEffect(() => {
@@ -42,7 +43,7 @@ export default connect(
     values.sessionId = session._id;
     values.volunteerEmail = session.volunteer.email;
     values.volunteerName = session.volunteer.firstName;
-    values.location = session.location;
+    values.description = session.description;
     createBooking(values);
   };
 
@@ -101,6 +102,27 @@ export default connect(
       </div>
     );
   }
+  const uniqArray = (data, key) => {
+    return [...new Map(data.map(x => [key(x), x])).values()];
+  };
+  const locationOptions = () => {
+    const newAvailabilities = uniqArray(availabilities, it => it.location);
+    return newAvailabilities.map(availability => (
+      <option key={availability._id} value={availability.location}>
+        {availability.location}
+      </option>
+    ));
+  };
+  const dateOptions = () => {
+    const newAvailabilities = uniqArray(availabilities, it => it.date);
+    return newAvailabilities
+      .filter(availability => availability.location === values.location)
+      .map(availability => (
+        <option key={availability._id} value={availability.date}>
+          {dayjs(availability.date).format('dddd, MMMM D YYYY')}
+        </option>
+      ));
+  };
   return (
     <div>
       <h1 style={{ margin: '20px 0' }}>{session.title}</h1>
@@ -119,83 +141,91 @@ export default connect(
           <span className="icons">{session.volunteer.email ? <span>{session.volunteer.email} </span> : null}</span>
         </i>
       ) : null}
-      {session.location ? (
-        <i className="fa fa-map-marker-alt">
-          <span className="icons">{session.location}</span>
-        </i>
-      ) : null}
-      {session.volunteerName ? (
-        <i className="far fa-user">
-          <span className="icons">{session.volunteerName}</span>
-        </i>
-      ) : null}
       <hr />
       <h4>Available appointments</h4>
       <Form style={{ width: '50%' }} onSubmit={handleSubmit}>
-        <div style={{ display: 'flex', width: '100%', justifyContent: 'space-between' }}>
-          <FormGroup>
-            <Label for="dateOption">Date</Label>
-            <Input type="select" name="date" value={values.date} onChange={onChangeHandler} id="dateOption">
-              <option>Select date</option>
-              {availabilities.map(availability => (
-                <option key={availability.availabilityId} value={availability.startDate}>
-                  {dayjs(availability.startDate).format('dddd, MMMM D YYYY')}
+        <FormGroup>
+          <Label for="dateOption">Location</Label>
+          <Input type="select" name="location" value={values.location} onChange={onChangeHandler} id="dateOption">
+            <option value="" disabled>
+              Select date
+            </option>
+            {locationOptions()}
+          </Input>
+        </FormGroup>
+        {!!values.location ? (
+          <div style={{ display: 'flex', width: '100%', justifyContent: 'space-between' }}>
+            <FormGroup>
+              <Label for="dateOption">Date</Label>
+              <Input type="select" name="date" value={values.date} onChange={onChangeHandler} id="dateOption">
+                <option value="" disabled>
+                  Select date
                 </option>
-              ))}
-            </Input>
-          </FormGroup>
-          <span style={{ marginLeft: '10px', fontSize: '30px', lineHeight: '100px' }}> &rarr; </span>
-          <FormGroup>
-            <Label for="timeOption">Time</Label>
-            <Input type="select" name="time" value={values.time} onChange={onChangeHandler} id="dateOption">
-              <option>Select time</option>
-              {availabilities
-                .filter(availability => availability.startDate === values.date)
-                .map(availability => (
-                  <option
-                    key={availability.availabilityId}
-                    value={`${availability.startTime} - ${availability.endTime}`}
-                  >
-                    {availability.startTime} - {availability.endTime}
+                {dateOptions()}
+              </Input>
+            </FormGroup>
+            {!!values.date ? (
+              <span style={{ marginLeft: '10px', fontSize: '30px', lineHeight: '100px' }}> &rarr; </span>
+            ) : null}
+            {!!values.date ? (
+              <FormGroup>
+                <Label for="timeOption">Time</Label>
+                <Input type="select" name="time" value={values.time} onChange={onChangeHandler} id="dateOption">
+                  <option value="" disabled>
+                    Select time
                   </option>
-                ))}
-            </Input>
-          </FormGroup>
-        </div>
-        <FormGroup>
-          <Label for="studentName">Full Name</Label>
-          <Input
-            type="text"
-            name="studentName"
-            value={values.studentName}
-            onChange={onChangeHandler}
-            id="exampleText"
-            placeholder="full name"
-          />
-        </FormGroup>
-        <FormGroup>
-          <Label for="exampleEmail">Email</Label>
-          <Input
-            type="email"
-            name="email"
-            id="exampleEmail"
-            value={values.email}
-            onChange={onChangeHandler}
-            placeholder="email address"
-          />
-        </FormGroup>
-        <FormGroup>
-          <Label for="exampleTel">Phone Number</Label>
-          <Input
-            type="tel"
-            name="tel"
-            id="exampleTel"
-            value={values.tel}
-            onChange={onChangeHandler}
-            placeholder="phone number"
-          />
-        </FormGroup>
-        <Button color="primary" disabled={isLoading}>
+                  {availabilities
+                    .filter(availability => availability.date === values.date)
+                    .map(availability => (
+                      <option key={availability._id} value={`${availability.startTime} - ${availability.endTime}`}>
+                        {availability.startTime} - {availability.endTime}
+                      </option>
+                    ))}
+                </Input>
+              </FormGroup>
+            ) : null}
+          </div>
+        ) : null}
+        {!!values.time ? (
+          <div>
+            <hr />
+            <Label style={{ borderBottom: '1px solid #00000', color: '#219653' }}>Please confirm your details:</Label>
+            <FormGroup>
+              <Label for="studentName">Full Name</Label>
+              <Input
+                type="text"
+                name="studentName"
+                value={values.studentName}
+                onChange={onChangeHandler}
+                id="exampleText"
+                placeholder="full name"
+              />
+            </FormGroup>
+            <FormGroup>
+              <Label for="exampleEmail">Email</Label>
+              <Input
+                type="email"
+                name="email"
+                id="exampleEmail"
+                value={values.email}
+                onChange={onChangeHandler}
+                placeholder="email address"
+              />
+            </FormGroup>
+            <FormGroup>
+              <Label for="exampleTel">Phone Number</Label>
+              <Input
+                type="tel"
+                name="tel"
+                id="exampleTel"
+                value={values.tel}
+                onChange={onChangeHandler}
+                placeholder="phone number"
+              />
+            </FormGroup>
+          </div>
+        ) : null}
+        <Button color="primary" disabled={isLoading || !values.location || !values.date || !values.time}>
           Submit
         </Button>
       </Form>

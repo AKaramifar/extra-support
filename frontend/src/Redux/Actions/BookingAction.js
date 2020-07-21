@@ -1,4 +1,4 @@
-import { ACTION_STARTED, ACTION_SUCCESS, ACTION_ERROR, CREATE_BOOKING, GET_STUDENT_BOOKINGS, GET_BOOKINGS, REMOVE_BOOKING_FROM_STATE } from './types';
+import { ACTION_STARTED, ACTION_SUCCESS, ACTION_ERROR, CREATE_BOOKING, GET_BOOKINGS,GET_VOLUNTEER_BOOKINGS, REMOVE_BOOKING_FROM_STATE, GET_STUDENT_BOOKINGS } from './types';
 import httpClient from '../../common/httpClient';
 import { getProfile } from '../../Auth/index';
 
@@ -59,6 +59,16 @@ export const getBookings = () => {
   };
 };
 
+export const removeBooking = () => {
+  return async dispatch => {
+      dispatch({
+        type: REMOVE_BOOKING_FROM_STATE,
+      });
+      window.location.replace('/categories')
+  };
+};
+
+
 
 export const getStudentBookings = () => {
   return async dispatch => {
@@ -68,7 +78,7 @@ export const getStudentBookings = () => {
         type: ACTION_STARTED,
         actionType: GET_STUDENT_BOOKINGS,
       });
-      const studentBookings = await httpClient.get(`/student/bookings/${profile._id}`);
+      const studentBookings = await httpClient.get(`/bookings/student/${profile._id}`);
       dispatch({
         type: GET_STUDENT_BOOKINGS,
         studentBookings: studentBookings.data,
@@ -79,19 +89,35 @@ export const getStudentBookings = () => {
     } catch (error) {
       dispatch({
         type: ACTION_ERROR,
-        error: 'Error: Could not get student booking',
+        error: 'Error: Could not get student bookings',
         actionType: GET_STUDENT_BOOKINGS,
       });
     }
   };
 };
 
-
-export const removeBooking = () => {
+export const getVolunteerBookings = () => {
   return async dispatch => {
+    const profile = getProfile();
+    try {
       dispatch({
-        type: REMOVE_BOOKING_FROM_STATE,
+        type: ACTION_STARTED,
+        actionType: GET_VOLUNTEER_BOOKINGS,
       });
-      window.location.replace('/categories')
+      const volunteerBooking = await httpClient.get(`/bookings/volunteer/${profile._id}`);
+      dispatch({
+        type: GET_VOLUNTEER_BOOKINGS,
+        volunteerBooking: volunteerBooking.data,
+      });
+      dispatch({
+        type: ACTION_SUCCESS,
+      });
+    } catch (error) {
+      dispatch({
+        type: ACTION_ERROR,
+        error: 'Error: Could not get volunteer bookings',
+        actionType: GET_VOLUNTEER_BOOKINGS,
+      });
+    }
   };
 };

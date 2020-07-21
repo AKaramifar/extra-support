@@ -24,6 +24,11 @@ export default class Navbar extends React.Component {
           <Link className="nav-link nav-btn" to="/student/bookings">
             bookings
           </Link>)}
+          {loggedIn() && isAuthorized(['STUDENT']) && (
+            <Link className="nav-link nav-btn" to="/categories">
+              Start Booking a Session
+            </Link>
+          )}
           <span className="sr-only">(current)</span>
           <button
             className="navbar-toggler"
@@ -66,6 +71,11 @@ export default class Navbar extends React.Component {
                   </Link>
                 </li>
               ) : null}
+              {loggedIn() && isAuthorized(['VOLUNTEER']) && (
+                <Link className="nav-link nav-btn" to="/volunteer/bookings">
+                  Bookings
+                </Link>
+              )}
               <li className="nav-item desktop-display-none" />
               {loggedIn() && (
                 <Fragment>

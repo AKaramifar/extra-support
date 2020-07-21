@@ -4,6 +4,7 @@ import Private from '../Auth/Private';
 import Home from '../Screens/Home';
 import Categories from '../Screens/Categories';
 import Sessions from '../Screens/Sessions';
+import VolunteerBooking from '../Screens/VolunteerBookings';
 import Booking from '../Screens/Booking';
 import Profile from '../Components/profile';
 import Register from '../Components/register';
@@ -29,5 +30,6 @@ export default () => (
     <Private exact path="/volunteer/availability/form" component={AvailabilityForm} roles={['VOLUNTEER']} />
     <Private exact path="/volunteer/session/form" component={SessionForm} roles={['VOLUNTEER']} />
     <Private exact path="/student/bookings" component={StudentBookings} roles={['STUDENT']} />
+    <Private exact path="/volunteer/bookings" component={VolunteerBooking} roles={['VOLUNTEER']} />
   </Switch>
 );
