@@ -25,7 +25,7 @@ const AvailabilityForm = ({ volunteerSessions, getVolunteerSessions, createAvail
 
   const onChange = event => {
     if (event.target.name === 'endTime') {
-      if (values.startTime >= event.target.value) {
+      if (parseInt(values.startTime.replace(/\D/g,'')) >= parseInt(event.target.value.replace(/\D/g,''))) {
         setShowMessage(<div style={{ color: 'red' }}>End time should be bigger than start time</div>);
         event.target.value = '0';
       } else {
