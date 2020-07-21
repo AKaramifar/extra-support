@@ -69,7 +69,9 @@ const SessionForm = ({ categories, getCategories, createSession, ActionControlle
                 id="categorySelect"
                 style={{ marginRight: '20px' }}
               >
-                <option>Select here</option>
+                <option value="" disabled>
+                  Select here
+                </option>
                 {categories.map(category => (
                   <option key={category._id} value={category._id}>
                     {category.name}
