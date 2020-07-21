@@ -5,10 +5,12 @@ import { createCategory } from '../../Redux/Actions';
 import ImageUpload from '../../Components/ImageUpload';
 
 function mapStateToProps(state) {
-  return {};
+  return {
+    ActionController: state.ActionController.isLoading,
+  };
 }
 
-const CategoryForm = ({ createCategory }) => {
+const CategoryForm = ({ createCategory, ActionController }) => {
   const [values, setValues] = React.useState({
     name: '',
     image: '',
@@ -30,8 +32,8 @@ const CategoryForm = ({ createCategory }) => {
 
   const handleSubmit = event => {
     event.preventDefault();
-    if (!values.name || !values.icon) {
-      alert('Please, Fill in the Name and Icon of the New Category!');
+    if (ActionController.isLoading || !values.name || !values.icon) {
+      return <div style={{ color: 'red' }}>Please, Fill in the Category, Title and Description of the Session!</div>;
     } else {
       createCategory(values);
     }
@@ -63,7 +65,11 @@ const CategoryForm = ({ createCategory }) => {
         <FormGroup>
           <ImageUpload label="Upload Image" onChange={handleImageUpload} image={values.image} isLoading={false} />
         </FormGroup>
-        <Button disabled={!values.name || !values.icon} onClick={handleSubmit} color="primary">
+        <Button
+          disabled={ActionController.isLoading || !values.name || !values.icon}
+          onClick={handleSubmit}
+          color="primary"
+        >
           Submit
         </Button>
       </Form>

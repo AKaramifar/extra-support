@@ -31,8 +31,8 @@ const SessionForm = ({ categories, getCategories, createSession, ActionControlle
   const handleSubmit = event => {
     event.preventDefault();
     setSubmitted(true);
-    if (!values.categoryId || !values.title || !values.description) {
-      alert('Please, Fill in the Category, Title and Description of the Session!');
+    if (ActionController.isLoading || !values.categoryId || !values.title || !values.description) {
+      return <div style={{ color: 'red' }}>Please, Fill in the Category, Title and Description of the Session!</div>;
     } else {
       createSession(values);
     }
@@ -122,7 +122,7 @@ const SessionForm = ({ categories, getCategories, createSession, ActionControlle
           </Button>
         </Form>
       </div>
-      <div></div>
+      <div />
     </div>
   );
 };
