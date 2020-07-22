@@ -12,6 +12,6 @@ router.get("/:availabilityId?", getBookings);
 router.post("/", createBooking);
 router.put("/", updateBooking);
 router.delete("/:_id", deleteBooking);
-router.get("/bookings/student/:studentId", getBookingsByStudentId);
+router.get("/student/:studentId", getBookingsByStudentId);
 
 export default router;

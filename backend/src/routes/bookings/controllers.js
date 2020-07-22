@@ -81,13 +81,19 @@ export const getBookingsByStudentId = async (req, res) => {
     let newBookings = [];
     const { studentId } = req.params;
     if (studentId) {
-      bookings = await BookingsContext.findAll({ studentId });
+      
+      bookings = await Promise.all( 
+        bookings.map(booking =>{
+        const student = await UsersContext.findOneBy({ _id: booking.studentId })
+        return { ...booking, student }
+        }))
+      
       if (bookings) {
-        const users = await UsersContext.findAll();
+        const students = await UsersContext.findAll();
         bookings.forEach((booking) => {
-          users.forEach((user) => {
-            if (booking.studentId === user._id.toString()) {
-              newBookings.push({ ...booking, ...user });
+          students.forEach((student) => {
+            if (booking.studentId === student._id.toString()) {
+              newBookings.push({ ...booking, ...student });
             }
           });
         });
