@@ -2,20 +2,21 @@
   display: flex;
   justify-content: space-around;
 }
-
 .availability-form {
   width: 50%;
 }
-
 .session-form-container {
   display: flex;
   justify-content: space-around;
 }
-
 .session-form {
   width: 50%;
 }
-
+.cancel-button {
+  font-size: 1.1rem;
+  width: 10%;
+  align-self: flex-end;
+}
 @media screen and (max-width: 640px) {
   .availability-form {
     width: 100%;
@@ -23,4 +24,56 @@
   .session-form {
     width: 100%;
   }
+  .bookings-container {
+    width: 100%;
+  }
+  .all-bookings {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    width: 100%;
+  }
+  .single-booking {
+    width: 100%;
+  }
+}
+.bookings-container {
+  width: 100%;
+}
+.booking-header {
+  display: flex;
+  justify-content: space-between;
+}
+.create-booking-button {
+  width: 18%;
+  align-self: center;
+  font-size: 1.1rem;
+  padding: 3px;
+}
+.all-bookings {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 10px;
+  justify-content: space-between;
+}
+.single-booking {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 10px;
+  box-shadow: 0 4px 8px 0 rgba(78, 78, 78, 0.2);
+  margin: 5px 0;
+}
+
+.booking-session-title {
+  color: rgb(19, 149, 255);
+  text-decoration: underline;
+  text-underline-position: under;
+}
+.color-blue {
+  color: rgb(19, 149, 255);
+}
+.red-color {
+  color: rgb(214, 25, 120);
 }
