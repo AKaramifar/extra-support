@@ -71,8 +71,8 @@ export default class Navbar extends React.Component {
               ) : null}
               {isAuthorized(['VOLUNTEER']) ? (
                 <li className="nav-item">
-                  <Link className="nav-link nav-btn" to="/volunteer/availability/form">
-                    Availability form
+                  <Link className="nav-link nav-btn" to="/volunteer/availabilities">
+                  Availabilities
                   </Link>
                 </li>
               ) : null}

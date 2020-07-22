@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import { connect } from 'react-redux';
-import { getVolunteerSessions, createAvailability } from '../../Redux/Actions';
+import { getVolunteerSessions, createAvailability, editAvailability } from '../../Redux/Actions';
 import Spinner from '../../Components/Spinner';
+import dayjs from 'dayjs';
 import './index.css';
 function mapStateToProps(state) {
   return {
@@ -11,7 +12,14 @@ function mapStateToProps(state) {
   };
 }
 
-const AvailabilityForm = ({ volunteerSessions, getVolunteerSessions, createAvailability, ActionController }) => {
+const AvailabilityForm = ({
+  volunteerSessions,
+  getVolunteerSessions,
+  createAvailability,
+  ActionController,
+  location,
+  editAvailability,
+}) => {
   const [values, setValues] = React.useState({
     sessionId: '',
     date: '',
@@ -22,10 +30,10 @@ const AvailabilityForm = ({ volunteerSessions, getVolunteerSessions, createAvail
   });
   const [showMessage, setShowMessage] = useState('');
   const [submitted, setSubmitted] = React.useState(false);
-
+  const [edit, setEdit] = React.useState(false);
   const onChange = event => {
     if (event.target.name === 'endTime') {
-      if (parseInt(values.startTime.replace(/\D/g,'')) >= parseInt(event.target.value.replace(/\D/g,''))) {
+      if (parseInt(values.startTime.replace(/\D/g, '')) >= parseInt(event.target.value.replace(/\D/g, ''))) {
         setShowMessage(<div style={{ color: 'red' }}>End time should be bigger than start time</div>);
         event.target.value = '0';
       } else {
@@ -45,7 +53,12 @@ const AvailabilityForm = ({ volunteerSessions, getVolunteerSessions, createAvail
   const handleSubmit = e => {
     e.preventDefault();
     setSubmitted(true);
-    createAvailability(values);
+    console.log(edit);
+    if (edit) {
+      editAvailability(location.state._id, values);
+    } else {
+      createAvailability(values);
+    }
   };
 
   if (ActionController.actionType === '' && !ActionController.isLoading && submitted) {
@@ -62,7 +75,18 @@ const AvailabilityForm = ({ volunteerSessions, getVolunteerSessions, createAvail
 
   useEffect(() => {
     getVolunteerSessions();
-  }, [getVolunteerSessions]);
+    if (location.state) {
+      setValues({
+        sessionId: location.state.sessionId,
+        date: dayjs(location.state.date).format('YYYY-MM-DD'),
+        startTime: location.state.startTime,
+        endTime: location.state.endTime,
+        repeat: location.state.repeat,
+        location: location.state.location,
+      });
+      setEdit(true);
+    }
+  }, [getVolunteerSessions, location]);
 
   return (
     <div className="availability-form-container">
@@ -164,5 +188,5 @@ const AvailabilityForm = ({ volunteerSessions, getVolunteerSessions, createAvail
 };
 export default connect(
   mapStateToProps,
-  { getVolunteerSessions, createAvailability: createAvailability }
+  { getVolunteerSessions, createAvailability, editAvailability }
 )(AvailabilityForm);
