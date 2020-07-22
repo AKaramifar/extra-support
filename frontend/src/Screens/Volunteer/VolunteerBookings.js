@@ -9,7 +9,6 @@ function mapStateToProps(state) {
   };
 }
 const VolunteerBookings = ({ volunteerBookings, getVolunteerBookings }) => {
-  console.log(volunteerBookings);
   useEffect(() => {
     getVolunteerBookings();
   }, [getVolunteerBookings]);

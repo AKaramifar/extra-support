@@ -42,7 +42,6 @@ export const getBookingsByVolunteerId = async (req, res) => {
 export const createBooking = async (req, res) => {
   try {
     const bookingData = req.body;
-    console.log(bookingData);
     const booking = await BookingsContext.create(bookingData);
     const time = bookingData.time.split("-");
     const startDateTime = `${dayjs(bookingData.date).format(
