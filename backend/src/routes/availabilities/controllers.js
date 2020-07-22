@@ -10,7 +10,6 @@ export const getAvailabilities = async (req, res) => {
       availabilities = await AvailabilityContext.findAll({ volunteerId });
       availabilities = await Promise.all(
         availabilities.map(async (availability) => {
-          console.log(availability);
           if (availability.sessionId === "GENERAL_SESSION") {
             return availability;
           } else {
