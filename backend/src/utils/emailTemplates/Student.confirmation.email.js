@@ -6,7 +6,7 @@ export const StudentConfirmationEmail = (data) => {
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>booking conformation email</title>
+    <title>booking confirmation email</title>
     <style>
         u~div .gmail-hide {
             display: none;
@@ -62,7 +62,7 @@ export const StudentConfirmationEmail = (data) => {
     font-size: 14px;
     line-height: 1.2rem;
   ">
-                            This is a special reminder to confirm your meeting with ${data.volunteerName} on
+                           This a confirmation of your meeting with ${data.volunteerName} on
                             ${data.date},
                             <a href="event.ics" class="gmail-hide yahoo-hide owa-hide">add to calendar</a>
                             <a class="extra-support-calender-gmail"
@@ -75,7 +75,23 @@ export const StudentConfirmationEmail = (data) => {
     font-size: 14px;
     line-height: 1.2rem;
   ">
-                            Your meeting is scheduled to hold at ${data.location}
+                            Your meeting location is ${data.location}
+                        </p>
+                        <p style="
+                        margin-top: 0;
+                        margin-bottom: 6px;
+                        font-size: 14px;
+                        line-height: 1.2rem;
+                      ">
+                        Session title: ${data.title}
+                        </p>
+                        <p style="
+                        margin-top: 0;
+                        margin-bottom: 6px;
+                        font-size: 14px;
+                        line-height: 1.2rem;
+                      ">
+                        ${data.description}
                         </p>
                         <p style="
     margin-top: 0;
@@ -91,9 +107,7 @@ export const StudentConfirmationEmail = (data) => {
                 font-size: 14px;
                 line-height: 1.2rem;
               ">
-                            Please feel free to contact ${data.volunteerName} if you have any question.
-                            ${data.volunteerName} would be ready to give necessary assistance.
-
+                            Please feel free to contact ${data.volunteerName} if you have any questions or if you need to cancel or reschedule the meeting.
                         </p>
                         <p style="
                 margin-top: 0;

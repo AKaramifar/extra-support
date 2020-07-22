@@ -5,13 +5,13 @@ export const bookingConfirmationEmail = async (data) => {
   try {
     const emailToVolunteer = {
       toEmail: data.volunteerEmail,
-      subject: "New Booked Session",
+      subject: `CYF - New Booked Session with ${data.studentName}`,
       html: VolunteerConfirmationEmail(data),
       replyToEmail: data.studentEmail,
     };
     const emailToStudent = {
       toEmail: data.studentEmail,
-      subject: "Booked Session Conformation",
+      subject: `CYF - Booked Session Confirmation with ${data.volunteerName}`,
       html: StudentConfirmationEmail(data),
       replyToEmail: data.volunteerEmail,
     };

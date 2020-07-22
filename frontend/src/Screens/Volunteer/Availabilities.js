@@ -32,42 +32,16 @@ export default connect(
       {availabilities.map(availability => {
         return (
           <div key={availability._id} className="availabilities-availability-container">
-            {availability.session ? (
-              <Fragment>
-                <h4
-                  style={{
-                    borderBottom: '4px solid rgb(24 133 253)',
-                    width: 'fit-content',
-                    paddingBottom: '10px',
-                    color: 'rgb(24 133 253)',
-                  }}
-                >
-                  {availability.session.title}
-                </h4>
-                <p>{availability.session.description}</p>
-                <p>
-                  <strong style={{ fontSize: '18px' }}>
-                    <i className="fas fa-tools" style={{ color: '#007bff' }}></i> Requirements for the session:
-                  </strong>{' '}
-                  {availability.session.requirements}
-                </p>
-              </Fragment>
-            ) : (
-              <Fragment>
-                <h4
-                  style={{
-                    borderBottom: '4px solid rgb(24 133 253)',
-                    width: 'fit-content',
-                    paddingBottom: '10px',
-                    color: 'rgb(24 133 253)',
-                  }}
-                >
-                  General session
-                </h4>
-                <p>Student can book for any type of session at this time with you.</p>
-              </Fragment>
-            )}
-
+            <h4
+              style={{
+                borderBottom: '2px solid rgb(24 133 253)',
+                width: 'fit-content',
+                paddingBottom: '2px',
+                color: 'rgb(24 133 253)',
+              }}
+            >
+              Availability details
+            </h4>
             {availability.date ? (
               <span>
                 <strong style={{ fontSize: '18px' }}>
@@ -93,8 +67,30 @@ export default connect(
                 {availability.location}
               </span>
             ) : null}
+            <h4
+              style={{
+                borderBottom: '2px solid rgb(24 133 253)',
+                width: 'fit-content',
+                paddingBottom: '2px',
+                color: 'rgb(24 133 253)',
+                marginTop: '20px',
+              }}
+            >
+              Selected session details
+            </h4>
+            {availability.session ? (
+              <Fragment>
+                <h6>{availability.session.title}</h6>
+                <p>{availability.session.description}</p>
+              </Fragment>
+            ) : (
+              <Fragment>
+                <h6>General session</h6>
+                <p>Student can book for any type of session at this time with you.</p>
+              </Fragment>
+            )}
             <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-              <span />
+              {availability.active ? <span style={{color:'#28a744'}}>You are active at this time</span> : <span style={{color:'#ffc107'}}>You have deactivated this time</span>}
               <Link
                 to={{
                   pathname: '/volunteer/availability/form',

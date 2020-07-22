@@ -72,6 +72,9 @@
   color: rgba(0, 0, 0, 1) !important;
   cursor: pointer;
 }
+.nav-btn-active {
+  color: #27ae60 !important;
+}
 .nav-btn:hover {
   color: #27ae60 !important;
 }

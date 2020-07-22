@@ -43,6 +43,7 @@ export default connect(
     values.volunteerEmail = session.volunteer.email;
     values.volunteerName = session.volunteer.firstName;
     values.description = session.description;
+    values.title = session.title;
     createBooking(values);
   };
 
@@ -60,9 +61,7 @@ export default connect(
         <Modal isOpen={!!booking._id}>
           <ModalBody style={{ backgroundColor: '#adffbf' }}>
             <h3>Good news</h3>
-            <p>
-              Congratulation, you have booked your {session.title} session successfully.
-            </p>
+            <p>Congratulations, you have booked your {session.title} session successfully.</p>
             <h5>Booking Details</h5>
             <hr />
             <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
@@ -227,7 +226,7 @@ export default connect(
           </div>
         ) : null}
         <Button color="primary" disabled={isLoading || !values.location || !values.date || !values.time}>
-          Submit
+          {!values.location || !values.date || !values.time ? 'Submit' : 'Book'}
         </Button>
       </Form>
     </div>

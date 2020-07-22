@@ -27,6 +27,7 @@ const AvailabilityForm = ({
     endTime: '',
     repeat: '',
     location: '',
+    active: true,
   });
   const [showMessage, setShowMessage] = useState('');
   const [submitted, setSubmitted] = React.useState(false);
@@ -53,7 +54,6 @@ const AvailabilityForm = ({
   const handleSubmit = e => {
     e.preventDefault();
     setSubmitted(true);
-    console.log(edit);
     if (edit) {
       editAvailability(location.state._id, values);
     } else {
@@ -83,6 +83,7 @@ const AvailabilityForm = ({
         endTime: location.state.endTime,
         repeat: location.state.repeat,
         location: location.state.location,
+        active: location.state.active,
       });
       setEdit(true);
     }
@@ -147,8 +148,8 @@ const AvailabilityForm = ({
           <FormGroup>
             <Label for="AvailabilityRepeat">Repeat</Label>
             <Input type="select" name="repeat" onChange={onChange} value={values.repeat} id="AvailabilityRepeat">
-              <option>Dose not repeat</option>
-              <option>Daly</option>
+              <option>Does not repeat</option>
+              <option>Daily</option>
               <option>Weekly</option>
               <option>Monthly</option>
               <option>Yearly</option>
@@ -166,6 +167,15 @@ const AvailabilityForm = ({
               placeholder="Add a location"
             ></Input>
           </FormGroup>
+          {edit ? (
+            <FormGroup>
+              <Label for="AvailabilityRepeat">Is it an active availability?</Label>
+              <Input type="select" name="active" onChange={onChange} value={values.active} id="AvailabilityRepeat">
+                <option value={true}>Active</option>
+                <option value={false}>No longer available</option>
+              </Input>
+            </FormGroup>
+          ) : null}
           <Button
             color="primary"
             disabled={

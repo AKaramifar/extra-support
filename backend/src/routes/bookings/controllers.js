@@ -64,6 +64,7 @@ export const createBooking = async (req, res) => {
       studentName: bookingData.studentName,
       volunteerEmail: bookingData.volunteerEmail,
       description: bookingData.description,
+      title: bookingData.title
     };
     await bookingConfirmationEmail(emailData);
     return res.status(200).send(booking);

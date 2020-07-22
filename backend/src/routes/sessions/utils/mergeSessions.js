@@ -1,14 +1,19 @@
-import dayjs from 'dayjs'
-export function mergeSessionsWithAvailabilities(sessions, availabilities) {
-  return sessions.map((session) => {
-    const sessionAvailabilities = availabilities.filter((availability) => {
-      if (availability.sessionId === String(session._id)) {
-        availability.weekDay = dayjs(availability.date).format('dddd')
-        return true;
-      } else {
-        return false;
+import AvailabilityContext from "../../availabilities/contexts";
+import CategoryContext from "../../categories/contexts";
+export const mergeSessionsWithAvailabilities = async (sessions) => {
+ const mergedSessions = await Promise.all(
+    sessions.map(async (session) => {
+      let category = {};
+      const availabilities = await AvailabilityContext.findAll({
+        sessionId: session._id,
+      });
+      if (session.categoryId) {
+        category = await CategoryContext.findOneBy({
+          _id: session.categoryId,
+        });
       }
-    });
-    return { ...session, availabilities: sessionAvailabilities };
-  });
-}
+      return { ...session, availabilities, category };
+    })
+  );
+  return mergedSessions;
+};
