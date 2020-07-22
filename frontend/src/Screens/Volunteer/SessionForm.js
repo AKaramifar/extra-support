@@ -11,16 +11,14 @@ function mapStateToProps(state) {
     ActionController: state.ActionController,
   };
 }
-const SessionForm = ({ categories, getCategories, createSession, ActionController }) => {
+const SessionForm = ({ categories, getCategories, createSession, ActionController}) => {
   const [values, setValues] = React.useState({
     categoryId: '',
     title: '',
     description: '',
     requirements: '',
   });
-
   const [submitted, setSubmitted] = React.useState(false);
-
   const handleChange = event => {
     setValues({
       ...values,

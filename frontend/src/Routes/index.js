@@ -15,6 +15,7 @@ import AvailabilityForm from '../Screens/Volunteer/AvailabilityForm';
 import SessionForm from '../Screens/Volunteer/SessionForm';
 import VolunteerRegister from '../Components/VolunteerRegister';
 import VolunteerLogin from '../Auth/Login';
+import Availabilities from '../Screens/Volunteer/Availabilities'
 export default () => (
   <Switch>
     <Route exact path="/" component={Home} />
@@ -27,6 +28,7 @@ export default () => (
     <Private exact path="/sessions/:categoryId?" component={Sessions} roles={['STUDENT']} />
     <Private exact path="/booking/:sessionId?" component={Booking} roles={['STUDENT']} />
     <Private exact path="/profile" component={Profile} roles={['STUDENT', 'VOLUNTEER']} />
+    <Private exact path="/volunteer/availabilities" component={Availabilities} roles={['VOLUNTEER']} />
     <Private exact path="/volunteer/availability/form" component={AvailabilityForm} roles={['VOLUNTEER']} />
     <Private exact path="/volunteer/session/form" component={SessionForm} roles={['VOLUNTEER']} />
     <Private exact path="/student/bookings" component={StudentBookings} roles={['STUDENT']} />
