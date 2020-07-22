@@ -26,13 +26,14 @@ export const getBookingsByVolunteerId = async (req, res) => {
       bookings = await BookingsContext.findAll({ volunteerId });
       if (bookings) {
         const users = await UsersContext.findAll();
-        bookings.forEach((booking) => {
-          users.forEach((user) => {
-            if (booking.studentId === user._id.toString()) {
-              newBookings.push({ ...booking, ...user });
-            }
-          });
-        });
+        newBookings = await Promise.all(
+          bookings.map((booking) => {
+            const student = users.find(
+              (user) => user._id.toString() === booking.studentId
+            );
+            return { ...booking, student };
+          })
+        );
       }
     }
     return res.status(200).send(newBookings);
