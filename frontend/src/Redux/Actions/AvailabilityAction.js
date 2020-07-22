@@ -5,6 +5,7 @@ import {
   CREATE_AVAILABILITY,
   GET_AVAILABILITY,
   EDIT_AVAILABILITY,
+  UPDATE_ROUTE
 } from './types';
 import httpClient from '../../common/httpClient';
 import { getProfile } from '../../Auth/index';
@@ -83,7 +84,7 @@ export const editAvailability = (id, availabilityData) => {
       });
       dispatch({
         type: ACTION_SUCCESS,
-        message: 'Success: updated successfully.',
+        message: 'Success: availability updated.',
       });
       setTimeout(() => {
         window.location.replace('/volunteer/availabilities');
@@ -97,3 +98,12 @@ export const editAvailability = (id, availabilityData) => {
     }
   };
 };
+
+export const onChangeRout = (pathName)=>{
+  return async dispatch => {
+      dispatch({
+        type: UPDATE_ROUTE,
+        pathName
+      });
+  };
+}

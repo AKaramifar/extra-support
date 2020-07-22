@@ -1,4 +1,3 @@
-
 import AvailabilityContext from "../availabilities/contexts";
 import UsersContext from "../users/contexts";
 import { filtersSessionsByQuery } from "../../utils/filters";
@@ -13,15 +12,14 @@ export const getSessions = async (req, res) => {
       query.volunteerId = volunteerId;
     }
     const sessions = await SessionContext.findAll(query);
-    const availabilities = await AvailabilityContext.findAll();
-    const sessionWithAvailabilities = mergeSessionsWithAvailabilities(
-      sessions,
-      availabilities
+    const sessionWithAvailabilities = await mergeSessionsWithAvailabilities(sessions);
+    const filteredSessions = filtersSessionsByQuery(
+      sessionWithAvailabilities,
+      req.query
     );
-  const filteredSessions = filtersSessionsByQuery(sessionWithAvailabilities, req.query);
     return res.status(200).send(filteredSessions);
   } catch (err) {
-    console.log("Error", err)
+    console.log("Error", err);
     return res.status(400).send("Could not get session");
   }
 };

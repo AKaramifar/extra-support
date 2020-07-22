@@ -4,13 +4,15 @@ import {
   ACTION_ERROR,
   REMOVE_STATE_ERROR,
   REMOVE_STATE_MESSAGE,
-} from "../Actions/types";
+  UPDATE_ROUTE
+} from '../Actions/types';
 
 const INITIAL_STATE = {
-  actionType: "",
+  actionType: '',
   errors: [],
   messages: [],
   isLoading: false,
+  pathName: '/',
 };
 
 export default (state = INITIAL_STATE, action) => {
@@ -25,18 +27,12 @@ export default (state = INITIAL_STATE, action) => {
     case ACTION_SUCCESS:
       return {
         ...state,
-        actionType: "",
+        actionType: '',
         isLoading: false,
         messages: action.message
           ? state.messages.length > 1
-            ? [
-                ...state.messages.filter((msg, i) => i !== 0),
-                { message: action.message, id: date.getTime() },
-              ]
-            : [
-                ...state.messages,
-                { message: action.message, id: date.getTime() },
-              ]
+            ? [...state.messages.filter((msg, i) => i !== 0), { message: action.message, id: date.getTime() }]
+            : [...state.messages, { message: action.message, id: date.getTime() }]
           : state.messages,
       };
     case ACTION_ERROR:
@@ -46,22 +42,24 @@ export default (state = INITIAL_STATE, action) => {
         isLoading: false,
         errors:
           state.errors.length > 1
-            ? [
-                ...state.errors.filter((err, i) => i !== 0),
-                { error: action.error, id: date.getTime() },
-              ]
+            ? [...state.errors.filter((err, i) => i !== 0), { error: action.error, id: date.getTime() }]
             : [...state.errors, { error: action.error, id: date.getTime() }],
       };
 
     case REMOVE_STATE_ERROR:
       return {
         ...state,
-        errors: state.errors.filter((error) => error.id !== action.id),
+        errors: state.errors.filter(error => error.id !== action.id),
       };
     case REMOVE_STATE_MESSAGE:
       return {
         ...state,
-        messages: state.messages.filter((message) => message.id !== action.id),
+        messages: state.messages.filter(message => message.id !== action.id),
+      };
+    case UPDATE_ROUTE:
+      return {
+        ...state,
+        pathName: action.pathName,
       };
     default:
       return state;

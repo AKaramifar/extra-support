@@ -118,3 +118,33 @@ export const getSession = sessionId => {
     }
   };
 };
+
+export const editSession = (id, sessionData) => {
+  return async dispatch => {
+    try {
+      dispatch({
+        type: ACTION_STARTED,
+        actionType: CREATE_SESSION,
+      });
+      const session = await httpClient.put(`/sessions/${id}`, sessionData);
+      dispatch({
+        type: CREATE_SESSION,
+        session: session.data,
+      });
+      dispatch({
+        type: ACTION_SUCCESS,
+        message: 'Success: session updated.',
+      });
+      setTimeout(() => {
+        window.location.replace('/volunteer/sessions');
+      }, 2000);
+    } catch (error) {
+      console.log(error);
+      dispatch({
+        type: ACTION_ERROR,
+        error: 'could not create session',
+        actionType: CREATE_SESSION,
+      });
+    }
+  };
+};

@@ -6,7 +6,7 @@ export const VolunteerConfirmationEmail = (data) => {
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>booking conformation email</title>
+    <title>booking confirmation email</title>
     <style>
         u~div .gmail-hide {
             display: none;
@@ -61,7 +61,7 @@ export const VolunteerConfirmationEmail = (data) => {
                         font-size: 14px;
                         line-height: 1.2rem;
                       ">
-                            This is a special reminder to confirm your meeting with ${data.studentName} on ${data.date},
+                            This is a notification that ${data.studentName} has booked a session with you on ${data.date},
                             <a href="event.ics" class="gmail-hide yahoo-hide owa-hide">add to calendar</a>
                             <a class="extra-support-calender-gmail"
                                 href="http://www.google.com/calendar/event?action=TEMPLATE&text=Session%20with%20${data.studentName}&dates=${data.calendarDate}&location=${data.location}&details=${data.description}">
@@ -73,7 +73,24 @@ export const VolunteerConfirmationEmail = (data) => {
                         font-size: 14px;
                         line-height: 1.2rem;
                       ">
-                            Your meeting is scheduled to hold at ${data.location} </p>
+                            The location is ${data.location} </p>
+
+                            <p style="
+                            margin-top: 0;
+                            margin-bottom: 6px;
+                            font-size: 14px;
+                            line-height: 1.2rem;
+                          ">
+                            Session title: ${data.title}
+                            </p>
+                            <p style="
+                            margin-top: 0;
+                            margin-bottom: 6px;
+                            font-size: 14px;
+                            line-height: 1.2rem;
+                          ">
+                            ${data.description}
+                            </p>
                         <p style="
                         margin-top: 0;
                         margin-bottom: 6px;
@@ -88,7 +105,7 @@ export const VolunteerConfirmationEmail = (data) => {
                                     font-size: 14px;
                                     line-height: 1.2rem;
                                   ">
-                            Please feel free to contact ${data.studentName} if you have any question.
+                            Please feel free to contact ${data.studentName} if there is anything you wish to discuss before the meeting or if you need to cancel or reschedule.
                         </p>
                         <p style="
                                     margin-top: 0;

@@ -30,16 +30,22 @@ export default () => {
             We are a non-profit organization supporting refugees and disadvantaged individuals with the dream of
             becoming developers. In their journey of interrupted lives, unfinished studies and integration challenges,
             many of these individuals yearn to update their tech skills, but lack learning opportunities. We want to
-            change this. In 2016 we launched the first cohort of our 8-month web development programme, coached by a
-            group of professional developers. Here, CYF extra support is providing students with a digital environment
-            where they can access the CYF volunteers and book a consultation session to discuss their needs in finance,
-            health, Housing,...etc.
+            change this.
+          </p>
+          <p>
+            The reason students need extra support is that face challenges in their life and need support from external
+            professionals.
+          </p>
+          <p>
+            Here, CYF extra support is providing students with a digital environment where they can link up with
+            professionals outside of coding who volunteer with CYF to book consultation sessions to discuss their needs
+            in finance, health, Housing,...etc.
           </p>
           <div>
-            <h5>What will you get out of CYF extra Support?</h5>
+            <h5>Examples of what you could get out of CYF extra Support?</h5>
             <ul>
               <li>A free consultation on financial needs.</li>
-              <li> A support in providing training in education.</li>
+              <li>A support in providing training in education.</li>
               <li>A free consultation on immigration issues.</li>
               <li>A free support and consultation regarding health, family and relationships. </li>
               <li>An opportunity to practice job interviews.</li>

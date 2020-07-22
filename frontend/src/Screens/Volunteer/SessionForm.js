@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
-import { getCategories, createSession } from '../../Redux/Actions';
+import { getCategories, createSession, editSession } from '../../Redux/Actions';
 import CategoryModal from '../../Components/Category/CategoryModal';
 import Spinner from '../../Components/Spinner';
 
@@ -11,7 +11,7 @@ function mapStateToProps(state) {
     ActionController: state.ActionController,
   };
 }
-const SessionForm = ({ categories, getCategories, createSession, ActionController}) => {
+const SessionForm = ({ categories, getCategories, createSession, ActionController, location, editSession }) => {
   const [values, setValues] = React.useState({
     categoryId: '',
     title: '',
@@ -19,6 +19,7 @@ const SessionForm = ({ categories, getCategories, createSession, ActionControlle
     requirements: '',
   });
   const [submitted, setSubmitted] = React.useState(false);
+  const [edit, setEdit] = React.useState(false);
   const handleChange = event => {
     setValues({
       ...values,
@@ -32,7 +33,11 @@ const SessionForm = ({ categories, getCategories, createSession, ActionControlle
     if (ActionController.isLoading || !values.categoryId || !values.title || !values.description) {
       return <div style={{ color: 'red' }}>Please, Fill in the Category, Title and Description of the Session!</div>;
     } else {
-      createSession(values);
+      if (edit) {
+        editSession(location.state._id, values);
+      } else {
+        createSession(values);
+      }
     }
   };
   if (ActionController.actionType === '' && !ActionController.isLoading && submitted) {
@@ -47,7 +52,16 @@ const SessionForm = ({ categories, getCategories, createSession, ActionControlle
 
   useEffect(() => {
     getCategories();
-  }, [getCategories]);
+    if (location.state) {
+      setValues({
+        categoryId: location.state.categoryId,
+        title: location.state.title,
+        description: location.state.description,
+        requirements: location.state.requirements,
+      });
+      setEdit(true);
+    }
+  }, [getCategories, location]);
 
   return (
     <div className="session-form-container">
@@ -129,5 +143,5 @@ const SessionForm = ({ categories, getCategories, createSession, ActionControlle
 
 export default connect(
   mapStateToProps,
-  { getCategories, createSession }
+  { getCategories, createSession, editSession }
 )(SessionForm);
