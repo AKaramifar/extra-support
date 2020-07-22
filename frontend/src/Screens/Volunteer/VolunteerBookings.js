@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import { getVolunteerBookings, cancelVolunteerBookings } from '../../Redux/Actions';
 import dayjs from 'dayjs';
@@ -27,12 +27,8 @@ const StudentBookings = ({ volunteerBookings, getVolunteerBookings, cancelVolunt
     return (
       <div className="bookings-container">
         <div className="booking-header">
-          <h1 style={{ margin: '5% 0 ' }}>Bookings</h1>
-          <Button color="success" size="sm" className="create-booking-button"  href="/volunteer/availability/form">
-            Create a new availability
-          </Button>
+          <h1 style={{ margin: '20px 0 ' }}>Bookings</h1>
         </div>
-        <hr />
         <div className="all-bookings">
           {volunteerBookings.map(booking => {
             return (
@@ -66,9 +62,11 @@ const StudentBookings = ({ volunteerBookings, getVolunteerBookings, cancelVolunt
                     <i className="fa fa-map-marker-alt red-color" aria-hidden="true"></i> {booking.location}
                   </span>
                 ) : null}
-                <Button onClick={() => handleCancel(booking._id)} color="success" size="sm" className="cancel-button">
-                  Cancel
-                </Button>
+                <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+                  <Button onClick={() => handleCancel(booking._id)} color="danger" size="sm">
+                    Cancel booking
+                  </Button>
+                </div>
               </div>
             );
           })}

@@ -26,6 +26,54 @@
   display: flex;
   flex-direction: column;
 }
+.availabilities-availability-container {
+  width: 100%;
+  margin-top: 20px;
+  box-shadow: 0em 0.15em 0.65em 0em rgba(0, 0, 0, 0.25);
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+}
+.bookings-container {
+  width: 100%;
+}
+.booking-header {
+  display: flex;
+  justify-content: space-between;
+}
+.create-booking-button {
+  width: 18%;
+  align-self: center;
+  font-size: 1.1rem;
+  padding: 3px;
+}
+.all-bookings {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.single-booking {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 10px;
+  box-shadow: 0 4px 8px 0 rgba(78, 78, 78, 0.2);
+  margin: 10px 0;
+}
+
+.booking-session-title {
+  color: rgb(19, 149, 255);
+  text-decoration: underline;
+  text-underline-position: under;
+}
+.color-blue {
+  color: rgb(19, 149, 255);
+}
+.red-color {
+  color: rgb(214, 25, 120);
+}
+
 @media screen and (max-width: 640px) {
   .availability-form {
     width: 100%;
@@ -46,43 +94,4 @@
     width: 100%;
   }
 }
-.bookings-container {
-  width: 100%;
-}
-.booking-header {
-  display: flex;
-  justify-content: space-between;
-}
-.create-booking-button {
-  width: 18%;
-  align-self: center;
-  font-size: 1.1rem;
-  padding: 3px;
-}
-.all-bookings {
-  width: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  padding: 10px;
-  justify-content: space-between;
-}
-.single-booking {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  padding: 10px;
-  box-shadow: 0 4px 8px 0 rgba(78, 78, 78, 0.2);
-  margin: 5px 0;
-}
 
-.booking-session-title {
-  color: rgb(19, 149, 255);
-  text-decoration: underline;
-  text-underline-position: under;
-}
-.color-blue {
-  color: rgb(19, 149, 255);
-}
-.red-color {
-  color: rgb(214, 25, 120);
-}

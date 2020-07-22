@@ -27,12 +27,8 @@ const StudentBookings = ({ studentBookings, getStudentBookings, cancelStudentBoo
     return (
       <div className="bookings-container">
         <div className="booking-header">
-          <h1 style={{ margin: '5% 0 ' }}>Bookings</h1>
-          <Button color="success" size="sm" className="create-booking-button"  href="/categories">
-            Create a new booking
-          </Button>
+          <h1 style={{ margin: '20px 0 ' }}>Bookings</h1>
         </div>
-        <hr />
         <div className="all-bookings">
           {studentBookings.map(booking => {
             return (
@@ -66,9 +62,11 @@ const StudentBookings = ({ studentBookings, getStudentBookings, cancelStudentBoo
                     <i className="fa fa-map-marker-alt red-color" aria-hidden="true"></i> {booking.location}
                   </span>
                 ) : null}
-                <Button onClick={() => handleCancel(booking._id)} color="success" size="sm" className="cancel-button">
-                  Cancel
-                </Button>
+                <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+                  <Button onClick={() => handleCancel(booking._id)} color="danger" size="sm">
+                    Cancel booking
+                  </Button>
+                </div>
               </div>
             );
           })}
