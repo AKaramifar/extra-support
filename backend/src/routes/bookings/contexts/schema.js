@@ -12,6 +12,7 @@ const bookingSchema = new Schema(
     time: String,
     active: Boolean,
     canceledById: String,
+    location: String,
   },
   { timestamps: { createdAt: true, updatedAt: true } }
 );

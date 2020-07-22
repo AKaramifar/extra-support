@@ -1,7 +1,7 @@
 import BookingsContext from "./contexts";
 import UsersContext from "../users/contexts";
+import SessionsContext from "../sessions/contexts";
 import { bookingConfirmationEmail } from "../../utils/notification";
-import UsersContext from "../users/contexts";
 import dayjs from "dayjs";
 export const getBookings = async (req, res) => {
   try {
@@ -20,23 +20,19 @@ export const getBookings = async (req, res) => {
 
 export const getBookingsByVolunteerId = async (req, res) => {
   try {
-    let bookings;
-    let newBookings = [];
     const { volunteerId } = req.params;
-    if (volunteerId) {
-      bookings = await BookingsContext.findAll({ volunteerId });
-      if (bookings) {
-        const users = await UsersContext.findAll();
-        newBookings = await Promise.all(
-          bookings.map((booking) => {
-            const student = users.find(
-              (user) => user._id.toString() === booking.studentId
-            );
-            return { ...booking, student };
-          })
-        );
-      }
-    }
+    const bookings = await BookingsContext.findAll({ volunteerId });
+    const newBookings = await Promise.all(
+      bookings.map(async (booking) => {
+        const student = await UsersContext.findOneBy({
+          _id: booking.studentId,
+        });
+        const session = await SessionsContext.findOneBy({
+          _id: booking.sessionId,
+        });
+        return { ...booking, student, session };
+      })
+    );
     return res.status(200).send(newBookings);
   } catch (err) {
     return res.status(400).send("Could not get bookings");
@@ -103,30 +99,22 @@ export const deleteBooking = async (req, res) => {
 
 export const getBookingsByStudentId = async (req, res) => {
   try {
-    let bookings;
-    let newBookings = [];
     const { studentId } = req.params;
-    if (studentId) {
-      
-      bookings = await Promise.all( 
-        bookings.map(booking =>{
-        const student = await UsersContext.findOneBy({ _id: booking.studentId })
-        return { ...booking, student }
-        }))
-      
-      if (bookings) {
-        const students = await UsersContext.findAll();
-        bookings.forEach((booking) => {
-          students.forEach((student) => {
-            if (booking.studentId === student._id.toString()) {
-              newBookings.push({ ...booking, ...student });
-            }
-          });
+    const bookings = await BookingsContext.findAll({ studentId });
+    const newBookings = await Promise.all(
+      bookings.map(async (booking) => {
+        const volunteer = await UsersContext.findOneBy({
+          _id: booking.volunteerId,
         });
-      }
-    }
+        const session = await SessionsContext.findOneBy({
+          _id: booking.sessionId,
+        });
+        return { ...booking, volunteer, session };
+      })
+    );
     return res.status(200).send(newBookings);
   } catch (err) {
+    console.log(err);
     return res.status(400).send("Could not get bookings");
   }
 };
