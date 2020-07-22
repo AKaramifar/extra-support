@@ -104,10 +104,10 @@ export const getVolunteerBookings = () => {
         type: ACTION_STARTED,
         actionType: GET_VOLUNTEER_BOOKINGS,
       });
-      const volunteerBooking = await httpClient.get(`/bookings/volunteer/${profile._id}`);
+      const volunteerBookings = await httpClient.get(`/bookings/volunteer/${profile._id}`);
       dispatch({
         type: GET_VOLUNTEER_BOOKINGS,
-        volunteerBooking: volunteerBooking.data,
+        volunteerBookings: volunteerBookings.data,
       });
       dispatch({
         type: ACTION_SUCCESS,

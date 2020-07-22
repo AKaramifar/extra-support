@@ -25,7 +25,6 @@ export default connect(
     time: '',
     location: '',
   });
-
   useEffect(() => {
     const { sessionId } = match.params;
     getSession(sessionId);
@@ -39,7 +38,7 @@ export default connect(
   };
   const handleSubmit = e => {
     e.preventDefault();
-    values.volunteerId = session.volunteer.volunteerId;
+    values.volunteerId = session.volunteer._id;
     values.sessionId = session._id;
     values.volunteerEmail = session.volunteer.email;
     values.volunteerName = session.volunteer.firstName;
