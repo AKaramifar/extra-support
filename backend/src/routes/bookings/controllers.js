@@ -1,5 +1,6 @@
 import BookingsContext from "./contexts";
 import { bookingConfirmationEmail } from "../../utils/notification";
+import UsersContext from "../users/contexts";
 import dayjs from "dayjs";
 export const getBookings = async (req, res) => {
   try {
@@ -11,6 +12,31 @@ export const getBookings = async (req, res) => {
       bookings = await BookingsContext.findAll();
     }
     return res.status(200).send(bookings);
+  } catch (err) {
+    return res.status(400).send("Could not get bookings");
+  }
+};
+
+export const getBookingsByVolunteerId = async (req, res) => {
+  try {
+    let bookings;
+    let newBookings = [];
+    const { volunteerId } = req.params;
+    if (volunteerId) {
+      bookings = await BookingsContext.findAll({ volunteerId });
+      if (bookings) {
+        const users = await UsersContext.findAll();
+        newBookings = await Promise.all(
+          bookings.map((booking) => {
+            const student = users.find(
+              (user) => user._id.toString() === booking.studentId
+            );
+            return { ...booking, student };
+          })
+        );
+      }
+    }
+    return res.status(200).send(newBookings);
   } catch (err) {
     return res.status(400).send("Could not get bookings");
   }
@@ -40,7 +66,7 @@ export const createBooking = async (req, res) => {
       studentEmail: bookingData.email,
       studentName: bookingData.studentName,
       volunteerEmail: bookingData.volunteerEmail,
-      description: bookingData.description
+      description: bookingData.description,
     };
     await bookingConfirmationEmail(emailData);
     return res.status(200).send(booking);
