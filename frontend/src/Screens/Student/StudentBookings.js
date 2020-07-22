@@ -1,14 +1,19 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { getStudentBookings } from '../../Redux/Actions';
+import { getStudentBookings, cancelStudentBookings } from '../../Redux/Actions';
 import dayjs from 'dayjs';
+import '../Volunteer/index.css';
+import { Button } from 'reactstrap';
 function mapStateToProps(state) {
   return {
     studentBookings: state.bookings.studentBookings,
   };
 }
+const StudentBookings = ({ studentBookings, getStudentBookings, cancelStudentBookings }) => {
+  const handleCancel = id => {
+    cancelStudentBookings(id);
+  };
 
-const StudentBookings = ({ studentBookings, getStudentBookings }) => {
   React.useEffect(() => {
     getStudentBookings();
   }, [getStudentBookings]);
@@ -20,53 +25,59 @@ const StudentBookings = ({ studentBookings, getStudentBookings }) => {
     );
   } else {
     return (
-      <div style={{ width: '75%' }}>
-        <h1 style={{ margin: '5% 0 ' }}>Bookings</h1>
+      <div className="bookings-container">
+        <div className="booking-header">
+          <h1 style={{ margin: '5% 0 ' }}>Bookings</h1>
+          <Button color="success" size="sm" className="create-booking-button"  href="/categories">
+            Create a new booking
+          </Button>
+        </div>
         <hr />
-        {studentBookings.map(booking => {
-          return (
-            <div key={booking._id} style={{ display: 'flex', flexDirection: 'column' }}>
-              {booking.session ? <h4>{booking.session.title}</h4> : null}
-              {booking.session ? <p>{booking.session.description}</p> : null}
-              {booking.volunteer ? (
-                <i className="far fa-user">
-                  <span className="icons">
-                    {booking.volunteer.firstName}
+        <div className="all-bookings">
+          {studentBookings.map(booking => {
+            return (
+              <div key={booking._id} className="single-booking">
+                {booking.session ? <h4 className="booking-session-title">{booking.session.title}</h4> : null}
+                {booking.session ? <p>{booking.session.description}</p> : null}
+                {booking.volunteer ? (
+                  <span>
+                    <i className="fa fa-envelope color-blue" aria-hidden="true"></i> {booking.volunteer.firstName}
                     {booking.volunteer.lastName}
                   </span>
-                </i>
-              ) : null}
-              {booking.volunteer ? (
-                <i className="fa fa-envelope">
-                  <span className="icons">
-                    {booking.volunteer.email ? <span>{booking.volunteer.email} </span> : null}
+                ) : null}
+                {booking.volunteer ? (
+                  <span>
+                    <i className="fa fa-envelope color-blue" aria-hidden="true"></i> {booking.volunteer.email}
                   </span>
-                </i>
-              ) : null}
-              {booking.date ? (
-                <span>
-                  <i className="fa fa-calendar" aria-hidden="true"></i>{' '}
-                  {dayjs(booking.date).format('dddd, MMMM D YYYY')}
-                </span>
-              ) : null}
-              {booking.date ? (
-                <span>
-                  <i className="fa fa-clock-o" aria-hidden="true"></i> {booking.time}
-                </span>
-              ) : null}
-              {booking.location ? (
-                <i className="fa fa-map-marker-alt">
-                  <span className="icons">{booking.location}</span>
-                </i>
-              ) : null}
-            </div>
-          );
-        })}
+                ) : null}
+                {booking.date ? (
+                  <span>
+                    <i className="fa fa-calendar color-blue" aria-hidden="true"></i>{' '}
+                    {dayjs(booking.date).format('dddd, MMMM D YYYY')}
+                  </span>
+                ) : null}
+                {booking.date ? (
+                  <span>
+                    <i className="fa fa-clock-o color-blue" aria-hidden="true"></i> {booking.time}
+                  </span>
+                ) : null}
+                {booking.location ? (
+                  <span>
+                    <i className="fa fa-map-marker-alt red-color" aria-hidden="true"></i> {booking.location}
+                  </span>
+                ) : null}
+                <Button onClick={() => handleCancel(booking._id)} color="success" size="sm" className="cancel-button">
+                  Cancel
+                </Button>
+              </div>
+            );
+          })}
+        </div>
       </div>
     );
   }
 };
 export default connect(
   mapStateToProps,
-  { getStudentBookings }
+  { getStudentBookings, cancelStudentBookings }
 )(StudentBookings);
