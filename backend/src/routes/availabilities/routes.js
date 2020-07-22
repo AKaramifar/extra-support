@@ -9,7 +9,7 @@ import {
 const router = express.Router();
 router.get("/:volunteerId?", getAvailabilities);
 router.post("/", createAvailability);
-router.put("/", updateAvailability);
+router.put("/:availabilityId", updateAvailability);
 router.delete("/:_id", deleteAvailability);
 
 export default router;
