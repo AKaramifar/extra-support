@@ -1,4 +1,5 @@
 import BookingsContext from "./contexts";
+import UsersContext from "../users/contexts";
 import { bookingConfirmationEmail } from "../../utils/notification";
 import UsersContext from "../users/contexts";
 import dayjs from "dayjs";
@@ -97,5 +98,35 @@ export const deleteBooking = async (req, res) => {
     return res.status(200).send(response);
   } catch (err) {
     return res.status(400).send("Could not delete the booking");
+  }
+};
+
+export const getBookingsByStudentId = async (req, res) => {
+  try {
+    let bookings;
+    let newBookings = [];
+    const { studentId } = req.params;
+    if (studentId) {
+      
+      bookings = await Promise.all( 
+        bookings.map(booking =>{
+        const student = await UsersContext.findOneBy({ _id: booking.studentId })
+        return { ...booking, student }
+        }))
+      
+      if (bookings) {
+        const students = await UsersContext.findAll();
+        bookings.forEach((booking) => {
+          students.forEach((student) => {
+            if (booking.studentId === student._id.toString()) {
+              newBookings.push({ ...booking, ...student });
+            }
+          });
+        });
+      }
+    }
+    return res.status(200).send(newBookings);
+  } catch (err) {
+    return res.status(400).send("Could not get bookings");
   }
 };
