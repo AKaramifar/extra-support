@@ -18,7 +18,14 @@ export default connect(
     getVolunteerSessions();
   }, [getVolunteerSessions]);
   if (volunteerSessions.length === 0) {
-    return <h1>You do not have any sessions</h1>;
+    return (
+      <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '20px' }}>
+        <h1>You do not have any sessions</h1>
+        <Link to="/volunteer/session/form">
+          <Button color="success">Create a new session</Button>
+        </Link>
+      </div>
+    );
   }
   return (
     <div style={{ marginTop: '10px' }}>
@@ -43,7 +50,7 @@ export default connect(
                 {session.title}
               </h4>
               <p>{session.description}</p>
-                            
+
               {session.category ? (
                 <p>
                   <strong style={{ fontSize: '18px' }}>

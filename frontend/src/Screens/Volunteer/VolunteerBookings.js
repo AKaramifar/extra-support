@@ -43,7 +43,7 @@ const StudentBookings = ({ volunteerBookings, getVolunteerBookings, cancelVolunt
   if (volunteerBookings.length === 0) {
     return (
       <div style={{ width: '75%' }}>
-        <h3 style={{ margin: '5% 0' }}>No bookings found!</h3>
+        <h3 style={{ margin: '5% 0' }}>No bookings to show!</h3>
       </div>
     );
   } else {
@@ -60,7 +60,7 @@ const StudentBookings = ({ volunteerBookings, getVolunteerBookings, cancelVolunt
                 {booking.session ? <p>{booking.session.description}</p> : null}
                 {booking.student ? (
                   <span>
-                    <i className="fa fa-envelope color-blue" aria-hidden="true"></i> {booking.student.firstName}
+                    <i className="fa fa-user color-blue" aria-hidden="true"></i> {booking.student.firstName}{' '}
                     {booking.student.lastName}
                   </span>
                 ) : null}

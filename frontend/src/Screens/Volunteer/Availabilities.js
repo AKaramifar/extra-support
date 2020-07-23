@@ -19,7 +19,14 @@ export default connect(
     getAvailabilities();
   }, [getAvailabilities]);
   if (availabilities.length === 0) {
-    return <h1>You do not have any availability</h1>;
+    return (
+      <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '20px'  }}>
+        <h1>You do not have any availability</h1>
+        <Link to="/volunteer/availability/form">
+          <Button color="success">Create a new availability</Button>
+        </Link>
+      </div>
+    );
   }
   return (
     <div style={{ marginTop: '10px' }}>
@@ -90,7 +97,11 @@ export default connect(
               </Fragment>
             )}
             <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-              {availability.active ? <span style={{color:'#28a744'}}>You are active at this time</span> : <span style={{color:'#ffc107'}}>You have deactivated this time</span>}
+              {availability.active ? (
+                <span style={{ color: '#28a744' }}>You are active at this time</span>
+              ) : (
+                <span style={{ color: '#ffc107' }}>You have deactivated this time</span>
+              )}
               <Link
                 to={{
                   pathname: '/volunteer/availability/form',
