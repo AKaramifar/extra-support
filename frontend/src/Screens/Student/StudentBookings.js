@@ -59,7 +59,7 @@ const StudentBookings = ({ studentBookings, getStudentBookings, cancelStudentBoo
                 {booking.session ? <p>{booking.session.description}</p> : null}
                 {booking.volunteer ? (
                   <span>
-                    <i className="fa fa-envelope color-blue" aria-hidden="true"></i> {booking.volunteer.firstName}
+                    <i className="fa fa-user color-blue" aria-hidden="true"></i> {booking.volunteer.firstName}
                     {booking.volunteer.lastName}
                   </span>
                 ) : null}
