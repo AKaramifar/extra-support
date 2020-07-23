@@ -34,7 +34,7 @@ export const createSession = sessionData => {
       console.log(error);
       dispatch({
         type: ACTION_ERROR,
-        error: 'could not create session',
+        error: 'Error: could not create session, please try again later.',
         actionType: CREATE_SESSION,
       });
     }
@@ -87,7 +87,7 @@ export const getSessions = params => {
     } catch (error) {
       dispatch({
         type: ACTION_ERROR,
-        error: 'could not get sessions',
+        error: 'Error: Something went wrong, please try again later.',
         actionType: GET_SESSIONS,
       });
     }
@@ -112,7 +112,7 @@ export const getSession = sessionId => {
     } catch (error) {
       dispatch({
         type: ACTION_ERROR,
-        error: 'could not get session',
+        error: 'Error: Something went wrong, please try again later.',
         actionType: GET_SESSION,
       });
     }
@@ -142,7 +142,7 @@ export const editSession = (id, sessionData) => {
       console.log(error);
       dispatch({
         type: ACTION_ERROR,
-        error: 'could not create session',
+        error: 'Error: could not edit your session, please try again later.',
         actionType: CREATE_SESSION,
       });
     }

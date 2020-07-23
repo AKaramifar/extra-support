@@ -178,3 +178,43 @@ body {
   -webkit-animation: spin 2s linear infinite;
   animation: spin 2s linear infinite;
 }
+.home-container {
+  display: flex;
+  justify-content: space-between;
+}
+.home-images {
+  width: 50%;
+  margin-top: 30px;
+}
+.home-text {
+  width: 50%;
+  padding: 20px;
+}
+.booking-form {
+  width: 50%;
+}
+.home-button-container {
+display: flex;
+}
+@media screen and (max-width: 640px) {
+  .home-container {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+  }
+  .home-images {
+    width: 100%;
+    margin-top: 30px;
+  }
+  .home-text {
+    width: 100%;
+    padding: 0px;
+  }
+  .booking-form {
+    width: 100%;
+  }
+  .home-button-container {
+    display: flex;
+    flex-direction: column;
+    }
+}

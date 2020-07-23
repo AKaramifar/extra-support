@@ -20,7 +20,7 @@ export const getCategories = () => {
     } catch (error) {
       dispatch({
         type: ACTION_ERROR,
-        error: 'could not get categories',
+        error: 'Error: Something went wrong, please try again later.',
         actionType: GET_CATEGORIES,
       });
     }
@@ -50,7 +50,7 @@ export const createCategory = categoryData => {
     } catch (error) {
       dispatch({
         type: ACTION_ERROR,
-        error: 'could not create category',
+        error: 'Error: could not create category, please try again later.',
         actionType: CREATE_CATEGORY,
       });
     }

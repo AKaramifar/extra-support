@@ -143,7 +143,7 @@ export default connect(
       ) : null}
       <hr />
       <h4>Available appointments</h4>
-      <Form style={{ width: '50%' }} onSubmit={handleSubmit}>
+      <Form className='booking-form' onSubmit={handleSubmit}>
         <FormGroup>
           <Label for="dateOption">Location</Label>
           <Input type="select" name="location" value={values.location} onChange={onChangeHandler} id="dateOption">

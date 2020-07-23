@@ -47,14 +47,18 @@ export default (state = INITIAL_STATE, action) => {
       return {
         ...state,
         studentBookings: state.studentBookings.map(studentBooking =>
-          studentBooking._id === action.studentBookings.id ? action.studentBookings : studentBooking
+          studentBooking._id === action.studentBooking._id
+            ? { ...studentBooking, ...action.studentBooking }
+            : studentBooking
         ),
       };
     case CANCEL_VOLUNTEER_BOOKINGS:
       return {
         ...state,
         volunteerBookings: state.volunteerBookings.map(volunteerBooking =>
-          volunteerBooking._id === action.volunteerBookings.id ? action.volunteerBookings : volunteerBooking
+          volunteerBooking._id === action.volunteerBooking._id
+            ? { ...volunteerBooking, ...action.volunteerBooking }
+            : volunteerBooking
         ),
       };
     default:

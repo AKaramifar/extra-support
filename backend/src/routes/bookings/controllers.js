@@ -1,7 +1,11 @@
 import BookingsContext from "./contexts";
 import UsersContext from "../users/contexts";
 import SessionsContext from "../sessions/contexts";
-import { bookingConfirmationEmail } from "../../utils/notification";
+import {
+  bookingConfirmationEmail,
+  cancelBookingEmailFromVolunteer,
+  cancelBookingEmailFromStudent,
+} from "../../utils/notification";
 import dayjs from "dayjs";
 export const getBookings = async (req, res) => {
   try {
@@ -64,7 +68,7 @@ export const createBooking = async (req, res) => {
       studentName: bookingData.studentName,
       volunteerEmail: bookingData.volunteerEmail,
       description: bookingData.description,
-      title: bookingData.title
+      title: bookingData.title,
     };
     await bookingConfirmationEmail(emailData);
     return res.status(200).send(booking);
@@ -117,5 +121,59 @@ export const getBookingsByStudentId = async (req, res) => {
   } catch (err) {
     console.log(err);
     return res.status(400).send("Could not get bookings");
+  }
+};
+
+export const cancelVolunteerBookings = async (req, res) => {
+  try {
+    const { bookingId } = req.params;
+    const booking = await BookingsContext.findOneAndUpdate(
+      { _id: bookingId },
+      {
+        canceled: true,
+        canceledById: req.body.volunteer._id,
+      }
+    );
+    const student = await UsersContext.findOneBy({ _id: booking.studentId });
+    const emailData = {
+      text: req.body.text,
+      volunteerEmail: req.body.volunteer.email,
+      volunteerName: req.body.volunteer.firstName,
+      studentEmail: student.email,
+      studentName: student.firstName,
+    };
+    await cancelBookingEmailFromVolunteer(emailData);
+    return res.status(200).send(booking);
+  } catch (err) {
+    console.log(err);
+    return res.status(400).send("Could not cancel booking");
+  }
+};
+
+export const cancelStudentBookings = async (req, res) => {
+  try {
+    const { bookingId } = req.params;
+    const booking = await BookingsContext.findOneAndUpdate(
+      { _id: bookingId },
+      {
+        canceled: true,
+        canceledById: req.body.student._id,
+      }
+    );
+    const volunteer = await UsersContext.findOneBy({
+      _id: booking.volunteerId,
+    });
+    const emailData = {
+      text: req.body.text,
+      volunteerEmail: volunteer.email,
+      volunteerName: volunteer.firstName,
+      studentEmail: req.body.student.email,
+      studentName: req.body.student.firstName,
+    };
+    await cancelBookingEmailFromStudent(emailData);
+    return res.status(200).send(booking);
+  } catch (err) {
+    console.log(err);
+    return res.status(400).send("Could not cancel booking");
   }
 };

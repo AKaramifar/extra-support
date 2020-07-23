@@ -23,9 +23,7 @@ export default connect(mapStateToProps)(({ pathName }) => {
         <a className="navbar-brand" href="/">
           <img src={logo_CYF_square} alt="logo" width="80" height="50" />
         </a>
-        <Link className={`nav-link nav-btn ${pathName === '/' && 'nav-btn-active'}`} to="/">
-          Home
-        </Link>
+
         <span className="sr-only">(current)</span>
         <button
           className="navbar-toggler"
@@ -40,6 +38,11 @@ export default connect(mapStateToProps)(({ pathName }) => {
         </button>
         <div className="collapse navbar-collapse" id="navbarText">
           <ul className="navbar-nav mr-auto">
+            <li className="nav-item">
+              <Link className={`nav-link nav-btn ${pathName === '/' && 'nav-btn-active'}`} to="/">
+                Home
+              </Link>
+            </li>
             {loggedIn() && isAuthorized(['STUDENT']) && (
               <li className="nav-item">
                 <Link className={`nav-link nav-btn ${pathName === '/categories' && 'nav-btn-active'}`} to="/categories">
@@ -83,7 +86,7 @@ export default connect(mapStateToProps)(({ pathName }) => {
                   className={`nav-link nav-btn ${pathName === '/volunteer/sessions' && 'nav-btn-active'}`}
                   to="/volunteer/sessions"
                 >
-                  Session
+                  Sessions
                 </Link>
               </li>
             ) : null}
@@ -93,17 +96,19 @@ export default connect(mapStateToProps)(({ pathName }) => {
                   className={`nav-link nav-btn ${pathName === '/volunteer/availabilities' && 'nav-btn-active'}`}
                   to="/volunteer/availabilities"
                 >
-                  Availability
+                  Availabilities
                 </Link>
               </li>
             ) : null}
             {loggedIn() && isAuthorized(['VOLUNTEER']) && (
-              <Link
-                className={`nav-link nav-btn ${pathName === '/volunteer/bookings' && 'nav-btn-active'}`}
-                to="/volunteer/bookings"
-              >
-                Bookings
-              </Link>
+              <li className="nav-item">
+                <Link
+                  className={`nav-link nav-btn ${pathName === '/volunteer/bookings' && 'nav-btn-active'}`}
+                  to="/volunteer/bookings"
+                >
+                  Bookings
+                </Link>
+              </li>
             )}
             <li className="nav-item desktop-display-none" />
             {loggedIn() && (

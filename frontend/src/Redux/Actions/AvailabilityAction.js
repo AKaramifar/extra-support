@@ -33,7 +33,7 @@ export const createAvailability = availabilityData => {
     } catch (error) {
       dispatch({
         type: ACTION_ERROR,
-        error: 'could not create availability',
+        error: 'Error: could not save your availability, please try again later',
         actionType: CREATE_AVAILABILITY,
       });
     }
@@ -59,7 +59,7 @@ export const getAvailabilities = () => {
     } catch (error) {
       dispatch({
         type: ACTION_ERROR,
-        error: 'Error: Could not get availabilities',
+        error: 'Error: something went wrong, please try again later.',
         actionType: GET_AVAILABILITY,
       });
     }
@@ -92,7 +92,7 @@ export const editAvailability = (id, availabilityData) => {
     } catch (error) {
       dispatch({
         type: ACTION_ERROR,
-        error: 'could not update availability',
+        error: 'Error: could not update your availability, please try again later.',
         actionType: EDIT_AVAILABILITY,
       });
     }

@@ -126,7 +126,6 @@ const SessionForm = ({ categories, getCategories, createSession, ActionControlle
               placeholder="Requirements"
             />
           </FormGroup>
-
           <Button
             disabled={ActionController.isLoading || !values.categoryId || !values.title || !values.description}
             type="submit"

@@ -80,10 +80,7 @@ export const userSignUp = user => {
     } catch (error) {
       dispatch({
         type: ACTION_ERROR,
-        error:
-          error.response && error.response.data && typeof error.response.data === 'string'
-            ? error.response.data
-            : 'Server is not available, please try again later.',
+        error: 'Error: something went wrong, please try again later.',
         actionType: USER_SIGN_UP,
       });
     }
@@ -114,10 +111,7 @@ export const userLogin = user => {
     } catch (error) {
       dispatch({
         type: ACTION_ERROR,
-        error:
-          error.response && error.response.data && typeof error.response.data === 'string'
-            ? error.response.data
-            : 'Server is not available, please try again later.',
+        error: 'Error: something went wrong, please try again later.',
         actionType: USER_LOGIN,
       });
     }
@@ -166,10 +160,7 @@ export const volunteerSignUp = (id, user) => {
     } catch (error) {
       dispatch({
         type: ACTION_ERROR,
-        error:
-          error.response && error.response.data && typeof error.response.data === 'string'
-            ? error.response.data
-            : 'Server is not available, please try again later.',
+        error: 'Error: something went wrong, please try again later.',
         actionType: USER_SIGN_UP,
       });
     }

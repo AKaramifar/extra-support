@@ -11,6 +11,7 @@ const bookingSchema = new Schema(
     date: Date,
     time: String,
     active: Boolean,
+    canceled: Boolean,
     canceledById: String,
     location: String,
   },
